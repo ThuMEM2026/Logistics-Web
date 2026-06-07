@@ -2,6 +2,7 @@ import { createFileRoute, Link, useRouter } from "@tanstack/react-router";
 import { useState } from "react";
 import { Check, Lock, Lightbulb, Search, BookOpen, FastForward, Sparkles } from "lucide-react";
 import { setState, useStore } from "@/lib/demo-store";
+import { SortingGame } from "@/components/SortingGame";
 
 export const Route = createFileRoute("/student/map")({ component: MapPage });
 
