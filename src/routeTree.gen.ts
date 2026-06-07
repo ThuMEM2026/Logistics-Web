@@ -9,14 +9,24 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TeacherRouteImport } from './routes/teacher'
 import { Route as StudentRouteImport } from './routes/student'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as TeacherIndexRouteImport } from './routes/teacher.index'
 import { Route as StudentIndexRouteImport } from './routes/student.index'
+import { Route as TeacherVariablesRouteImport } from './routes/teacher.variables'
+import { Route as TeacherReviewRouteImport } from './routes/teacher.review'
+import { Route as TeacherCasesRouteImport } from './routes/teacher.cases'
 import { Route as StudentSubmitRouteImport } from './routes/student.submit'
 import { Route as StudentResultRouteImport } from './routes/student.result'
 import { Route as StudentMapRouteImport } from './routes/student.map'
 import { Route as StudentLearnRouteImport } from './routes/student.learn'
 
+const TeacherRoute = TeacherRouteImport.update({
+  id: '/teacher',
+  path: '/teacher',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StudentRoute = StudentRouteImport.update({
   id: '/student',
   path: '/student',
@@ -27,10 +37,30 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TeacherIndexRoute = TeacherIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => TeacherRoute,
+} as any)
 const StudentIndexRoute = StudentIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => StudentRoute,
+} as any)
+const TeacherVariablesRoute = TeacherVariablesRouteImport.update({
+  id: '/variables',
+  path: '/variables',
+  getParentRoute: () => TeacherRoute,
+} as any)
+const TeacherReviewRoute = TeacherReviewRouteImport.update({
+  id: '/review',
+  path: '/review',
+  getParentRoute: () => TeacherRoute,
+} as any)
+const TeacherCasesRoute = TeacherCasesRouteImport.update({
+  id: '/cases',
+  path: '/cases',
+  getParentRoute: () => TeacherRoute,
 } as any)
 const StudentSubmitRoute = StudentSubmitRouteImport.update({
   id: '/submit',
@@ -56,11 +86,16 @@ const StudentLearnRoute = StudentLearnRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/student': typeof StudentRouteWithChildren
+  '/teacher': typeof TeacherRouteWithChildren
   '/student/learn': typeof StudentLearnRoute
   '/student/map': typeof StudentMapRoute
   '/student/result': typeof StudentResultRoute
   '/student/submit': typeof StudentSubmitRoute
+  '/teacher/cases': typeof TeacherCasesRoute
+  '/teacher/review': typeof TeacherReviewRoute
+  '/teacher/variables': typeof TeacherVariablesRoute
   '/student/': typeof StudentIndexRoute
+  '/teacher/': typeof TeacherIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -68,28 +103,42 @@ export interface FileRoutesByTo {
   '/student/map': typeof StudentMapRoute
   '/student/result': typeof StudentResultRoute
   '/student/submit': typeof StudentSubmitRoute
+  '/teacher/cases': typeof TeacherCasesRoute
+  '/teacher/review': typeof TeacherReviewRoute
+  '/teacher/variables': typeof TeacherVariablesRoute
   '/student': typeof StudentIndexRoute
+  '/teacher': typeof TeacherIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/student': typeof StudentRouteWithChildren
+  '/teacher': typeof TeacherRouteWithChildren
   '/student/learn': typeof StudentLearnRoute
   '/student/map': typeof StudentMapRoute
   '/student/result': typeof StudentResultRoute
   '/student/submit': typeof StudentSubmitRoute
+  '/teacher/cases': typeof TeacherCasesRoute
+  '/teacher/review': typeof TeacherReviewRoute
+  '/teacher/variables': typeof TeacherVariablesRoute
   '/student/': typeof StudentIndexRoute
+  '/teacher/': typeof TeacherIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/student'
+    | '/teacher'
     | '/student/learn'
     | '/student/map'
     | '/student/result'
     | '/student/submit'
+    | '/teacher/cases'
+    | '/teacher/review'
+    | '/teacher/variables'
     | '/student/'
+    | '/teacher/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -97,25 +146,42 @@ export interface FileRouteTypes {
     | '/student/map'
     | '/student/result'
     | '/student/submit'
+    | '/teacher/cases'
+    | '/teacher/review'
+    | '/teacher/variables'
     | '/student'
+    | '/teacher'
   id:
     | '__root__'
     | '/'
     | '/student'
+    | '/teacher'
     | '/student/learn'
     | '/student/map'
     | '/student/result'
     | '/student/submit'
+    | '/teacher/cases'
+    | '/teacher/review'
+    | '/teacher/variables'
     | '/student/'
+    | '/teacher/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   StudentRoute: typeof StudentRouteWithChildren
+  TeacherRoute: typeof TeacherRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/teacher': {
+      id: '/teacher'
+      path: '/teacher'
+      fullPath: '/teacher'
+      preLoaderRoute: typeof TeacherRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/student': {
       id: '/student'
       path: '/student'
@@ -130,12 +196,40 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/teacher/': {
+      id: '/teacher/'
+      path: '/'
+      fullPath: '/teacher/'
+      preLoaderRoute: typeof TeacherIndexRouteImport
+      parentRoute: typeof TeacherRoute
+    }
     '/student/': {
       id: '/student/'
       path: '/'
       fullPath: '/student/'
       preLoaderRoute: typeof StudentIndexRouteImport
       parentRoute: typeof StudentRoute
+    }
+    '/teacher/variables': {
+      id: '/teacher/variables'
+      path: '/variables'
+      fullPath: '/teacher/variables'
+      preLoaderRoute: typeof TeacherVariablesRouteImport
+      parentRoute: typeof TeacherRoute
+    }
+    '/teacher/review': {
+      id: '/teacher/review'
+      path: '/review'
+      fullPath: '/teacher/review'
+      preLoaderRoute: typeof TeacherReviewRouteImport
+      parentRoute: typeof TeacherRoute
+    }
+    '/teacher/cases': {
+      id: '/teacher/cases'
+      path: '/cases'
+      fullPath: '/teacher/cases'
+      preLoaderRoute: typeof TeacherCasesRouteImport
+      parentRoute: typeof TeacherRoute
     }
     '/student/submit': {
       id: '/student/submit'
@@ -187,9 +281,27 @@ const StudentRouteChildren: StudentRouteChildren = {
 const StudentRouteWithChildren =
   StudentRoute._addFileChildren(StudentRouteChildren)
 
+interface TeacherRouteChildren {
+  TeacherCasesRoute: typeof TeacherCasesRoute
+  TeacherReviewRoute: typeof TeacherReviewRoute
+  TeacherVariablesRoute: typeof TeacherVariablesRoute
+  TeacherIndexRoute: typeof TeacherIndexRoute
+}
+
+const TeacherRouteChildren: TeacherRouteChildren = {
+  TeacherCasesRoute: TeacherCasesRoute,
+  TeacherReviewRoute: TeacherReviewRoute,
+  TeacherVariablesRoute: TeacherVariablesRoute,
+  TeacherIndexRoute: TeacherIndexRoute,
+}
+
+const TeacherRouteWithChildren =
+  TeacherRoute._addFileChildren(TeacherRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   StudentRoute: StudentRouteWithChildren,
+  TeacherRoute: TeacherRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
