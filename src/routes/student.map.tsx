@@ -2,6 +2,7 @@ import { createFileRoute, Link, useRouter } from "@tanstack/react-router";
 import { useState } from "react";
 import { Check, Lock, Lightbulb, Search, BookOpen, FastForward, Sparkles } from "lucide-react";
 import { setState, useStore } from "@/lib/demo-store";
+import { SortingGame } from "@/components/SortingGame";
 
 export const Route = createFileRoute("/student/map")({ component: MapPage });
 
@@ -33,8 +34,8 @@ function MapPage() {
   };
 
   return (
-    <div>
-      <div className="mb-8 flex items-end justify-between">
+    <div className="space-y-8">
+      <div className="flex items-end justify-between">
         <div>
           <h1 className="text-3xl font-bold">闯关地图</h1>
           <p className="mt-1 text-muted-foreground">三关递进 · 当前最高解锁：第 {unlocked} 关</p>
@@ -46,6 +47,9 @@ function MapPage() {
           </div>
         )}
       </div>
+
+      {/* Gamified Sorting Challenge — gateway to Level 1 */}
+      <SortingGame />
 
       <div className="relative rounded-3xl border bg-card p-10" style={{ background: "var(--gradient-card)", boxShadow: "var(--shadow-soft)" }}>
         <svg className="absolute left-0 top-1/2 h-2 w-full -translate-y-1/2" preserveAspectRatio="none" viewBox="0 0 100 2">
