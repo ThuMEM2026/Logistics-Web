@@ -62,7 +62,7 @@ function MapPage() {
         <svg className="absolute left-0 top-1/2 h-2 w-full -translate-y-1/2" preserveAspectRatio="none" viewBox="0 0 100 2">
           <line x1="10" y1="1" x2="90" y2="1" stroke="oklch(0.85 0.04 260)" strokeWidth="0.4" strokeDasharray="2 1.5" />
         </svg>
-        <div className="relative grid grid-cols-3 gap-6">
+        <div className="relative grid grid-cols-2 gap-6 md:grid-cols-5">
           {LEVELS.map((l) => {
             const status = l.n < unlocked ? "done" : l.n === unlocked ? "current" : "locked";
             return (
