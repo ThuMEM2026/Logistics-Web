@@ -91,17 +91,16 @@ function MapPage() {
                   {status === "current" && (
                     <button
                       onClick={() => {
-                        if (l.n === 1) { setState({ unlockedLevel: 2 }); }
-                        else if (l.n === 2) router.navigate({ to: "/student/submit" });
-                        else router.navigate({ to: "/student/result" });
+                        if (l.n < 5) { setState({ unlockedLevel: l.n + 1 }); }
+                        else router.navigate({ to: "/student/submit" });
                       }}
                       className="rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground"
                     >
-                      {l.n === 1 ? "通过测验" : l.n === 2 ? "提交方案" : "查看仿真"}
+                      {l.n === 5 ? "提交方案" : "完成挑战"}
                     </button>
                   )}
                   {status === "done" && (
-                    <Link to={l.n === 2 ? "/student/submit" : "/student/result"} className="rounded-md bg-secondary px-3 py-1.5 text-xs">回看</Link>
+                    <Link to={l.n >= 4 ? "/student/submit" : "/student/learn"} className="rounded-md bg-secondary px-3 py-1.5 text-xs">回看</Link>
                   )}
                 </div>
               </div>
