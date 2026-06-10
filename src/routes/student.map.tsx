@@ -32,7 +32,7 @@ function MapPage() {
     setState((s) => ({ hintsUsed: [...s.hintsUsed, { type: `L${level}-${h.label}`, penalty: h.penalty }] }));
     setOpen(null);
     if (h.k === "skip" && unlocked === level) {
-      setState({ unlockedLevel: Math.min(3, level + 1) });
+      setState({ unlockedLevel: Math.min(5, level + 1) });
     }
   };
 
