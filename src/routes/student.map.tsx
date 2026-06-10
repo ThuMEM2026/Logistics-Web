@@ -8,9 +8,11 @@ import { DeliveryGame } from "@/components/DeliveryGame";
 export const Route = createFileRoute("/student/map")({ component: MapPage });
 
 const LEVELS = [
-  { n: 1, name: "概念理解", desc: "完成核心知识点测验，证明掌握基础概念。", reward: "+30 经验" },
-  { n: 2, name: "方案设计", desc: "提交 VRP 代码、Excel 数据、说明文档与可视化。", reward: "+40 经验" },
-  { n: 3, name: "实战挑战", desc: "在仿真平台中跑通方案并通过协调评分。", reward: "+50 经验 · 通关勋章" },
+  { n: 1, name: "案例理解", desc: "理解 Wafia Bakery 的门店、订单和配送背景。", reward: "完成概念学习" },
+  { n: 2, name: "仓内分拣挑战", desc: "设计 sorting wave，满足每波次不超过 80 carts。", reward: "通过分拣规则测验" },
+  { n: 3, name: "配送路径挑战", desc: "设计车辆路线，满足距离、时间窗和司机工时限制。", reward: "完成分拣挑战" },
+  { n: 4, name: "分拣配送协同", desc: "判断每条配送线路是否可以在分拣完成后发车。", reward: "完成配送路径挑战" },
+  { n: 5, name: "方案提交与 AI 批改", desc: "上传作业文件，查看校验、仿真和 AI 反馈。", reward: "完成综合协同任务" },
 ];
 
 const HINTS = [
