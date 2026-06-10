@@ -15,6 +15,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as TeacherIndexRouteImport } from './routes/teacher.index'
 import { Route as StudentIndexRouteImport } from './routes/student.index'
 import { Route as TeacherVariablesRouteImport } from './routes/teacher.variables'
+import { Route as TeacherRulesRouteImport } from './routes/teacher.rules'
 import { Route as TeacherReviewRouteImport } from './routes/teacher.review'
 import { Route as TeacherCasesRouteImport } from './routes/teacher.cases'
 import { Route as StudentSubmitRouteImport } from './routes/student.submit'
@@ -50,6 +51,11 @@ const StudentIndexRoute = StudentIndexRouteImport.update({
 const TeacherVariablesRoute = TeacherVariablesRouteImport.update({
   id: '/variables',
   path: '/variables',
+  getParentRoute: () => TeacherRoute,
+} as any)
+const TeacherRulesRoute = TeacherRulesRouteImport.update({
+  id: '/rules',
+  path: '/rules',
   getParentRoute: () => TeacherRoute,
 } as any)
 const TeacherReviewRoute = TeacherReviewRouteImport.update({
@@ -93,6 +99,7 @@ export interface FileRoutesByFullPath {
   '/student/submit': typeof StudentSubmitRoute
   '/teacher/cases': typeof TeacherCasesRoute
   '/teacher/review': typeof TeacherReviewRoute
+  '/teacher/rules': typeof TeacherRulesRoute
   '/teacher/variables': typeof TeacherVariablesRoute
   '/student/': typeof StudentIndexRoute
   '/teacher/': typeof TeacherIndexRoute
@@ -105,6 +112,7 @@ export interface FileRoutesByTo {
   '/student/submit': typeof StudentSubmitRoute
   '/teacher/cases': typeof TeacherCasesRoute
   '/teacher/review': typeof TeacherReviewRoute
+  '/teacher/rules': typeof TeacherRulesRoute
   '/teacher/variables': typeof TeacherVariablesRoute
   '/student': typeof StudentIndexRoute
   '/teacher': typeof TeacherIndexRoute
@@ -120,6 +128,7 @@ export interface FileRoutesById {
   '/student/submit': typeof StudentSubmitRoute
   '/teacher/cases': typeof TeacherCasesRoute
   '/teacher/review': typeof TeacherReviewRoute
+  '/teacher/rules': typeof TeacherRulesRoute
   '/teacher/variables': typeof TeacherVariablesRoute
   '/student/': typeof StudentIndexRoute
   '/teacher/': typeof TeacherIndexRoute
@@ -136,6 +145,7 @@ export interface FileRouteTypes {
     | '/student/submit'
     | '/teacher/cases'
     | '/teacher/review'
+    | '/teacher/rules'
     | '/teacher/variables'
     | '/student/'
     | '/teacher/'
@@ -148,6 +158,7 @@ export interface FileRouteTypes {
     | '/student/submit'
     | '/teacher/cases'
     | '/teacher/review'
+    | '/teacher/rules'
     | '/teacher/variables'
     | '/student'
     | '/teacher'
@@ -162,6 +173,7 @@ export interface FileRouteTypes {
     | '/student/submit'
     | '/teacher/cases'
     | '/teacher/review'
+    | '/teacher/rules'
     | '/teacher/variables'
     | '/student/'
     | '/teacher/'
@@ -215,6 +227,13 @@ declare module '@tanstack/react-router' {
       path: '/variables'
       fullPath: '/teacher/variables'
       preLoaderRoute: typeof TeacherVariablesRouteImport
+      parentRoute: typeof TeacherRoute
+    }
+    '/teacher/rules': {
+      id: '/teacher/rules'
+      path: '/rules'
+      fullPath: '/teacher/rules'
+      preLoaderRoute: typeof TeacherRulesRouteImport
       parentRoute: typeof TeacherRoute
     }
     '/teacher/review': {
@@ -284,6 +303,7 @@ const StudentRouteWithChildren =
 interface TeacherRouteChildren {
   TeacherCasesRoute: typeof TeacherCasesRoute
   TeacherReviewRoute: typeof TeacherReviewRoute
+  TeacherRulesRoute: typeof TeacherRulesRoute
   TeacherVariablesRoute: typeof TeacherVariablesRoute
   TeacherIndexRoute: typeof TeacherIndexRoute
 }
@@ -291,6 +311,7 @@ interface TeacherRouteChildren {
 const TeacherRouteChildren: TeacherRouteChildren = {
   TeacherCasesRoute: TeacherCasesRoute,
   TeacherReviewRoute: TeacherReviewRoute,
+  TeacherRulesRoute: TeacherRulesRoute,
   TeacherVariablesRoute: TeacherVariablesRoute,
   TeacherIndexRoute: TeacherIndexRoute,
 }

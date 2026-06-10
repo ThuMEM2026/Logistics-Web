@@ -95,6 +95,17 @@ function LearnPage() {
             </div>
           </div>
 
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+            <div className="rounded-2xl border bg-card p-5">
+              <div className="text-xs font-semibold text-primary">在 Wafia Bakery 中的体现</div>
+              <p className="mt-2 text-sm">{k.embodiment}</p>
+            </div>
+            <div className="rounded-2xl border bg-destructive/10 p-5">
+              <div className="text-xs font-semibold text-destructive">常见错误</div>
+              <p className="mt-2 text-sm">{k.mistake}</p>
+            </div>
+          </div>
+
           <div className="rounded-2xl border bg-card p-6">
             <h3 className="text-lg font-semibold">{k.name} · 随堂测验</h3>
             <p className="mt-1 text-sm text-muted-foreground">看完视频后，通过测验才能解锁下一关。</p>
