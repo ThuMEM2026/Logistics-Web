@@ -119,6 +119,50 @@ function SubmitPage() {
         <p className="mt-1 text-muted-foreground">上传 Week 14 综合作业文件 · 平台将自动预检、调用 BS 仿真并生成 AI 批改报告</p>
       </div>
 
+      {/* Progress bar */}
+      <div className="mb-6 rounded-2xl border bg-card p-5">
+        <div className="mb-3 flex items-center justify-between">
+          <h3 className="text-sm font-semibold">提交状态流转</h3>
+          <span className="text-xs text-muted-foreground">当前阶段：{STEPS[stepIdx]}</span>
+        </div>
+        <div className="flex items-center gap-2">
+          {STEPS.map((s, i) => {
+            const done = i < stepIdx;
+            const cur = i === stepIdx;
+            return (
+              <div key={s} className="flex flex-1 items-center gap-2">
+                <div className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold ${done ? "bg-success text-success-foreground" : cur ? "bg-primary text-primary-foreground" : "bg-secondary text-muted-foreground"}`}>
+                  {done ? "✓" : i + 1}
+                </div>
+                <div className={`text-xs ${cur ? "font-semibold text-foreground" : "text-muted-foreground"}`}>{s}</div>
+                {i < STEPS.length - 1 && <div className={`h-0.5 flex-1 ${done ? "bg-success" : "bg-border"}`} />}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Resubmit notice */}
+      {resubmit && (
+        <div className="mb-6 rounded-2xl border border-warning bg-warning/10 p-5">
+          <div className="flex items-center gap-2 text-sm font-semibold text-warning-foreground">
+            <AlertTriangle className="h-4 w-4" /> 你正在基于 AI 批改建议重新提交方案
+          </div>
+          <ul className="mt-2 space-y-1 text-sm text-foreground/90">
+            {resubmit.reasons.map((r, i) => (
+              <li key={i} className="flex gap-2"><span className="text-muted-foreground">{i + 1}.</span>{r}</li>
+            ))}
+          </ul>
+          <button
+            onClick={() => setState({ resubmit: null })}
+            className="mt-3 text-xs text-muted-foreground hover:text-foreground underline"
+          >
+            我知道了，关闭提示
+          </button>
+        </div>
+      )}
+
+
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_360px]">
         <div className="space-y-6">
           <div
