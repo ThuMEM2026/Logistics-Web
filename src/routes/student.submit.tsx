@@ -31,17 +31,17 @@ function SubmitPage() {
   const [grading, setGrading] = useState(false);
   const router = useRouter();
 
-  const addFile = (key: string, label: string, ext: string, sample: string) => {
+  const addFile = (key: string, _label: string, ext: string, sample: string) => {
     if (files.some((f) => f.key === key)) return;
-    // Simulate Group 3 risk for the sorting orders file
+    // A 类有效方案：所有文件预检通过，仅成本/发车细节留到仿真/批改阶段
     let status: FileStatus = "passed";
     let message = "字段结构完整";
-    if (key === "orders") {
-      status = "risk";
-      message = "Wave 1 包含 90 个 logistics cage carts，超过 80 个上限";
-    } else if (key === "sortCost") {
+    if (key === "sortCost") {
       status = "uploaded";
-      message = "总分拣时间 14h 05m 47s，需等待在线仿真验证";
+      message = "总分拣时间需等待在线仿真验证";
+    } else if (key === "total") {
+      status = "uploaded";
+      message = "部分发车时间需与分拣完成时间核对";
     }
     setState((s) => ({
       uploadedFiles: [...s.uploadedFiles, {
