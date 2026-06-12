@@ -46,9 +46,9 @@ export function AppShell({ children, nav, role: layoutRole }: { children: ReactN
           </nav>
           <div className="flex items-center gap-3 text-sm">
             <div className="flex items-center gap-2 rounded-full bg-secondary px-3 py-1.5">
-              <GraduationCap className="h-4 w-4 text-primary" />
-              <span className="font-medium">{username || "Demo 用户"}</span>
-              <span className="text-xs text-muted-foreground">{role === "teacher" ? "教师" : "学生"}</span>
+              <RoleIcon className="h-4 w-4 text-primary" />
+              <span className="font-medium">{displayName}</span>
+              <span className="text-xs text-muted-foreground">{displayRole === "teacher" ? "教师" : "学生"}</span>
             </div>
             <button
               onClick={() => { resetState(); router.navigate({ to: "/" }); }}
