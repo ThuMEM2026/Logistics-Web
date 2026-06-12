@@ -1,13 +1,24 @@
 import { Link, useRouter, useRouterState } from "@tanstack/react-router";
-import { ReactNode } from "react";
-import { GraduationCap, LogOut, Sparkles } from "lucide-react";
-import { resetState, useStore } from "@/lib/demo-store";
+import { ReactNode, useEffect } from "react";
+import { GraduationCap, LogOut, Sparkles, UserCog } from "lucide-react";
+import { resetState, setState, useStore, type Role } from "@/lib/demo-store";
 
-export function AppShell({ children, nav }: { children: ReactNode; nav: { to: string; label: string }[] }) {
+export function AppShell({ children, nav, role: layoutRole }: { children: ReactNode; nav: { to: string; label: string }[]; role: Role }) {
   const role = useStore((s) => s.role);
   const username = useStore((s) => s.username);
   const router = useRouter();
   const path = useRouterState({ select: (s) => s.location.pathname });
+
+  // Ensure identity matches the current layout (handles direct nav or stale state)
+  useEffect(() => {
+    if (role !== layoutRole) {
+      setState({ role: layoutRole, username: layoutRole === "teacher" ? "王老师" : "李同学" });
+    }
+  }, [layoutRole, role]);
+
+  const displayRole = layoutRole;
+  const displayName = role === layoutRole && username ? username : layoutRole === "teacher" ? "王老师" : "李同学";
+  const RoleIcon = displayRole === "teacher" ? UserCog : GraduationCap;
 
   return (
     <div className="min-h-screen bg-background">
