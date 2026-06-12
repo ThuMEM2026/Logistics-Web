@@ -7,6 +7,7 @@ export const Route = createFileRoute("/student/result")({ component: ResultPage 
 
 function ResultPage() {
   const score = useStore((s) => s.lastScore);
+  const router = useRouter();
 
   if (!score) {
     return (
