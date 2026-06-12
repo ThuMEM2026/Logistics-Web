@@ -67,6 +67,7 @@ export interface State {
   lastScore: null | AIScore;
   variables: { demandDelta: number; storeCount: number; vehicleCap: number };
   cases: CaseItem[];
+  resubmit: null | { reasons: string[] };
 }
 
 const initial: State = {
