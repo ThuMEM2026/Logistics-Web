@@ -89,7 +89,7 @@ function MapPage() {
                     disabled={status === "locked"}
                     className="inline-flex items-center gap-1 rounded-md border bg-card px-3 py-1.5 text-xs text-warning-foreground disabled:opacity-40"
                   >
-                    <Sparkles className="h-3.5 w-3.5" /> 锦囊
+                    <Sparkles className="h-3.5 w-3.5" /> 规则提示
                   </button>
                   {status === "current" && (
                     <button
@@ -99,7 +99,7 @@ function MapPage() {
                       }}
                       className="rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground"
                     >
-                      {l.n === 5 ? "提交方案" : "完成挑战"}
+                      {l.n === 5 ? "前往方案提交" : "提交本关练习"}
                     </button>
                   )}
                   {status === "done" && (
