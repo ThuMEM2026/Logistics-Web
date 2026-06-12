@@ -1,7 +1,7 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useRouter } from "@tanstack/react-router";
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from "recharts";
 import { CheckCircle2, AlertTriangle, XCircle, FileSearch, Lightbulb, RefreshCw, Sparkles, BookOpen } from "lucide-react";
-import { useStore } from "@/lib/demo-store";
+import { setState, useStore } from "@/lib/demo-store";
 
 export const Route = createFileRoute("/student/result")({ component: ResultPage });
 
