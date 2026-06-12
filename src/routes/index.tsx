@@ -128,6 +128,36 @@ function Login() {
             ))}
           </div>
         </div>
+
+        {/* Demo coverage scope */}
+        <div className="mt-8 grid grid-cols-1 gap-4 lg:grid-cols-2">
+          <div className="rounded-2xl border bg-card p-6">
+            <div className="flex items-center gap-2">
+              <span className="rounded bg-success/10 px-2 py-0.5 text-xs font-semibold text-success">当前 Demo 覆盖</span>
+            </div>
+            <ul className="mt-3 space-y-1.5 text-sm text-foreground/90">
+              <li>• Wafia Bakery 课程案例</li>
+              <li>• Week 14 分拣配送综合作业</li>
+              <li>• 文件上传与预检</li>
+              <li>• BS 在线仿真结果展示</li>
+              <li>• AI 批改报告</li>
+              <li>• 教师学情看板与复核</li>
+            </ul>
+          </div>
+          <div className="rounded-2xl border bg-card p-6">
+            <div className="flex items-center gap-2">
+              <span className="rounded bg-warning/20 px-2 py-0.5 text-xs font-semibold text-warning-foreground">暂不包含</span>
+            </div>
+            <ul className="mt-3 space-y-1.5 text-sm text-muted-foreground">
+              <li>• 真实后端文件解析</li>
+              <li>• 真实仿真服务调用</li>
+              <li>• 真实账号权限系统</li>
+            </ul>
+            <p className="mt-3 text-xs text-muted-foreground">
+              本平台当前为课程汇报演示版本，所有数据与流转均为前端模拟，可用于完整说明产品形态与教学闭环。
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
