@@ -8,18 +8,18 @@ import { DeliveryGame } from "@/components/DeliveryGame";
 export const Route = createFileRoute("/student/map")({ component: MapPage });
 
 const LEVELS = [
-  { n: 1, name: "案例理解", desc: "理解 Wafia Bakery 的门店、订单和配送背景。", reward: "完成概念学习" },
-  { n: 2, name: "仓内分拣挑战", desc: "设计 sorting wave，满足每波次不超过 80 carts。", reward: "通过分拣规则测验" },
-  { n: 3, name: "配送路径挑战", desc: "设计车辆路线，满足距离、时间窗和司机工时限制。", reward: "完成分拣挑战" },
-  { n: 4, name: "分拣配送协同", desc: "判断每条配送线路是否可以在分拣完成后发车。", reward: "完成配送路径挑战" },
-  { n: 5, name: "方案提交与 AI 批改", desc: "上传作业文件，查看校验、仿真和 AI 反馈。", reward: "完成综合协同任务" },
+  { n: 1, name: "案例背景理解", desc: "理解 Wafia Bakery 的门店、订单和配送背景。", reward: "完成概念学习" },
+  { n: 2, name: "Sorting Wave 设计", desc: "设计 sorting wave，满足每波次不超过 80 carts。", reward: "通过分拣规则测验" },
+  { n: 3, name: "配送路径规划", desc: "设计车辆路线，满足距离、时间窗和司机工时限制。", reward: "完成分拣资源配置练习" },
+  { n: 4, name: "分拣配送协同", desc: "判断每条配送线路是否可以在分拣完成后发车。", reward: "完成配送路径规划" },
+  { n: 5, name: "综合作业提交与 AI 批改", desc: "上传作业文件，查看校验、仿真和 AI 反馈。", reward: "完成协同任务" },
 ];
 
 const HINTS = [
-  { k: "tip", label: "提示锦囊", desc: "给出方向性提示", penalty: 10, icon: Lightbulb },
-  { k: "check", label: "检查锦囊", desc: "帮你检查当前方案的错误", penalty: 15, icon: Search },
-  { k: "demo", label: "示范锦囊", desc: "展示标准解法片段", penalty: 20, icon: BookOpen },
-  { k: "skip", label: "跳过锦囊", desc: "直接进入下一关", penalty: 50, icon: FastForward },
+  { k: "tip", label: "方向提示", desc: "给出方向性提示", penalty: 10, icon: Lightbulb },
+  { k: "check", label: "方案检查", desc: "帮你检查当前方案的错误", penalty: 15, icon: Search },
+  { k: "demo", label: "示范片段", desc: "展示标准解法片段", penalty: 20, icon: BookOpen },
+  { k: "skip", label: "跳过本关", desc: "直接进入下一关", penalty: 50, icon: FastForward },
 ];
 
 function MapPage() {
@@ -42,10 +42,13 @@ function MapPage() {
         <div>
           <h1 className="text-3xl font-bold">闯关地图</h1>
           <p className="mt-1 text-muted-foreground">5 关递进 · 当前最高解锁：第 {unlocked} 关</p>
+          <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
+            本模块用于帮助学生在正式提交 Week 14 综合作业前，逐步理解仓内分拣、配送路径、时间窗、司机工时和分拣配送协同规则。
+          </p>
         </div>
         {hints.length > 0 && (
           <div className="rounded-lg border bg-card px-4 py-2 text-sm">
-            <span className="text-muted-foreground">锦囊已用：</span>
+            <span className="text-muted-foreground">规则提示已用：</span>
             <span className="font-medium text-warning-foreground">-{hints.reduce((a, b) => a + b.penalty, 0)}%</span>
           </div>
         )}
@@ -86,7 +89,7 @@ function MapPage() {
                     disabled={status === "locked"}
                     className="inline-flex items-center gap-1 rounded-md border bg-card px-3 py-1.5 text-xs text-warning-foreground disabled:opacity-40"
                   >
-                    <Sparkles className="h-3.5 w-3.5" /> 锦囊
+                    <Sparkles className="h-3.5 w-3.5" /> 规则提示
                   </button>
                   {status === "current" && (
                     <button
@@ -96,7 +99,7 @@ function MapPage() {
                       }}
                       className="rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground"
                     >
-                      {l.n === 5 ? "提交方案" : "完成挑战"}
+                      {l.n === 5 ? "前往方案提交" : "提交本关练习"}
                     </button>
                   )}
                   {status === "done" && (
@@ -112,8 +115,8 @@ function MapPage() {
       {open !== null && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/40 p-4" onClick={() => setOpen(null)}>
           <div className="w-full max-w-md rounded-2xl bg-card p-6 shadow-xl" onClick={(e) => e.stopPropagation()}>
-            <h3 className="text-lg font-semibold">第 {open} 关 · 选择锦囊</h3>
-            <p className="mt-1 text-sm text-muted-foreground">使用锦囊会扣除对应分数百分比，请谨慎使用。</p>
+            <h3 className="text-lg font-semibold">第 {open} 关 · 规则提示</h3>
+            <p className="mt-1 text-sm text-muted-foreground">使用规则提示会扣除对应分数百分比，请谨慎使用。</p>
             <div className="mt-4 space-y-2">
               {HINTS.map((h) => {
                 const Icon = h.icon;

@@ -27,21 +27,23 @@ function SubmitPage() {
   const files = useStore((s) => s.uploadedFiles);
   const simStatus = useStore((s) => s.simStatus);
   const simResult = useStore((s) => s.simResult);
+  const score = useStore((s) => s.lastScore);
+  const resubmit = useStore((s) => s.resubmit);
   const [dragging, setDragging] = useState(false);
   const [grading, setGrading] = useState(false);
   const router = useRouter();
 
-  const addFile = (key: string, label: string, ext: string, sample: string) => {
+  const addFile = (key: string, _label: string, ext: string, sample: string) => {
     if (files.some((f) => f.key === key)) return;
-    // Simulate Group 3 risk for the sorting orders file
+    // A 类有效方案：所有文件预检通过，仅成本/发车细节留到仿真/批改阶段
     let status: FileStatus = "passed";
     let message = "字段结构完整";
-    if (key === "orders") {
-      status = "risk";
-      message = "Wave 1 包含 90 个 logistics cage carts，超过 80 个上限";
-    } else if (key === "sortCost") {
+    if (key === "sortCost") {
       status = "uploaded";
-      message = "总分拣时间 14h 05m 47s，需等待在线仿真验证";
+      message = "总分拣时间需等待在线仿真验证";
+    } else if (key === "total") {
+      status = "uploaded";
+      message = "部分发车时间需与分拣完成时间核对";
     }
     setState((s) => ({
       uploadedFiles: [...s.uploadedFiles, {
@@ -91,10 +93,24 @@ function SubmitPage() {
   };
 
   const preIssues: { sev: "high" | "mid"; text: string }[] = [];
-  if (files.find((f) => f.key === "orders")?.status === "risk")
-    preIssues.push({ sev: "high", text: "分拣订单文件中 Wave 1 包含 90 个 logistics cage carts，超过 80 个上限。" });
   if (files.find((f) => f.key === "sortCost") && simStatus !== "success")
-    preIssues.push({ sev: "mid", text: "分拣成本表中的总分拣时间为 14h 05m 47s，但仿真结果尚未生成，需等待在线仿真验证。" });
+    preIssues.push({ sev: "mid", text: "分拣成本表中的总分拣时间需等待在线仿真验证。" });
+  if (files.find((f) => f.key === "total") && simStatus !== "success")
+    preIssues.push({ sev: "mid", text: "Total Time 表中部分发车时间可能需要与分拣完成时间核对。" });
+
+  // Progress steps
+  const stepIdx = (() => {
+    if (score && simStatus === "success") return 4; // AI graded
+    if (simStatus === "success") return 3;
+    if (allRequired && files.every((f) => f.status === "passed" || f.status === "uploaded")) {
+      const allChecked = files.every((f) => f.status === "passed");
+      if (allChecked) return 2;
+      return 1;
+    }
+    if (files.length > 0) return 1;
+    return 0;
+  })();
+  const STEPS = ["待上传", "已上传", "文件预检完成", "在线仿真完成", "AI 批改完成"];
 
   return (
     <div>
@@ -102,6 +118,50 @@ function SubmitPage() {
         <h1 className="text-3xl font-bold">方案提交</h1>
         <p className="mt-1 text-muted-foreground">上传 Week 14 综合作业文件 · 平台将自动预检、调用 BS 仿真并生成 AI 批改报告</p>
       </div>
+
+      {/* Progress bar */}
+      <div className="mb-6 rounded-2xl border bg-card p-5">
+        <div className="mb-3 flex items-center justify-between">
+          <h3 className="text-sm font-semibold">提交状态流转</h3>
+          <span className="text-xs text-muted-foreground">当前阶段：{STEPS[stepIdx]}</span>
+        </div>
+        <div className="flex items-center gap-2">
+          {STEPS.map((s, i) => {
+            const done = i < stepIdx;
+            const cur = i === stepIdx;
+            return (
+              <div key={s} className="flex flex-1 items-center gap-2">
+                <div className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold ${done ? "bg-success text-success-foreground" : cur ? "bg-primary text-primary-foreground" : "bg-secondary text-muted-foreground"}`}>
+                  {done ? "✓" : i + 1}
+                </div>
+                <div className={`text-xs ${cur ? "font-semibold text-foreground" : "text-muted-foreground"}`}>{s}</div>
+                {i < STEPS.length - 1 && <div className={`h-0.5 flex-1 ${done ? "bg-success" : "bg-border"}`} />}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Resubmit notice */}
+      {resubmit && (
+        <div className="mb-6 rounded-2xl border border-warning bg-warning/10 p-5">
+          <div className="flex items-center gap-2 text-sm font-semibold text-warning-foreground">
+            <AlertTriangle className="h-4 w-4" /> 你正在基于 AI 批改建议重新提交方案
+          </div>
+          <ul className="mt-2 space-y-1 text-sm text-foreground/90">
+            {resubmit.reasons.map((r, i) => (
+              <li key={i} className="flex gap-2"><span className="text-muted-foreground">{i + 1}.</span>{r}</li>
+            ))}
+          </ul>
+          <button
+            onClick={() => setState({ resubmit: null })}
+            className="mt-3 text-xs text-muted-foreground hover:text-foreground underline"
+          >
+            我知道了，关闭提示
+          </button>
+        </div>
+      )}
+
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_360px]">
         <div className="space-y-6">

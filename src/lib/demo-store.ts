@@ -67,6 +67,7 @@ export interface State {
   lastScore: null | AIScore;
   variables: { demandDelta: number; storeCount: number; vehicleCap: number };
   cases: CaseItem[];
+  resubmit: null | { reasons: string[] };
 }
 
 const initial: State = {
@@ -82,6 +83,7 @@ const initial: State = {
   simResult: null,
   lastScore: null,
   variables: { demandDelta: 0, storeCount: 57, vehicleCap: 80 },
+  resubmit: null,
   cases: [
     { id: "wafia", name: "Wafia Bakery 分拣配送综合优化", description: "围绕连锁烘焙门店每日配送场景，学生需要根据订单数据完成仓内分拣、物流笼车装载、车辆路径规划、成本核算和总时间验证。", status: "in_progress", difficulty: "进阶", cover: "🥐" },
     { id: "freshmart", name: "FreshMart 生鲜冷链（扩展案例）", description: "面向 30 家生鲜门店的冷链配送，受温控与时间窗双重约束。", status: "not_started", difficulty: "高阶", cover: "🥬" },

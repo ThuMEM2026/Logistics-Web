@@ -1,13 +1,24 @@
 import { Link, useRouter, useRouterState } from "@tanstack/react-router";
-import { ReactNode } from "react";
-import { GraduationCap, LogOut, Sparkles } from "lucide-react";
-import { resetState, useStore } from "@/lib/demo-store";
+import { ReactNode, useEffect } from "react";
+import { GraduationCap, LogOut, Sparkles, UserCog } from "lucide-react";
+import { resetState, setState, useStore, type Role } from "@/lib/demo-store";
 
-export function AppShell({ children, nav }: { children: ReactNode; nav: { to: string; label: string }[] }) {
+export function AppShell({ children, nav, role: layoutRole }: { children: ReactNode; nav: { to: string; label: string }[]; role: Role }) {
   const role = useStore((s) => s.role);
   const username = useStore((s) => s.username);
   const router = useRouter();
   const path = useRouterState({ select: (s) => s.location.pathname });
+
+  // Ensure identity matches the current layout (handles direct nav or stale state)
+  useEffect(() => {
+    if (role !== layoutRole) {
+      setState({ role: layoutRole, username: layoutRole === "teacher" ? "王老师" : "李同学" });
+    }
+  }, [layoutRole, role]);
+
+  const displayRole = layoutRole;
+  const displayName = role === layoutRole && username ? username : layoutRole === "teacher" ? "王老师" : "李同学";
+  const RoleIcon = displayRole === "teacher" ? UserCog : GraduationCap;
 
   return (
     <div className="min-h-screen bg-background">
@@ -35,9 +46,9 @@ export function AppShell({ children, nav }: { children: ReactNode; nav: { to: st
           </nav>
           <div className="flex items-center gap-3 text-sm">
             <div className="flex items-center gap-2 rounded-full bg-secondary px-3 py-1.5">
-              <GraduationCap className="h-4 w-4 text-primary" />
-              <span className="font-medium">{username || "Demo 用户"}</span>
-              <span className="text-xs text-muted-foreground">{role === "teacher" ? "教师" : "学生"}</span>
+              <RoleIcon className="h-4 w-4 text-primary" />
+              <span className="font-medium">{displayName}</span>
+              <span className="text-xs text-muted-foreground">{displayRole === "teacher" ? "教师" : "学生"}</span>
             </div>
             <button
               onClick={() => { resetState(); router.navigate({ to: "/" }); }}

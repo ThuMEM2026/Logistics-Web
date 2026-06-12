@@ -1,12 +1,13 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useRouter } from "@tanstack/react-router";
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from "recharts";
 import { CheckCircle2, AlertTriangle, XCircle, FileSearch, Lightbulb, RefreshCw, Sparkles, BookOpen } from "lucide-react";
-import { useStore } from "@/lib/demo-store";
+import { setState, useStore } from "@/lib/demo-store";
 
 export const Route = createFileRoute("/student/result")({ component: ResultPage });
 
 function ResultPage() {
   const score = useStore((s) => s.lastScore);
+  const router = useRouter();
 
   if (!score) {
     return (
@@ -165,13 +166,23 @@ function ResultPage() {
         </div>
       </div>
 
-      <Link
-        to="/student/submit"
+      <button
+        onClick={() => {
+          setState({
+            resubmit: {
+              reasons: [
+                "Route 2 发车时间不能早于 Wave 4 完成时间（18:42）。",
+                "分拣成本需按向上取整后的 15 小时重新计算 worker-hours。",
+              ],
+            },
+          });
+          router.navigate({ to: "/student/submit" });
+        }}
         className="flex w-full items-center justify-center gap-2 rounded-xl py-3 text-sm font-semibold text-primary-foreground"
         style={{ background: "var(--gradient-hero)" }}
       >
         <RefreshCw className="h-4 w-4" /> 修改后重新提交
-      </Link>
+      </button>
     </div>
   );
 }

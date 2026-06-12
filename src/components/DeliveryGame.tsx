@@ -200,13 +200,13 @@ export function DeliveryGame() {
           <h2 className="mt-2 text-2xl font-bold">规划最优配送路线</h2>
           <p className="mt-1 text-sm text-muted-foreground">
             总需求 <b>{STOPS.reduce((s, p) => s + p.demand, 0)}</b>，单车容量 <b>{VEHICLE_CAP}</b>，需要多趟配送。
-            每趟在地图上点选门店（不超容量），点"开始配送"演示，完成后规划下一趟，直到全部送达。
+            每趟在地图上点选门店（不超容量），点"运行路线演示"，完成后规划下一趟，直到全部送达。
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-2">
           <button onClick={autoFill} disabled={running || allDone}
             className="inline-flex items-center gap-1.5 rounded-md border bg-card px-3 py-2 text-sm hover:border-primary/50 disabled:opacity-40">
-            <Lightbulb className="h-4 w-4 text-warning-foreground" /> 智能装载（就近）
+            <Lightbulb className="h-4 w-4 text-warning-foreground" /> 按就近原则生成路线
           </button>
           <button onClick={reset} disabled={running}
             className="inline-flex items-center gap-1.5 rounded-md border bg-card px-3 py-2 text-sm hover:border-primary/50 disabled:opacity-40">
@@ -214,7 +214,7 @@ export function DeliveryGame() {
           </button>
           <button onClick={start} disabled={picked.length === 0 || overCap || running || allDone}
             className="inline-flex items-center gap-1.5 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-sm hover:opacity-90 disabled:opacity-40">
-            <Play className="h-4 w-4" /> {running ? "配送中..." : `开始第 ${tripHistory.length + 1} 趟`}
+            <Play className="h-4 w-4" /> {running ? "演示中..." : `运行路线演示（第 ${tripHistory.length + 1} 趟）`}
           </button>
         </div>
       </div>

@@ -6,6 +6,7 @@ export const Route = createFileRoute("/teacher")({ component: TeacherLayout });
 function TeacherLayout() {
   return (
     <AppShell
+      role="teacher"
       nav={[
         { to: "/teacher", label: "学情看板" },
         { to: "/teacher/cases", label: "案例管理" },
