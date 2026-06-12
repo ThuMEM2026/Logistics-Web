@@ -6,6 +6,7 @@ export const Route = createFileRoute("/student")({ component: StudentLayout });
 function StudentLayout() {
   return (
     <AppShell
+      role="student"
       nav={[
         { to: "/student", label: "案例" },
         { to: "/student/learn", label: "概念学习" },
