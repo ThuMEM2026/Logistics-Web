@@ -8,18 +8,18 @@ import { DeliveryGame } from "@/components/DeliveryGame";
 export const Route = createFileRoute("/student/map")({ component: MapPage });
 
 const LEVELS = [
-  { n: 1, name: "案例理解", desc: "理解 Wafia Bakery 的门店、订单和配送背景。", reward: "完成概念学习" },
-  { n: 2, name: "仓内分拣挑战", desc: "设计 sorting wave，满足每波次不超过 80 carts。", reward: "通过分拣规则测验" },
-  { n: 3, name: "配送路径挑战", desc: "设计车辆路线，满足距离、时间窗和司机工时限制。", reward: "完成分拣挑战" },
-  { n: 4, name: "分拣配送协同", desc: "判断每条配送线路是否可以在分拣完成后发车。", reward: "完成配送路径挑战" },
-  { n: 5, name: "方案提交与 AI 批改", desc: "上传作业文件，查看校验、仿真和 AI 反馈。", reward: "完成综合协同任务" },
+  { n: 1, name: "案例背景理解", desc: "理解 Wafia Bakery 的门店、订单和配送背景。", reward: "完成概念学习" },
+  { n: 2, name: "Sorting Wave 设计", desc: "设计 sorting wave，满足每波次不超过 80 carts。", reward: "通过分拣规则测验" },
+  { n: 3, name: "配送路径规划", desc: "设计车辆路线，满足距离、时间窗和司机工时限制。", reward: "完成分拣资源配置练习" },
+  { n: 4, name: "分拣配送协同", desc: "判断每条配送线路是否可以在分拣完成后发车。", reward: "完成配送路径规划" },
+  { n: 5, name: "综合作业提交与 AI 批改", desc: "上传作业文件，查看校验、仿真和 AI 反馈。", reward: "完成协同任务" },
 ];
 
 const HINTS = [
-  { k: "tip", label: "提示锦囊", desc: "给出方向性提示", penalty: 10, icon: Lightbulb },
-  { k: "check", label: "检查锦囊", desc: "帮你检查当前方案的错误", penalty: 15, icon: Search },
-  { k: "demo", label: "示范锦囊", desc: "展示标准解法片段", penalty: 20, icon: BookOpen },
-  { k: "skip", label: "跳过锦囊", desc: "直接进入下一关", penalty: 50, icon: FastForward },
+  { k: "tip", label: "方向提示", desc: "给出方向性提示", penalty: 10, icon: Lightbulb },
+  { k: "check", label: "方案检查", desc: "帮你检查当前方案的错误", penalty: 15, icon: Search },
+  { k: "demo", label: "示范片段", desc: "展示标准解法片段", penalty: 20, icon: BookOpen },
+  { k: "skip", label: "跳过本关", desc: "直接进入下一关", penalty: 50, icon: FastForward },
 ];
 
 function MapPage() {
