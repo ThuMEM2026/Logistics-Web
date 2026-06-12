@@ -115,8 +115,8 @@ function MapPage() {
       {open !== null && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/40 p-4" onClick={() => setOpen(null)}>
           <div className="w-full max-w-md rounded-2xl bg-card p-6 shadow-xl" onClick={(e) => e.stopPropagation()}>
-            <h3 className="text-lg font-semibold">第 {open} 关 · 选择锦囊</h3>
-            <p className="mt-1 text-sm text-muted-foreground">使用锦囊会扣除对应分数百分比，请谨慎使用。</p>
+            <h3 className="text-lg font-semibold">第 {open} 关 · 规则提示</h3>
+            <p className="mt-1 text-sm text-muted-foreground">使用规则提示会扣除对应分数百分比，请谨慎使用。</p>
             <div className="mt-4 space-y-2">
               {HINTS.map((h) => {
                 const Icon = h.icon;
