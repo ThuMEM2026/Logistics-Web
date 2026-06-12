@@ -91,10 +91,24 @@ function SubmitPage() {
   };
 
   const preIssues: { sev: "high" | "mid"; text: string }[] = [];
-  if (files.find((f) => f.key === "orders")?.status === "risk")
-    preIssues.push({ sev: "high", text: "分拣订单文件中 Wave 1 包含 90 个 logistics cage carts，超过 80 个上限。" });
   if (files.find((f) => f.key === "sortCost") && simStatus !== "success")
-    preIssues.push({ sev: "mid", text: "分拣成本表中的总分拣时间为 14h 05m 47s，但仿真结果尚未生成，需等待在线仿真验证。" });
+    preIssues.push({ sev: "mid", text: "分拣成本表中的总分拣时间需等待在线仿真验证。" });
+  if (files.find((f) => f.key === "total") && simStatus !== "success")
+    preIssues.push({ sev: "mid", text: "Total Time 表中部分发车时间可能需要与分拣完成时间核对。" });
+
+  // Progress steps
+  const stepIdx = (() => {
+    if (score && simStatus === "success") return 4; // AI graded
+    if (simStatus === "success") return 3;
+    if (allRequired && files.every((f) => f.status === "passed" || f.status === "uploaded")) {
+      const allChecked = files.every((f) => f.status === "passed");
+      if (allChecked) return 2;
+      return 1;
+    }
+    if (files.length > 0) return 1;
+    return 0;
+  })();
+  const STEPS = ["待上传", "已上传", "文件预检完成", "在线仿真完成", "AI 批改完成"];
 
   return (
     <div>
