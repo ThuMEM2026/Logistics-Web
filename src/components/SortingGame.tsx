@@ -218,7 +218,7 @@ export function SortingGame({ onFinish }: { onFinish?: (score: number) => void }
         <div>
           <div className="flex items-center gap-2">
             <div className="rounded-md bg-primary/10 p-1.5 text-primary"><Package className="h-4 w-4" /></div>
-            <h2 className="text-xl font-bold">分拣挑战 · Sorting Sprint</h2>
+            <h2 className="text-xl font-bold">分拣资源配置练习</h2>
             <span className="rounded-full bg-warning/20 px-2 py-0.5 text-xs font-medium text-warning-foreground">
               限时 60s
             </span>
