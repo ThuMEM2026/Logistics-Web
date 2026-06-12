@@ -27,6 +27,8 @@ function SubmitPage() {
   const files = useStore((s) => s.uploadedFiles);
   const simStatus = useStore((s) => s.simStatus);
   const simResult = useStore((s) => s.simResult);
+  const score = useStore((s) => s.lastScore);
+  const resubmit = useStore((s) => s.resubmit);
   const [dragging, setDragging] = useState(false);
   const [grading, setGrading] = useState(false);
   const router = useRouter();
