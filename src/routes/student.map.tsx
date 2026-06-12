@@ -42,10 +42,13 @@ function MapPage() {
         <div>
           <h1 className="text-3xl font-bold">闯关地图</h1>
           <p className="mt-1 text-muted-foreground">5 关递进 · 当前最高解锁：第 {unlocked} 关</p>
+          <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
+            本模块用于帮助学生在正式提交 Week 14 综合作业前，逐步理解仓内分拣、配送路径、时间窗、司机工时和分拣配送协同规则。
+          </p>
         </div>
         {hints.length > 0 && (
           <div className="rounded-lg border bg-card px-4 py-2 text-sm">
-            <span className="text-muted-foreground">锦囊已用：</span>
+            <span className="text-muted-foreground">规则提示已用：</span>
             <span className="font-medium text-warning-foreground">-{hints.reduce((a, b) => a + b.penalty, 0)}%</span>
           </div>
         )}
