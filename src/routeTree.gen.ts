@@ -22,6 +22,7 @@ import { Route as StudentSubmitRouteImport } from './routes/student.submit'
 import { Route as StudentResultRouteImport } from './routes/student.result'
 import { Route as StudentMapRouteImport } from './routes/student.map'
 import { Route as StudentLearnRouteImport } from './routes/student.learn'
+import { Route as StudentCasesRouteImport } from './routes/student.cases'
 
 const TeacherRoute = TeacherRouteImport.update({
   id: '/teacher',
@@ -88,11 +89,17 @@ const StudentLearnRoute = StudentLearnRouteImport.update({
   path: '/learn',
   getParentRoute: () => StudentRoute,
 } as any)
+const StudentCasesRoute = StudentCasesRouteImport.update({
+  id: '/cases',
+  path: '/cases',
+  getParentRoute: () => StudentRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/student': typeof StudentRouteWithChildren
   '/teacher': typeof TeacherRouteWithChildren
+  '/student/cases': typeof StudentCasesRoute
   '/student/learn': typeof StudentLearnRoute
   '/student/map': typeof StudentMapRoute
   '/student/result': typeof StudentResultRoute
@@ -106,6 +113,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/student/cases': typeof StudentCasesRoute
   '/student/learn': typeof StudentLearnRoute
   '/student/map': typeof StudentMapRoute
   '/student/result': typeof StudentResultRoute
@@ -122,6 +130,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/student': typeof StudentRouteWithChildren
   '/teacher': typeof TeacherRouteWithChildren
+  '/student/cases': typeof StudentCasesRoute
   '/student/learn': typeof StudentLearnRoute
   '/student/map': typeof StudentMapRoute
   '/student/result': typeof StudentResultRoute
@@ -139,6 +148,7 @@ export interface FileRouteTypes {
     | '/'
     | '/student'
     | '/teacher'
+    | '/student/cases'
     | '/student/learn'
     | '/student/map'
     | '/student/result'
@@ -152,6 +162,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/student/cases'
     | '/student/learn'
     | '/student/map'
     | '/student/result'
@@ -167,6 +178,7 @@ export interface FileRouteTypes {
     | '/'
     | '/student'
     | '/teacher'
+    | '/student/cases'
     | '/student/learn'
     | '/student/map'
     | '/student/result'
@@ -278,10 +290,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StudentLearnRouteImport
       parentRoute: typeof StudentRoute
     }
+    '/student/cases': {
+      id: '/student/cases'
+      path: '/cases'
+      fullPath: '/student/cases'
+      preLoaderRoute: typeof StudentCasesRouteImport
+      parentRoute: typeof StudentRoute
+    }
   }
 }
 
 interface StudentRouteChildren {
+  StudentCasesRoute: typeof StudentCasesRoute
   StudentLearnRoute: typeof StudentLearnRoute
   StudentMapRoute: typeof StudentMapRoute
   StudentResultRoute: typeof StudentResultRoute
@@ -290,6 +310,7 @@ interface StudentRouteChildren {
 }
 
 const StudentRouteChildren: StudentRouteChildren = {
+  StudentCasesRoute: StudentCasesRoute,
   StudentLearnRoute: StudentLearnRoute,
   StudentMapRoute: StudentMapRoute,
   StudentResultRoute: StudentResultRoute,
