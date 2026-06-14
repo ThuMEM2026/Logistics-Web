@@ -1,101 +1,132 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { CheckCircle2, Circle, Play, ArrowRight, BookOpen } from "lucide-react";
-import { useStore } from "@/lib/demo-store";
+import { CheckCircle2, Lock, Play, RotateCcw, Sparkles, ArrowRight, BookOpen, Boxes, Truck, Network, Award } from "lucide-react";
+import { TRACK_META, WEEKS, useStore, type WeekItem, type WeekStatus } from "@/lib/demo-store";
 
-export const Route = createFileRoute("/student/")({ component: CasesPage });
+export const Route = createFileRoute("/student/")({ component: WeekCalendar });
 
-const statusMap = {
-  not_started: { label: "未开始", color: "text-muted-foreground", icon: Circle },
-  in_progress: { label: "进行中", color: "text-primary", icon: Play },
-  completed: { label: "已完成", color: "text-success", icon: CheckCircle2 },
-} as const;
+const STATUS_META: Record<WeekStatus, { label: string; ring: string; badge: string; Icon: typeof Play }> = {
+  locked:    { label: "未开放", ring: "border-border opacity-70", badge: "bg-secondary text-muted-foreground", Icon: Lock },
+  current:   { label: "进行中", ring: "border-primary shadow-[var(--shadow-glow)]", badge: "bg-primary text-primary-foreground", Icon: Play },
+  completed: { label: "已完成", ring: "border-success/40", badge: "bg-success/15 text-success", Icon: CheckCircle2 },
+  review:    { label: "可回顾", ring: "border-border", badge: "bg-accent text-accent-foreground", Icon: RotateCcw },
+};
 
-const TASKS = [
-  { w: "Week 12", t: "分拣作业" },
-  { w: "Week 13", t: "配送路径作业" },
-  { w: "Week 14", t: "分拣配送综合作业" },
-];
+const TRACK_ICON = { intro: Sparkles, fundamentals: BookOpen, sorting: Boxes, delivery: Truck, integrated: Network, review: Award } as const;
 
-function CasesPage() {
-  const cases = useStore((s) => s.cases);
-  const main = cases.find((c) => c.id === "wafia")!;
-  const others = cases.filter((c) => c.id !== "wafia");
-  const s = statusMap[main.status];
-  const Icon = s.icon;
+function WeekCalendar() {
+  const weeks = WEEKS;
+  const username = useStore((s) => s.username);
+  const completed = weeks.filter((w) => w.status === "completed").length;
+  const total = weeks.length;
+  const current = weeks.find((w) => w.status === "current");
 
   return (
     <div>
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold">课程案例</h1>
-        <p className="mt-1 text-muted-foreground">本课主案例：Wafia Bakery 分拣配送综合优化</p>
-      </div>
-
-      {/* Main Wafia card */}
-      <div className="overflow-hidden rounded-2xl border bg-card shadow-xl" style={{ boxShadow: "var(--shadow-soft)" }}>
+      {/* Top overview */}
+      <div className="overflow-hidden rounded-2xl border bg-card" style={{ boxShadow: "var(--shadow-soft)" }}>
         <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr]">
-          <div className="p-8">
-            <div className="flex items-center gap-3">
-              <div className="flex h-14 w-14 items-center justify-center rounded-xl text-3xl" style={{ background: "var(--gradient-card)" }}>{main.cover}</div>
-              <span className={`inline-flex items-center gap-1 rounded-full bg-secondary px-2.5 py-1 text-xs ${s.color}`}>
-                <Icon className="h-3.5 w-3.5" /> {s.label}
-              </span>
-              <span className="rounded-md bg-accent px-2 py-0.5 text-xs text-accent-foreground">主案例</span>
-            </div>
-            <h2 className="mt-4 text-2xl font-bold">{main.name}</h2>
-            <p className="mt-2 text-sm text-muted-foreground">{main.description}</p>
-            <div className="mt-4 flex flex-wrap gap-1.5 text-xs">
-              {["仓内分拣", "VRP", "物流笼车", "在线仿真", "AI 批改"].map((t) => (
-                <span key={t} className="rounded-full bg-secondary px-2 py-0.5">{t}</span>
-              ))}
-            </div>
-            <Link
-              to="/student/learn"
-              className="mt-6 inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium text-primary-foreground"
-              style={{ background: "var(--gradient-hero)" }}
-            >
-              进入 Wafia Bakery 任务 <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-          <div className="border-t bg-background/40 p-8 lg:border-l lg:border-t-0">
-            <div className="text-sm font-semibold">课程任务结构</div>
-            <div className="mt-4 space-y-2">
-              {TASKS.map((t, i) => (
-                <div key={t.w} className="flex items-center gap-3 rounded-lg border bg-card px-3 py-2.5 text-sm">
-                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">{i + 1}</span>
-                  <div>
-                    <div className="font-medium">{t.w}</div>
-                    <div className="text-xs text-muted-foreground">{t.t}</div>
-                  </div>
-                </div>
-              ))}
+          <div className="p-6">
+            <div className="text-xs uppercase tracking-widest text-muted-foreground">{username || "李同学"} · 本学期</div>
+            <h1 className="mt-1 text-2xl font-bold">物流网络规划 · 课程周历</h1>
+            <p className="mt-1 text-sm text-muted-foreground">
+              围绕 Wafia Bakery 案例，按 14 周推进；当前重点为 <b className="text-primary">仓内分拣</b>，与 <b className="text-chart-2">物流配送</b> 衔接，最终形成综合练习。
+            </p>
+            <div className="mt-4">
+              <div className="flex items-center justify-between text-xs">
+                <span className="text-muted-foreground">学期总进度</span>
+                <span className="font-semibold">{completed} / {total}</span>
+              </div>
+              <div className="mt-1.5 h-2 overflow-hidden rounded-full bg-secondary">
+                <div className="h-full rounded-full" style={{ width: `${(completed / total) * 100}%`, background: "var(--gradient-hero)" }} />
+              </div>
             </div>
           </div>
+          {current && (
+            <div className="border-t bg-background/40 p-6 lg:border-l lg:border-t-0">
+              <div className="inline-flex items-center gap-1 rounded-full bg-primary px-2.5 py-0.5 text-xs font-semibold text-primary-foreground animate-pulse-glow">
+                <Play className="h-3 w-3" /> 本周进行中
+              </div>
+              <div className="mt-2 text-xs text-muted-foreground">Week {current.id} · {TRACK_META[current.track].label}</div>
+              <div className="mt-1 text-lg font-semibold">{current.title}</div>
+              <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">{current.goal}</p>
+              <Link to="/student/week/$weekId" params={{ weekId: String(current.id) }}
+                className="mt-3 inline-flex items-center gap-1 rounded-md px-3 py-1.5 text-sm font-medium text-primary-foreground"
+                style={{ background: "var(--gradient-hero)" }}>
+                进入本周学习 <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          )}
         </div>
       </div>
 
-      {/* Extended cases */}
-      <div className="mt-8 mb-3 text-sm font-semibold text-muted-foreground">扩展案例</div>
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-        {others.map((c) => {
-          const ss = statusMap[c.status];
-          const IIcon = ss.icon;
-          return (
-            <div key={c.id} className="rounded-2xl border bg-card p-5 opacity-90 transition-all hover:opacity-100">
-              <div className="flex items-start justify-between">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl text-2xl" style={{ background: "var(--gradient-card)" }}>{c.cover}</div>
-                <span className={`inline-flex items-center gap-1 rounded-full bg-secondary px-2.5 py-1 text-xs ${ss.color}`}>
-                  <IIcon className="h-3.5 w-3.5" /> {ss.label}
-                </span>
-              </div>
-              <h3 className="mt-3 text-base font-semibold">{c.name}</h3>
-              <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">{c.description}</p>
-              <Link to="/student/learn" className="mt-3 inline-flex items-center gap-1 text-sm text-primary hover:underline">
-                <BookOpen className="h-4 w-4" /> 查看
-              </Link>
-            </div>
-          );
-        })}
+      {/* Track legend */}
+      <div className="mt-5 flex flex-wrap items-center gap-2 text-xs">
+        <span className="text-muted-foreground">教学方向：</span>
+        {(Object.keys(TRACK_META) as (keyof typeof TRACK_META)[]).map((k) => (
+          <span key={k} className="inline-flex items-center gap-1.5 rounded-full border bg-card px-2 py-0.5">
+            <span className={`h-2 w-2 rounded-full ${TRACK_META[k].bar}`} />
+            {TRACK_META[k].label}
+          </span>
+        ))}
+      </div>
+
+      {/* Week grid */}
+      <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {weeks.map((w) => <WeekCard key={w.id} w={w} />)}
       </div>
     </div>
   );
+}
+
+function WeekCard({ w }: { w: WeekItem }) {
+  const sm = STATUS_META[w.status];
+  const tm = TRACK_META[w.track];
+  const TIcon = TRACK_ICON[w.track];
+  const SIcon = sm.Icon;
+  const interactive = w.status !== "locked";
+
+  const inner = (
+    <div className={`group relative h-full overflow-hidden rounded-2xl border-2 bg-card p-5 transition-all ${sm.ring} ${interactive ? "hover:-translate-y-0.5 hover:shadow-lg" : ""}`}>
+      <div className={`absolute inset-x-0 top-0 h-1 ${tm.bar}`} />
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <div className={`flex h-9 w-9 items-center justify-center rounded-lg bg-secondary ${tm.color}`}>
+            <TIcon className="h-4.5 w-4.5" />
+          </div>
+          <div>
+            <div className="text-[11px] uppercase tracking-widest text-muted-foreground">Week {w.id}</div>
+            <div className={`text-[11px] ${tm.color}`}>{tm.label}</div>
+          </div>
+        </div>
+        <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] ${sm.badge}`}>
+          <SIcon className="h-3 w-3" /> {sm.label}
+        </span>
+      </div>
+
+      <div className="mt-3 flex items-center gap-1.5">
+        {w.highlight && <span className="rounded bg-warning/20 px-1.5 py-0.5 text-[10px] font-semibold text-warning-foreground">★ 重点周</span>}
+        <h3 className="text-sm font-semibold leading-snug">{w.title}</h3>
+      </div>
+      <p className="mt-1.5 line-clamp-2 text-xs text-muted-foreground">{w.goal}</p>
+
+      <div className="mt-3 flex flex-wrap gap-1">
+        {w.taskTypes.map((t) => <span key={t} className="rounded-full bg-secondary px-2 py-0.5 text-[10px] text-muted-foreground">{t}</span>)}
+      </div>
+
+      <div className="mt-4 flex items-center justify-between">
+        <div className="text-[11px] text-muted-foreground">{w.concepts.length} 个核心概念</div>
+        {interactive ? (
+          <span className="inline-flex items-center gap-1 text-xs font-medium text-primary">
+            进入 <ArrowRight className="h-3.5 w-3.5" />
+          </span>
+        ) : (
+          <span className="text-xs text-muted-foreground">尚未解锁</span>
+        )}
+      </div>
+    </div>
+  );
+
+  return interactive
+    ? <Link to="/student/week/$weekId" params={{ weekId: String(w.id) }}>{inner}</Link>
+    : <div title="尚未解锁" className="cursor-not-allowed">{inner}</div>;
 }
