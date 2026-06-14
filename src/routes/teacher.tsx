@@ -12,6 +12,7 @@ function TeacherLayout() {
         { to: "/teacher/cases", label: "案例管理" },
         { to: "/teacher/variables", label: "变量注入" },
         { to: "/teacher/review", label: "AI 复核" },
+        { to: "/teacher/workshop-review", label: "共创审核" },
         { to: "/teacher/rules", label: "评分规则" },
       ]}
     >
