@@ -91,7 +91,7 @@ function WeekCard({ w }: { w: WeekItem }) {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <div className={`flex h-9 w-9 items-center justify-center rounded-lg bg-secondary ${tm.color}`}>
-            <TIcon className="h-4.5 w-4.5" />
+            <TIcon className="h-4 w-4" />
           </div>
           <div>
             <div className="text-[11px] uppercase tracking-widest text-muted-foreground">Week {w.id}</div>
