@@ -101,7 +101,7 @@ function WeekDetail() {
                     <div className="text-xs text-muted-foreground">{p.desc}</div>
                   </div>
                   {p.href ? (
-                    <Link to={p.href} className="rounded-md border px-3 py-1.5 text-xs hover:border-primary">前往</Link>
+                    <Link to={p.href as string} className="rounded-md border px-3 py-1.5 text-xs hover:border-primary">前往</Link>
                   ) : (
                     <span className="text-xs text-muted-foreground">即将开放</span>
                   )}
