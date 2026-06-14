@@ -28,7 +28,7 @@ export function AppShell({ children, nav, role: layoutRole }: { children: ReactN
             <div className="flex h-9 w-9 items-center justify-center rounded-lg" style={{ background: "var(--gradient-hero)" }}>
               <Sparkles className="h-5 w-5 text-primary-foreground" />
             </div>
-            <span className="text-base">AI 配送教学平台</span>
+            <span className="text-base">物流网络规划 · 课程平台</span>
           </Link>
           <nav className="flex flex-1 items-center gap-1">
             {nav.map((n) => {

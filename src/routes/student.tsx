@@ -8,11 +8,10 @@ function StudentLayout() {
     <AppShell
       role="student"
       nav={[
-        { to: "/student", label: "案例" },
-        { to: "/student/learn", label: "概念学习" },
-        { to: "/student/map", label: "闯关地图" },
-        { to: "/student/submit", label: "方案提交" },
-        { to: "/student/result", label: "AI 批改" },
+        { to: "/student", label: "课程周历" },
+        { to: "/student/workshop", label: "共创工坊" },
+        { to: "/student/cases", label: "案例库" },
+        { to: "/student/submissions", label: "我的提交" },
       ]}
     >
       <Outlet />
