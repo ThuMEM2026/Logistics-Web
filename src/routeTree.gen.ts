@@ -14,15 +14,20 @@ import { Route as StudentRouteImport } from './routes/student'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TeacherIndexRouteImport } from './routes/teacher.index'
 import { Route as StudentIndexRouteImport } from './routes/student.index'
+import { Route as TeacherWorkshopReviewRouteImport } from './routes/teacher.workshop-review'
 import { Route as TeacherVariablesRouteImport } from './routes/teacher.variables'
 import { Route as TeacherRulesRouteImport } from './routes/teacher.rules'
 import { Route as TeacherReviewRouteImport } from './routes/teacher.review'
 import { Route as TeacherCasesRouteImport } from './routes/teacher.cases'
+import { Route as StudentWorkshopRouteImport } from './routes/student.workshop'
 import { Route as StudentSubmitRouteImport } from './routes/student.submit'
+import { Route as StudentSubmissionsRouteImport } from './routes/student.submissions'
 import { Route as StudentResultRouteImport } from './routes/student.result'
 import { Route as StudentMapRouteImport } from './routes/student.map'
 import { Route as StudentLearnRouteImport } from './routes/student.learn'
 import { Route as StudentCasesRouteImport } from './routes/student.cases'
+import { Route as StudentWorkshopModuleIdRouteImport } from './routes/student.workshop.$moduleId'
+import { Route as StudentWeekWeekIdRouteImport } from './routes/student.week.$weekId'
 
 const TeacherRoute = TeacherRouteImport.update({
   id: '/teacher',
@@ -49,6 +54,11 @@ const StudentIndexRoute = StudentIndexRouteImport.update({
   path: '/',
   getParentRoute: () => StudentRoute,
 } as any)
+const TeacherWorkshopReviewRoute = TeacherWorkshopReviewRouteImport.update({
+  id: '/workshop-review',
+  path: '/workshop-review',
+  getParentRoute: () => TeacherRoute,
+} as any)
 const TeacherVariablesRoute = TeacherVariablesRouteImport.update({
   id: '/variables',
   path: '/variables',
@@ -69,9 +79,19 @@ const TeacherCasesRoute = TeacherCasesRouteImport.update({
   path: '/cases',
   getParentRoute: () => TeacherRoute,
 } as any)
+const StudentWorkshopRoute = StudentWorkshopRouteImport.update({
+  id: '/workshop',
+  path: '/workshop',
+  getParentRoute: () => StudentRoute,
+} as any)
 const StudentSubmitRoute = StudentSubmitRouteImport.update({
   id: '/submit',
   path: '/submit',
+  getParentRoute: () => StudentRoute,
+} as any)
+const StudentSubmissionsRoute = StudentSubmissionsRouteImport.update({
+  id: '/submissions',
+  path: '/submissions',
   getParentRoute: () => StudentRoute,
 } as any)
 const StudentResultRoute = StudentResultRouteImport.update({
@@ -94,6 +114,16 @@ const StudentCasesRoute = StudentCasesRouteImport.update({
   path: '/cases',
   getParentRoute: () => StudentRoute,
 } as any)
+const StudentWorkshopModuleIdRoute = StudentWorkshopModuleIdRouteImport.update({
+  id: '/$moduleId',
+  path: '/$moduleId',
+  getParentRoute: () => StudentWorkshopRoute,
+} as any)
+const StudentWeekWeekIdRoute = StudentWeekWeekIdRouteImport.update({
+  id: '/week/$weekId',
+  path: '/week/$weekId',
+  getParentRoute: () => StudentRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -103,13 +133,18 @@ export interface FileRoutesByFullPath {
   '/student/learn': typeof StudentLearnRoute
   '/student/map': typeof StudentMapRoute
   '/student/result': typeof StudentResultRoute
+  '/student/submissions': typeof StudentSubmissionsRoute
   '/student/submit': typeof StudentSubmitRoute
+  '/student/workshop': typeof StudentWorkshopRouteWithChildren
   '/teacher/cases': typeof TeacherCasesRoute
   '/teacher/review': typeof TeacherReviewRoute
   '/teacher/rules': typeof TeacherRulesRoute
   '/teacher/variables': typeof TeacherVariablesRoute
+  '/teacher/workshop-review': typeof TeacherWorkshopReviewRoute
   '/student/': typeof StudentIndexRoute
   '/teacher/': typeof TeacherIndexRoute
+  '/student/week/$weekId': typeof StudentWeekWeekIdRoute
+  '/student/workshop/$moduleId': typeof StudentWorkshopModuleIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -117,13 +152,18 @@ export interface FileRoutesByTo {
   '/student/learn': typeof StudentLearnRoute
   '/student/map': typeof StudentMapRoute
   '/student/result': typeof StudentResultRoute
+  '/student/submissions': typeof StudentSubmissionsRoute
   '/student/submit': typeof StudentSubmitRoute
+  '/student/workshop': typeof StudentWorkshopRouteWithChildren
   '/teacher/cases': typeof TeacherCasesRoute
   '/teacher/review': typeof TeacherReviewRoute
   '/teacher/rules': typeof TeacherRulesRoute
   '/teacher/variables': typeof TeacherVariablesRoute
+  '/teacher/workshop-review': typeof TeacherWorkshopReviewRoute
   '/student': typeof StudentIndexRoute
   '/teacher': typeof TeacherIndexRoute
+  '/student/week/$weekId': typeof StudentWeekWeekIdRoute
+  '/student/workshop/$moduleId': typeof StudentWorkshopModuleIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -134,13 +174,18 @@ export interface FileRoutesById {
   '/student/learn': typeof StudentLearnRoute
   '/student/map': typeof StudentMapRoute
   '/student/result': typeof StudentResultRoute
+  '/student/submissions': typeof StudentSubmissionsRoute
   '/student/submit': typeof StudentSubmitRoute
+  '/student/workshop': typeof StudentWorkshopRouteWithChildren
   '/teacher/cases': typeof TeacherCasesRoute
   '/teacher/review': typeof TeacherReviewRoute
   '/teacher/rules': typeof TeacherRulesRoute
   '/teacher/variables': typeof TeacherVariablesRoute
+  '/teacher/workshop-review': typeof TeacherWorkshopReviewRoute
   '/student/': typeof StudentIndexRoute
   '/teacher/': typeof TeacherIndexRoute
+  '/student/week/$weekId': typeof StudentWeekWeekIdRoute
+  '/student/workshop/$moduleId': typeof StudentWorkshopModuleIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -152,13 +197,18 @@ export interface FileRouteTypes {
     | '/student/learn'
     | '/student/map'
     | '/student/result'
+    | '/student/submissions'
     | '/student/submit'
+    | '/student/workshop'
     | '/teacher/cases'
     | '/teacher/review'
     | '/teacher/rules'
     | '/teacher/variables'
+    | '/teacher/workshop-review'
     | '/student/'
     | '/teacher/'
+    | '/student/week/$weekId'
+    | '/student/workshop/$moduleId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -166,13 +216,18 @@ export interface FileRouteTypes {
     | '/student/learn'
     | '/student/map'
     | '/student/result'
+    | '/student/submissions'
     | '/student/submit'
+    | '/student/workshop'
     | '/teacher/cases'
     | '/teacher/review'
     | '/teacher/rules'
     | '/teacher/variables'
+    | '/teacher/workshop-review'
     | '/student'
     | '/teacher'
+    | '/student/week/$weekId'
+    | '/student/workshop/$moduleId'
   id:
     | '__root__'
     | '/'
@@ -182,13 +237,18 @@ export interface FileRouteTypes {
     | '/student/learn'
     | '/student/map'
     | '/student/result'
+    | '/student/submissions'
     | '/student/submit'
+    | '/student/workshop'
     | '/teacher/cases'
     | '/teacher/review'
     | '/teacher/rules'
     | '/teacher/variables'
+    | '/teacher/workshop-review'
     | '/student/'
     | '/teacher/'
+    | '/student/week/$weekId'
+    | '/student/workshop/$moduleId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -234,6 +294,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StudentIndexRouteImport
       parentRoute: typeof StudentRoute
     }
+    '/teacher/workshop-review': {
+      id: '/teacher/workshop-review'
+      path: '/workshop-review'
+      fullPath: '/teacher/workshop-review'
+      preLoaderRoute: typeof TeacherWorkshopReviewRouteImport
+      parentRoute: typeof TeacherRoute
+    }
     '/teacher/variables': {
       id: '/teacher/variables'
       path: '/variables'
@@ -262,11 +329,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TeacherCasesRouteImport
       parentRoute: typeof TeacherRoute
     }
+    '/student/workshop': {
+      id: '/student/workshop'
+      path: '/workshop'
+      fullPath: '/student/workshop'
+      preLoaderRoute: typeof StudentWorkshopRouteImport
+      parentRoute: typeof StudentRoute
+    }
     '/student/submit': {
       id: '/student/submit'
       path: '/submit'
       fullPath: '/student/submit'
       preLoaderRoute: typeof StudentSubmitRouteImport
+      parentRoute: typeof StudentRoute
+    }
+    '/student/submissions': {
+      id: '/student/submissions'
+      path: '/submissions'
+      fullPath: '/student/submissions'
+      preLoaderRoute: typeof StudentSubmissionsRouteImport
       parentRoute: typeof StudentRoute
     }
     '/student/result': {
@@ -297,16 +378,45 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StudentCasesRouteImport
       parentRoute: typeof StudentRoute
     }
+    '/student/workshop/$moduleId': {
+      id: '/student/workshop/$moduleId'
+      path: '/$moduleId'
+      fullPath: '/student/workshop/$moduleId'
+      preLoaderRoute: typeof StudentWorkshopModuleIdRouteImport
+      parentRoute: typeof StudentWorkshopRoute
+    }
+    '/student/week/$weekId': {
+      id: '/student/week/$weekId'
+      path: '/week/$weekId'
+      fullPath: '/student/week/$weekId'
+      preLoaderRoute: typeof StudentWeekWeekIdRouteImport
+      parentRoute: typeof StudentRoute
+    }
   }
 }
+
+interface StudentWorkshopRouteChildren {
+  StudentWorkshopModuleIdRoute: typeof StudentWorkshopModuleIdRoute
+}
+
+const StudentWorkshopRouteChildren: StudentWorkshopRouteChildren = {
+  StudentWorkshopModuleIdRoute: StudentWorkshopModuleIdRoute,
+}
+
+const StudentWorkshopRouteWithChildren = StudentWorkshopRoute._addFileChildren(
+  StudentWorkshopRouteChildren,
+)
 
 interface StudentRouteChildren {
   StudentCasesRoute: typeof StudentCasesRoute
   StudentLearnRoute: typeof StudentLearnRoute
   StudentMapRoute: typeof StudentMapRoute
   StudentResultRoute: typeof StudentResultRoute
+  StudentSubmissionsRoute: typeof StudentSubmissionsRoute
   StudentSubmitRoute: typeof StudentSubmitRoute
+  StudentWorkshopRoute: typeof StudentWorkshopRouteWithChildren
   StudentIndexRoute: typeof StudentIndexRoute
+  StudentWeekWeekIdRoute: typeof StudentWeekWeekIdRoute
 }
 
 const StudentRouteChildren: StudentRouteChildren = {
@@ -314,8 +424,11 @@ const StudentRouteChildren: StudentRouteChildren = {
   StudentLearnRoute: StudentLearnRoute,
   StudentMapRoute: StudentMapRoute,
   StudentResultRoute: StudentResultRoute,
+  StudentSubmissionsRoute: StudentSubmissionsRoute,
   StudentSubmitRoute: StudentSubmitRoute,
+  StudentWorkshopRoute: StudentWorkshopRouteWithChildren,
   StudentIndexRoute: StudentIndexRoute,
+  StudentWeekWeekIdRoute: StudentWeekWeekIdRoute,
 }
 
 const StudentRouteWithChildren =
@@ -326,6 +439,7 @@ interface TeacherRouteChildren {
   TeacherReviewRoute: typeof TeacherReviewRoute
   TeacherRulesRoute: typeof TeacherRulesRoute
   TeacherVariablesRoute: typeof TeacherVariablesRoute
+  TeacherWorkshopReviewRoute: typeof TeacherWorkshopReviewRoute
   TeacherIndexRoute: typeof TeacherIndexRoute
 }
 
@@ -334,6 +448,7 @@ const TeacherRouteChildren: TeacherRouteChildren = {
   TeacherReviewRoute: TeacherReviewRoute,
   TeacherRulesRoute: TeacherRulesRoute,
   TeacherVariablesRoute: TeacherVariablesRoute,
+  TeacherWorkshopReviewRoute: TeacherWorkshopReviewRoute,
   TeacherIndexRoute: TeacherIndexRoute,
 }
 

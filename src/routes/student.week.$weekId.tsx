@@ -1,19 +1,21 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft, BookOpen, CheckCircle2, FileText, Lightbulb, Lock, Play, Sparkles, Target, AlertTriangle } from "lucide-react";
 import { TRACK_META, WEEKS, KNOWLEDGE, useStore, type WeekItem } from "@/lib/demo-store";
 
-export const Route = createFileRoute("/student/week/$weekId")({
-  component: WeekDetail,
-  loader: ({ params }) => {
-    const w = WEEKS.find((x) => x.id === Number(params.weekId));
-    if (!w) throw notFound();
-    return { w };
-  },
-});
+export const Route = createFileRoute("/student/week/$weekId")({ component: WeekDetail });
 
 function WeekDetail() {
-  const { w } = Route.useLoaderData();
+  const { weekId } = Route.useParams();
+  const w = WEEKS.find((x) => x.id === Number(weekId));
   const modules = useStore((s) => s.workshop);
+  if (!w) {
+    return (
+      <div className="rounded-2xl border bg-card p-10 text-center">
+        <div className="text-lg font-semibold">未找到该教学周</div>
+        <Link to="/student" className="mt-3 inline-block text-sm text-primary hover:underline">返回课程周历</Link>
+      </div>
+    );
+  }
   const tm = TRACK_META[w.track];
 
   const recommended = modules.filter(
