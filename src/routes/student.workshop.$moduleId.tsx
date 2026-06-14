@@ -1,25 +1,25 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { ArrowLeft, ThumbsUp, MessageSquare, ExternalLink, Sparkles } from "lucide-react";
 import {
-  MODULE_TYPE_META, TEACHER_STATUS_META, addComment, getState, toggleLike, useStore,
+  MODULE_TYPE_META, TEACHER_STATUS_META, addComment, toggleLike, useStore,
 } from "@/lib/demo-store";
 
-export const Route = createFileRoute("/student/workshop/$moduleId")({
-  component: WorkshopDetail,
-  loader: ({ params }) => {
-    const m = getState().workshop.find((x) => x.id === params.moduleId);
-    if (!m) throw notFound();
-    return { moduleId: params.moduleId };
-  },
-});
+export const Route = createFileRoute("/student/workshop/$moduleId")({ component: WorkshopDetail });
 
 function WorkshopDetail() {
-  const { moduleId } = Route.useLoaderData();
+  const { moduleId } = Route.useParams();
   const m = useStore((s) => s.workshop.find((x) => x.id === moduleId));
   const username = useStore((s) => s.username) || "李同学";
   const [text, setText] = useState("");
-  if (!m) return null;
+  if (!m) {
+    return (
+      <div className="rounded-2xl border bg-card p-10 text-center">
+        <div className="text-lg font-semibold">未找到该共创模块</div>
+        <Link to="/student/workshop" className="mt-3 inline-block text-sm text-primary hover:underline">返回共创工坊</Link>
+      </div>
+    );
+  }
 
   const tm = MODULE_TYPE_META[m.type];
   const sm = TEACHER_STATUS_META[m.status];
