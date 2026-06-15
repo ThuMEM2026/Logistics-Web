@@ -1,24 +1,49 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
-import { CheckCircle2, Play, Pause, FastForward, ArrowRight, Lock } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { CheckCircle2, Play, Pause, FastForward, ArrowLeft, ArrowRight, Lock } from "lucide-react";
 import { KNOWLEDGE, setState, useStore } from "@/lib/demo-store";
 
 export const Route = createFileRoute("/student/learn")({ component: LearnPage });
 
 function LearnPage() {
+  const search = Route.useSearch() as { concept?: string; fromWeek?: string | number };
   const passed = useStore((s) => s.passedQuiz);
-  const [active, setActive] = useState(KNOWLEDGE[0].id);
+  const requestedConcept = useMemo(
+    () => KNOWLEDGE.some((k) => k.id === search.concept) ? search.concept! : KNOWLEDGE[0].id,
+    [search.concept],
+  );
+  const fromWeek = search.fromWeek && Number.isFinite(Number(search.fromWeek)) ? String(search.fromWeek) : null;
+  const directConceptMode = Boolean(search.concept);
+
+  const [active, setActive] = useState(requestedConcept);
   const [playing, setPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const [quiz, setQuiz] = useState<{ open: boolean; answer: string | null }>({ open: false, answer: null });
 
-  const idx = KNOWLEDGE.findIndex((k) => k.id === active);
+  useEffect(() => {
+    setActive(requestedConcept);
+    setProgress(0);
+    setPlaying(false);
+  }, [requestedConcept]);
+
+  const rawIdx = KNOWLEDGE.findIndex((k) => k.id === active);
+  const idx = rawIdx >= 0 ? rawIdx : 0;
   const k = KNOWLEDGE[idx];
   const completedCount = Object.values(passed).filter(Boolean).length;
   const overall = Math.round((completedCount / KNOWLEDGE.length) * 100);
 
   return (
     <div>
+      {fromWeek && (
+        <Link
+          to="/student/week/$weekId"
+          params={{ weekId: fromWeek }}
+          className="mb-4 inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
+        >
+          <ArrowLeft className="h-4 w-4" /> 返回 Week {fromWeek} 学习页
+        </Link>
+      )}
+
       <div className="mb-6 flex items-end justify-between">
         <div>
           <h1 className="text-3xl font-bold">概念学习</h1>
@@ -38,7 +63,7 @@ function LearnPage() {
         <aside className="space-y-2">
           {KNOWLEDGE.map((kk, i) => {
             const done = passed[kk.id];
-            const locked = i > 0 && !passed[KNOWLEDGE[i - 1].id];
+            const locked = !directConceptMode && i > 0 && !passed[KNOWLEDGE[i - 1].id];
             return (
               <button
                 key={kk.id}

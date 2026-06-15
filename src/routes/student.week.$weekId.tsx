@@ -1,8 +1,36 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowLeft, BookOpen, CheckCircle2, FileText, Lightbulb, Lock, Play, Sparkles, Target, AlertTriangle } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, FileText, Lightbulb, Lock, Play, Sparkles, Target, AlertTriangle } from "lucide-react";
 import { TRACK_META, WEEKS, KNOWLEDGE, useStore, type WeekItem } from "@/lib/demo-store";
 
 export const Route = createFileRoute("/student/week/$weekId")({ component: WeekDetail });
+
+const CONCEPT_ALIASES: Record<string, string> = {
+  "logistics wave": "wave",
+  "sorting wave": "wave",
+  "sorting wave 上限": "wave_limit",
+  "sorting wave 限制": "wave_limit",
+  "笼车装载": "cage",
+  "物流笼车": "cage",
+  "logistics cage cart": "cage",
+  "分拣成本": "sorting_cost",
+  "vrp": "vrp",
+  "vrp 路径规划": "vrp",
+  "time window": "tw",
+  "time window & 工时": "tw",
+  "配送时间窗": "tw",
+  "sorting-delivery coordination": "joint",
+  "分拣配送协同": "joint",
+};
+
+function resolveConceptId(name: string) {
+  const normalized = name.trim().toLowerCase();
+  return KNOWLEDGE.find((x) => x.name.toLowerCase() === normalized)?.id ?? CONCEPT_ALIASES[normalized] ?? "wave";
+}
+
+function conceptPreview(name: string) {
+  const id = resolveConceptId(name);
+  return KNOWLEDGE.find((x) => x.id === id);
+}
 
 function WeekDetail() {
   const { weekId } = Route.useParams();
@@ -63,20 +91,26 @@ function WeekDetail() {
           <Section icon={BookOpen} title="核心概念">
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               {w.concepts.map((name) => {
-                const k = KNOWLEDGE.find((x) => x.name === name);
+                const k = conceptPreview(name);
                 return (
-                  <div key={name} className="rounded-xl border bg-background/40 p-3">
-                    <div className="text-sm font-semibold">{name}</div>
+                  <Link
+                    key={name}
+                    to="/student/learn"
+                    search={{ concept: resolveConceptId(name), fromWeek: w.id }}
+                    className="group rounded-xl border bg-background/40 p-3 transition-all hover:-translate-y-0.5 hover:border-primary hover:bg-accent/60"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="text-sm font-semibold">{name}</div>
+                      <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-primary" />
+                    </div>
                     {k && <div className="mt-1 text-xs leading-relaxed text-muted-foreground">{k.desc}</div>}
-                  </div>
+                    <div className="mt-2 inline-flex items-center gap-1 text-[11px] font-medium text-primary">
+                      <Play className="h-3 w-3" /> 点击进入 AI 视频学习
+                    </div>
+                  </Link>
                 );
               })}
             </div>
-            {w.concepts.some((c) => KNOWLEDGE.find((k) => k.name === c)) && (
-              <Link to="/student/learn" className="mt-3 inline-flex items-center gap-1 text-xs text-primary hover:underline">
-                查看概念卡片详情 →
-              </Link>
-            )}
           </Section>
 
           {/* 3. 学习材料 */}
