@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, FileText, Lightbulb, Lock, Play, Sparkles, Target, AlertTriangle } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, FileText, Lightbulb, Lock, Play, Sparkles, Target, AlertTriangle, Boxes } from "lucide-react";
 import { TRACK_META, WEEKS, KNOWLEDGE, useStore, type WeekItem } from "@/lib/demo-store";
+import { SortingGame } from "@/components/SortingGame";
 
 export const Route = createFileRoute("/student/week/$weekId")({ component: WeekDetail });
 
@@ -272,6 +273,14 @@ function Week8Blocks() {
           <li className="rounded-lg bg-warning/10 px-3 py-2 text-warning-foreground">⚠ Sorting Wave 上限：每个 wave ≤ 80 carts</li>
           <li className="rounded-lg bg-warning/10 px-3 py-2 text-warning-foreground">⚠ 总分拣时间向上取整后再计算人力成本</li>
         </ul>
+      </Section>
+
+      <Section icon={Boxes} title="分拣专项练习 · 交互式仿真">
+        <p className="mb-4 text-sm text-muted-foreground">
+          在正式提交作业前，通过下面这个小游戏熟悉分拣资源配置：拖拽右侧分拣员到 4 条传送带上，
+          让包裹被正确分拣到对应目的地区域。得分 ≥ 120 解锁下一关卡，帮助你建立对 lane-sorter 匹配逻辑的直觉。
+        </p>
+        <SortingGame />
       </Section>
 
       <Section icon={Lightbulb} title="分拣仿真结果样例">
