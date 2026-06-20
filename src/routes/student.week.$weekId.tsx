@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, FileText, Lightbulb, Lock, Play, Sparkles, Target, AlertTriangle, Boxes } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, FileText, Lightbulb, Lock, Play, Sparkles, Target, AlertTriangle, Boxes, Truck } from "lucide-react";
 import { TRACK_META, WEEKS, KNOWLEDGE, useStore, type WeekItem } from "@/lib/demo-store";
 import { SortingGame } from "@/components/SortingGame";
+import { DeliveryGame } from "@/components/DeliveryGame";
 
 export const Route = createFileRoute("/student/week/$weekId")({ component: WeekDetail });
 
@@ -147,6 +148,7 @@ function WeekDetail() {
 
           {/* 5. Week 8 special blocks */}
           {w.id === 8 && <Week8Blocks />}
+          {w.id === 12 && <Week12Blocks />}
 
           {/* 6. 规则提示 */}
           {w.rules && (
@@ -301,6 +303,31 @@ function Week8Blocks() {
           <Link to="/student/result" className="rounded-md border px-3 py-1.5 text-xs hover:border-primary">查看示例 AI 报告</Link>
           <Link to="/student/submissions" className="rounded-md border px-3 py-1.5 text-xs hover:border-primary">查看我的提交记录</Link>
         </div>
+      </Section>
+    </>
+  );
+}
+
+function Week12Blocks() {
+  return (
+    <>
+      <Section icon={Truck} title="配送路径规划练习 · 交互式仿真">
+        <p className="mb-4 text-sm text-muted-foreground">
+          Week 12 的核心是理解「分拣完成 → 货物释放 → 车辆发车」的协同时间链路。
+          下面这个小游戏帮助你建立对配送路径规划（VRP）的直觉：点击地图上的门店安排进当前趟，
+          在装载量不超车辆容量（60 单位）的前提下，最小化总行驶距离与趟次。
+          这为后续理解「发车时间必须晚于对应波次分拣完成时间」打下基础。
+        </p>
+        <DeliveryGame />
+      </Section>
+
+      <Section icon={Sparkles} title="分拣-配送协同核心规则">
+        <ul className="space-y-1.5 text-sm">
+          <li className="rounded-lg bg-warning/10 px-3 py-2 text-warning-foreground">⚠ 车辆发车时间 ≥ 对应 Sorting Wave 最早完成时间</li>
+          <li className="rounded-lg bg-warning/10 px-3 py-2 text-warning-foreground">⚠ 单条配送路线总装载量 ≤ 车辆容量（60 单位）</li>
+          <li className="rounded-lg bg-success/10 px-3 py-2 text-success">✓ 多趟配送时，每趟须从配送中心出发并返回</li>
+          <li className="rounded-lg bg-success/10 px-3 py-2 text-success">✓ 所有门店须在时间窗（Time Window）内完成配送</li>
+        </ul>
       </Section>
     </>
   );

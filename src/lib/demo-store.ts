@@ -208,7 +208,7 @@ export const WEEKS: WeekItem[] = [
     materials: [{ type: "数据", name: "配送样例数据集.xlsx" }],
     practice: [{ title: "路径设计", desc: "完成一次简化 VRP 设计", href: "/student/map" }],
   },
-  { id: 12, title: "分拣与配送衔接", track: "integrated", status: "locked",
+  { id: 12, title: "分拣与配送衔接", track: "integrated", status: "review",
     goal: "理解分拣完成 → 货物释放 → 车辆发车的协同时间链路。",
     taskTypes: ["协同练习"],
     concepts: ["分拣完成时间", "货物释放", "车辆发车"],
