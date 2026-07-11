@@ -1,6 +1,6 @@
-import { createFileRoute, useRouter } from "@tanstack/react-router";
+import { createFileRoute, Link, useRouter } from "@tanstack/react-router";
 import { useState } from "react";
-import { Upload, FileSpreadsheet, FileText, FileCode, CheckCircle2, X, Loader2, AlertTriangle, AlertCircle, Server, Clock } from "lucide-react";
+import { Upload, FileSpreadsheet, FileText, FileCode, CheckCircle2, X, Loader2, AlertTriangle, AlertCircle, Server, Clock, Bot } from "lucide-react";
 import { makeMockScore, REQUIRED_FILES, setState, useStore, type FileStatus, type SimStatus } from "@/lib/demo-store";
 
 export const Route = createFileRoute("/student/submit")({ component: SubmitPage });
@@ -308,6 +308,22 @@ function SubmitPage() {
               <li>• 司机工时 ≤ 8 小时</li>
               <li>• 单文件 ≤ 20 MB</li>
             </ul>
+          </div>
+
+          <div className="rounded-2xl border bg-card p-5">
+            <h3 className="flex items-center gap-2 font-semibold">
+              <Bot className="h-4 w-4 text-primary" /> AI 助教
+            </h3>
+            <p className="mt-2 text-sm text-muted-foreground">
+              对预检提示、必交文件和仿真状态有疑问时，可以带着当前提交上下文提问。
+            </p>
+            <Link
+              to="/student/assistant"
+              search={{ from: "submit", mode: "rules" }}
+              className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-md border px-3 py-2 text-sm hover:border-primary"
+            >
+              请 AI 解释预检提示
+            </Link>
           </div>
         </aside>
       </div>

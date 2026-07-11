@@ -1,6 +1,6 @@
 import { createFileRoute, Link, useRouter } from "@tanstack/react-router";
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from "recharts";
-import { CheckCircle2, AlertTriangle, XCircle, FileSearch, Lightbulb, RefreshCw, Sparkles, BookOpen } from "lucide-react";
+import { CheckCircle2, AlertTriangle, XCircle, FileSearch, Lightbulb, RefreshCw, Sparkles, BookOpen, Bot } from "lucide-react";
 import { setState, useStore } from "@/lib/demo-store";
 
 export const Route = createFileRoute("/student/result")({ component: ResultPage });
@@ -32,6 +32,13 @@ function ResultPage() {
       <div>
         <h1 className="text-3xl font-bold">AI 批改报告</h1>
         <p className="mt-1 text-muted-foreground">Wafia Bakery · Week 14 分拣配送综合作业</p>
+        <Link
+          to="/student/assistant"
+          search={{ from: "result", mode: "rules" }}
+          className="mt-4 inline-flex items-center gap-2 rounded-md border px-3 py-2 text-sm font-medium hover:border-primary"
+        >
+          <Bot className="h-4 w-4 text-primary" /> 围绕本次反馈继续问
+        </Link>
       </div>
 
       {/* 1. 批改总览 */}

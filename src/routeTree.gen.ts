@@ -26,6 +26,7 @@ import { Route as StudentResultRouteImport } from './routes/student.result'
 import { Route as StudentMapRouteImport } from './routes/student.map'
 import { Route as StudentLearnRouteImport } from './routes/student.learn'
 import { Route as StudentCasesRouteImport } from './routes/student.cases'
+import { Route as StudentAssistantRouteImport } from './routes/student.assistant'
 import { Route as StudentWorkshopModuleIdRouteImport } from './routes/student.workshop.$moduleId'
 import { Route as StudentWeekWeekIdRouteImport } from './routes/student.week.$weekId'
 
@@ -114,6 +115,11 @@ const StudentCasesRoute = StudentCasesRouteImport.update({
   path: '/cases',
   getParentRoute: () => StudentRoute,
 } as any)
+const StudentAssistantRoute = StudentAssistantRouteImport.update({
+  id: '/assistant',
+  path: '/assistant',
+  getParentRoute: () => StudentRoute,
+} as any)
 const StudentWorkshopModuleIdRoute = StudentWorkshopModuleIdRouteImport.update({
   id: '/$moduleId',
   path: '/$moduleId',
@@ -129,6 +135,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/student': typeof StudentRouteWithChildren
   '/teacher': typeof TeacherRouteWithChildren
+  '/student/assistant': typeof StudentAssistantRoute
   '/student/cases': typeof StudentCasesRoute
   '/student/learn': typeof StudentLearnRoute
   '/student/map': typeof StudentMapRoute
@@ -148,6 +155,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/student/assistant': typeof StudentAssistantRoute
   '/student/cases': typeof StudentCasesRoute
   '/student/learn': typeof StudentLearnRoute
   '/student/map': typeof StudentMapRoute
@@ -170,6 +178,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/student': typeof StudentRouteWithChildren
   '/teacher': typeof TeacherRouteWithChildren
+  '/student/assistant': typeof StudentAssistantRoute
   '/student/cases': typeof StudentCasesRoute
   '/student/learn': typeof StudentLearnRoute
   '/student/map': typeof StudentMapRoute
@@ -193,6 +202,7 @@ export interface FileRouteTypes {
     | '/'
     | '/student'
     | '/teacher'
+    | '/student/assistant'
     | '/student/cases'
     | '/student/learn'
     | '/student/map'
@@ -212,6 +222,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/student/assistant'
     | '/student/cases'
     | '/student/learn'
     | '/student/map'
@@ -233,6 +244,7 @@ export interface FileRouteTypes {
     | '/'
     | '/student'
     | '/teacher'
+    | '/student/assistant'
     | '/student/cases'
     | '/student/learn'
     | '/student/map'
@@ -378,6 +390,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StudentCasesRouteImport
       parentRoute: typeof StudentRoute
     }
+    '/student/assistant': {
+      id: '/student/assistant'
+      path: '/assistant'
+      fullPath: '/student/assistant'
+      preLoaderRoute: typeof StudentAssistantRouteImport
+      parentRoute: typeof StudentRoute
+    }
     '/student/workshop/$moduleId': {
       id: '/student/workshop/$moduleId'
       path: '/$moduleId'
@@ -408,6 +427,7 @@ const StudentWorkshopRouteWithChildren = StudentWorkshopRoute._addFileChildren(
 )
 
 interface StudentRouteChildren {
+  StudentAssistantRoute: typeof StudentAssistantRoute
   StudentCasesRoute: typeof StudentCasesRoute
   StudentLearnRoute: typeof StudentLearnRoute
   StudentMapRoute: typeof StudentMapRoute
@@ -420,6 +440,7 @@ interface StudentRouteChildren {
 }
 
 const StudentRouteChildren: StudentRouteChildren = {
+  StudentAssistantRoute: StudentAssistantRoute,
   StudentCasesRoute: StudentCasesRoute,
   StudentLearnRoute: StudentLearnRoute,
   StudentMapRoute: StudentMapRoute,
@@ -463,3 +484,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

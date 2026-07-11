@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, FileText, Lightbulb, Lock, Play, Sparkles, Target, AlertTriangle, Boxes, Truck } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, Bot, CheckCircle2, FileText, Lightbulb, Lock, Play, Sparkles, Target, AlertTriangle, Boxes, Truck } from "lucide-react";
 import { TRACK_META, WEEKS, KNOWLEDGE, useStore, type WeekItem } from "@/lib/demo-store";
 import { SortingGame } from "@/components/SortingGame";
 import { DeliveryGame } from "@/components/DeliveryGame";
@@ -72,6 +72,13 @@ function WeekDetail() {
           </div>
           <h1 className="mt-3 text-2xl font-bold md:text-3xl">{w.title}</h1>
           <p className="mt-2 max-w-3xl text-sm text-muted-foreground">{w.goal}</p>
+          <Link
+            to="/student/assistant"
+            search={{ from: "week", week: w.id, mode: "coach" }}
+            className="mt-4 inline-flex items-center gap-2 rounded-md border px-3 py-2 text-sm font-medium hover:border-primary"
+          >
+            <Bot className="h-4 w-4 text-primary" /> 向 AI 助教提问
+          </Link>
         </div>
       </div>
 

@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
-import { CheckCircle2, Play, Pause, FastForward, ArrowLeft, ArrowRight, Lock } from "lucide-react";
+import { Bot, CheckCircle2, Play, Pause, FastForward, ArrowLeft, ArrowRight, Lock } from "lucide-react";
 import { KNOWLEDGE, setState, useStore } from "@/lib/demo-store";
 
 export const Route = createFileRoute("/student/learn")({ component: LearnPage });
@@ -49,9 +49,18 @@ function LearnPage() {
           <h1 className="text-3xl font-bold">概念学习</h1>
           <p className="mt-1 text-muted-foreground">Wafia Bakery · 通过 AI 教学视频掌握核心知识点</p>
         </div>
-        <div className="text-right">
-          <div className="text-xs text-muted-foreground">学习进度</div>
-          <div className="text-2xl font-bold text-primary">{overall}%</div>
+        <div className="flex flex-col items-end gap-3 text-right">
+          <div>
+            <div className="text-xs text-muted-foreground">学习进度</div>
+            <div className="text-2xl font-bold text-primary">{overall}%</div>
+          </div>
+          <Link
+            to="/student/assistant"
+            search={{ from: "learn", concept: active, fromWeek, week: fromWeek, mode: "qa" }}
+            className="inline-flex items-center gap-2 rounded-md border px-3 py-2 text-sm font-medium hover:border-primary"
+          >
+            <Bot className="h-4 w-4 text-primary" /> 没听懂？问 AI 助教
+          </Link>
         </div>
       </div>
 
