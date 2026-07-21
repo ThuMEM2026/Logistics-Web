@@ -9,15 +9,11 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as V2RouteImport } from './routes/v2'
 import { Route as TeacherRouteImport } from './routes/teacher'
 import { Route as StudentRouteImport } from './routes/student'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as V2IndexRouteImport } from './routes/v2.index'
 import { Route as TeacherIndexRouteImport } from './routes/teacher.index'
 import { Route as StudentIndexRouteImport } from './routes/student.index'
-import { Route as V2TeacherRouteImport } from './routes/v2.teacher'
-import { Route as V2StudentRouteImport } from './routes/v2.student'
 import { Route as TeacherWorkshopReviewRouteImport } from './routes/teacher.workshop-review'
 import { Route as TeacherVariablesRouteImport } from './routes/teacher.variables'
 import { Route as TeacherRulesRouteImport } from './routes/teacher.rules'
@@ -31,15 +27,9 @@ import { Route as StudentMapRouteImport } from './routes/student.map'
 import { Route as StudentLearnRouteImport } from './routes/student.learn'
 import { Route as StudentCasesRouteImport } from './routes/student.cases'
 import { Route as StudentAssistantRouteImport } from './routes/student.assistant'
-import { Route as V2StudentAssistantRouteImport } from './routes/v2.student.assistant'
 import { Route as StudentWorkshopModuleIdRouteImport } from './routes/student.workshop.$moduleId'
 import { Route as StudentWeekWeekIdRouteImport } from './routes/student.week.$weekId'
 
-const V2Route = V2RouteImport.update({
-  id: '/v2',
-  path: '/v2',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const TeacherRoute = TeacherRouteImport.update({
   id: '/teacher',
   path: '/teacher',
@@ -55,11 +45,6 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const V2IndexRoute = V2IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => V2Route,
-} as any)
 const TeacherIndexRoute = TeacherIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -69,16 +54,6 @@ const StudentIndexRoute = StudentIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => StudentRoute,
-} as any)
-const V2TeacherRoute = V2TeacherRouteImport.update({
-  id: '/teacher',
-  path: '/teacher',
-  getParentRoute: () => V2Route,
-} as any)
-const V2StudentRoute = V2StudentRouteImport.update({
-  id: '/student',
-  path: '/student',
-  getParentRoute: () => V2Route,
 } as any)
 const TeacherWorkshopReviewRoute = TeacherWorkshopReviewRouteImport.update({
   id: '/workshop-review',
@@ -145,11 +120,6 @@ const StudentAssistantRoute = StudentAssistantRouteImport.update({
   path: '/assistant',
   getParentRoute: () => StudentRoute,
 } as any)
-const V2StudentAssistantRoute = V2StudentAssistantRouteImport.update({
-  id: '/assistant',
-  path: '/assistant',
-  getParentRoute: () => V2StudentRoute,
-} as any)
 const StudentWorkshopModuleIdRoute = StudentWorkshopModuleIdRouteImport.update({
   id: '/$moduleId',
   path: '/$moduleId',
@@ -165,7 +135,6 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/student': typeof StudentRouteWithChildren
   '/teacher': typeof TeacherRouteWithChildren
-  '/v2': typeof V2RouteWithChildren
   '/student/assistant': typeof StudentAssistantRoute
   '/student/cases': typeof StudentCasesRoute
   '/student/learn': typeof StudentLearnRoute
@@ -179,14 +148,10 @@ export interface FileRoutesByFullPath {
   '/teacher/rules': typeof TeacherRulesRoute
   '/teacher/variables': typeof TeacherVariablesRoute
   '/teacher/workshop-review': typeof TeacherWorkshopReviewRoute
-  '/v2/student': typeof V2StudentRouteWithChildren
-  '/v2/teacher': typeof V2TeacherRoute
   '/student/': typeof StudentIndexRoute
   '/teacher/': typeof TeacherIndexRoute
-  '/v2/': typeof V2IndexRoute
   '/student/week/$weekId': typeof StudentWeekWeekIdRoute
   '/student/workshop/$moduleId': typeof StudentWorkshopModuleIdRoute
-  '/v2/student/assistant': typeof V2StudentAssistantRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -203,21 +168,16 @@ export interface FileRoutesByTo {
   '/teacher/rules': typeof TeacherRulesRoute
   '/teacher/variables': typeof TeacherVariablesRoute
   '/teacher/workshop-review': typeof TeacherWorkshopReviewRoute
-  '/v2/student': typeof V2StudentRouteWithChildren
-  '/v2/teacher': typeof V2TeacherRoute
   '/student': typeof StudentIndexRoute
   '/teacher': typeof TeacherIndexRoute
-  '/v2': typeof V2IndexRoute
   '/student/week/$weekId': typeof StudentWeekWeekIdRoute
   '/student/workshop/$moduleId': typeof StudentWorkshopModuleIdRoute
-  '/v2/student/assistant': typeof V2StudentAssistantRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/student': typeof StudentRouteWithChildren
   '/teacher': typeof TeacherRouteWithChildren
-  '/v2': typeof V2RouteWithChildren
   '/student/assistant': typeof StudentAssistantRoute
   '/student/cases': typeof StudentCasesRoute
   '/student/learn': typeof StudentLearnRoute
@@ -231,14 +191,10 @@ export interface FileRoutesById {
   '/teacher/rules': typeof TeacherRulesRoute
   '/teacher/variables': typeof TeacherVariablesRoute
   '/teacher/workshop-review': typeof TeacherWorkshopReviewRoute
-  '/v2/student': typeof V2StudentRouteWithChildren
-  '/v2/teacher': typeof V2TeacherRoute
   '/student/': typeof StudentIndexRoute
   '/teacher/': typeof TeacherIndexRoute
-  '/v2/': typeof V2IndexRoute
   '/student/week/$weekId': typeof StudentWeekWeekIdRoute
   '/student/workshop/$moduleId': typeof StudentWorkshopModuleIdRoute
-  '/v2/student/assistant': typeof V2StudentAssistantRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -246,7 +202,6 @@ export interface FileRouteTypes {
     | '/'
     | '/student'
     | '/teacher'
-    | '/v2'
     | '/student/assistant'
     | '/student/cases'
     | '/student/learn'
@@ -260,14 +215,10 @@ export interface FileRouteTypes {
     | '/teacher/rules'
     | '/teacher/variables'
     | '/teacher/workshop-review'
-    | '/v2/student'
-    | '/v2/teacher'
     | '/student/'
     | '/teacher/'
-    | '/v2/'
     | '/student/week/$weekId'
     | '/student/workshop/$moduleId'
-    | '/v2/student/assistant'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -284,20 +235,15 @@ export interface FileRouteTypes {
     | '/teacher/rules'
     | '/teacher/variables'
     | '/teacher/workshop-review'
-    | '/v2/student'
-    | '/v2/teacher'
     | '/student'
     | '/teacher'
-    | '/v2'
     | '/student/week/$weekId'
     | '/student/workshop/$moduleId'
-    | '/v2/student/assistant'
   id:
     | '__root__'
     | '/'
     | '/student'
     | '/teacher'
-    | '/v2'
     | '/student/assistant'
     | '/student/cases'
     | '/student/learn'
@@ -311,32 +257,20 @@ export interface FileRouteTypes {
     | '/teacher/rules'
     | '/teacher/variables'
     | '/teacher/workshop-review'
-    | '/v2/student'
-    | '/v2/teacher'
     | '/student/'
     | '/teacher/'
-    | '/v2/'
     | '/student/week/$weekId'
     | '/student/workshop/$moduleId'
-    | '/v2/student/assistant'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   StudentRoute: typeof StudentRouteWithChildren
   TeacherRoute: typeof TeacherRouteWithChildren
-  V2Route: typeof V2RouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/v2': {
-      id: '/v2'
-      path: '/v2'
-      fullPath: '/v2'
-      preLoaderRoute: typeof V2RouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/teacher': {
       id: '/teacher'
       path: '/teacher'
@@ -358,13 +292,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/v2/': {
-      id: '/v2/'
-      path: '/'
-      fullPath: '/v2/'
-      preLoaderRoute: typeof V2IndexRouteImport
-      parentRoute: typeof V2Route
-    }
     '/teacher/': {
       id: '/teacher/'
       path: '/'
@@ -378,20 +305,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/student/'
       preLoaderRoute: typeof StudentIndexRouteImport
       parentRoute: typeof StudentRoute
-    }
-    '/v2/teacher': {
-      id: '/v2/teacher'
-      path: '/teacher'
-      fullPath: '/v2/teacher'
-      preLoaderRoute: typeof V2TeacherRouteImport
-      parentRoute: typeof V2Route
-    }
-    '/v2/student': {
-      id: '/v2/student'
-      path: '/student'
-      fullPath: '/v2/student'
-      preLoaderRoute: typeof V2StudentRouteImport
-      parentRoute: typeof V2Route
     }
     '/teacher/workshop-review': {
       id: '/teacher/workshop-review'
@@ -484,13 +397,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StudentAssistantRouteImport
       parentRoute: typeof StudentRoute
     }
-    '/v2/student/assistant': {
-      id: '/v2/student/assistant'
-      path: '/assistant'
-      fullPath: '/v2/student/assistant'
-      preLoaderRoute: typeof V2StudentAssistantRouteImport
-      parentRoute: typeof V2StudentRoute
-    }
     '/student/workshop/$moduleId': {
       id: '/student/workshop/$moduleId'
       path: '/$moduleId'
@@ -570,37 +476,10 @@ const TeacherRouteChildren: TeacherRouteChildren = {
 const TeacherRouteWithChildren =
   TeacherRoute._addFileChildren(TeacherRouteChildren)
 
-interface V2StudentRouteChildren {
-  V2StudentAssistantRoute: typeof V2StudentAssistantRoute
-}
-
-const V2StudentRouteChildren: V2StudentRouteChildren = {
-  V2StudentAssistantRoute: V2StudentAssistantRoute,
-}
-
-const V2StudentRouteWithChildren = V2StudentRoute._addFileChildren(
-  V2StudentRouteChildren,
-)
-
-interface V2RouteChildren {
-  V2StudentRoute: typeof V2StudentRouteWithChildren
-  V2TeacherRoute: typeof V2TeacherRoute
-  V2IndexRoute: typeof V2IndexRoute
-}
-
-const V2RouteChildren: V2RouteChildren = {
-  V2StudentRoute: V2StudentRouteWithChildren,
-  V2TeacherRoute: V2TeacherRoute,
-  V2IndexRoute: V2IndexRoute,
-}
-
-const V2RouteWithChildren = V2Route._addFileChildren(V2RouteChildren)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   StudentRoute: StudentRouteWithChildren,
   TeacherRoute: TeacherRouteWithChildren,
-  V2Route: V2RouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
