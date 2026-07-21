@@ -1,5 +1,20 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowLeft, ArrowRight, BookOpen, Bot, CheckCircle2, FileText, Lightbulb, Lock, Play, Sparkles, Target, AlertTriangle, Boxes, Truck } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  BookOpen,
+  Bot,
+  CheckCircle2,
+  FileText,
+  Lightbulb,
+  Lock,
+  Play,
+  Sparkles,
+  Target,
+  AlertTriangle,
+  Boxes,
+  Truck,
+} from "lucide-react";
 import { TRACK_META, WEEKS, KNOWLEDGE, useStore, type WeekItem } from "@/lib/demo-store";
 import { SortingGame } from "@/components/SortingGame";
 import { DeliveryGame } from "@/components/DeliveryGame";
@@ -11,22 +26,26 @@ const CONCEPT_ALIASES: Record<string, string> = {
   "sorting wave": "wave",
   "sorting wave 上限": "wave_limit",
   "sorting wave 限制": "wave_limit",
-  "笼车装载": "cage",
-  "物流笼车": "cage",
+  笼车装载: "cage",
+  物流笼车: "cage",
   "logistics cage cart": "cage",
-  "分拣成本": "sorting_cost",
-  "vrp": "vrp",
+  分拣成本: "sorting_cost",
+  vrp: "vrp",
   "vrp 路径规划": "vrp",
   "time window": "tw",
   "time window & 工时": "tw",
-  "配送时间窗": "tw",
+  配送时间窗: "tw",
   "sorting-delivery coordination": "joint",
-  "分拣配送协同": "joint",
+  分拣配送协同: "joint",
 };
 
 function resolveConceptId(name: string) {
   const normalized = name.trim().toLowerCase();
-  return KNOWLEDGE.find((x) => x.name.toLowerCase() === normalized)?.id ?? CONCEPT_ALIASES[normalized] ?? "wave";
+  return (
+    KNOWLEDGE.find((x) => x.name.toLowerCase() === normalized)?.id ??
+    CONCEPT_ALIASES[normalized] ??
+    "wave"
+  );
 }
 
 function conceptPreview(name: string) {
@@ -42,33 +61,55 @@ function WeekDetail() {
     return (
       <div className="rounded-2xl border bg-card p-10 text-center">
         <div className="text-lg font-semibold">未找到该教学周</div>
-        <Link to="/student" className="mt-3 inline-block text-sm text-primary hover:underline">返回课程周历</Link>
+        <Link to="/student" className="mt-3 inline-block text-sm text-primary hover:underline">
+          返回课程周历
+        </Link>
       </div>
     );
   }
   const tm = TRACK_META[w.track];
 
-  const recommended = modules.filter(
-    (m) => m.week === w.id && (m.status === "recommended" || m.status === "adopted")
-  ).slice(0, 3);
+  const recommended = modules
+    .filter((m) => m.week === w.id && (m.status === "recommended" || m.status === "adopted"))
+    .slice(0, 3);
 
   return (
     <div>
-      <Link to="/student" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
+      <Link
+        to="/student"
+        className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
+      >
         <ArrowLeft className="h-4 w-4" /> 返回课程周历
       </Link>
 
       {/* Header */}
-      <div className="mt-3 overflow-hidden rounded-2xl border bg-card" style={{ boxShadow: "var(--shadow-soft)" }}>
+      <div
+        className="mt-3 overflow-hidden rounded-2xl border bg-card"
+        style={{ boxShadow: "var(--shadow-soft)" }}
+      >
         <div className={`h-1.5 w-full ${tm.bar}`} />
         <div className="p-6">
           <div className="flex flex-wrap items-center gap-2 text-xs">
-            <span className="rounded bg-secondary px-2 py-0.5 text-muted-foreground">Week {w.id}</span>
+            <span className="rounded bg-secondary px-2 py-0.5 text-muted-foreground">
+              Week {w.id}
+            </span>
             <span className={`rounded px-2 py-0.5 ${tm.color} bg-secondary`}>{tm.label}</span>
-            {w.highlight && <span className="rounded bg-warning/20 px-2 py-0.5 font-semibold text-warning-foreground">★ 重点周</span>}
-            {w.status === "current" && <span className="rounded bg-primary px-2 py-0.5 text-primary-foreground">进行中</span>}
-            {w.status === "completed" && <span className="rounded bg-success/15 px-2 py-0.5 text-success">已完成</span>}
-            {w.status === "locked" && <span className="rounded bg-secondary px-2 py-0.5 text-muted-foreground">尚未开放（可预览结构）</span>}
+            {w.highlight && (
+              <span className="rounded bg-warning/20 px-2 py-0.5 font-semibold text-warning-foreground">
+                ★ 重点周
+              </span>
+            )}
+            {w.status === "current" && (
+              <span className="rounded bg-primary px-2 py-0.5 text-primary-foreground">进行中</span>
+            )}
+            {w.status === "completed" && (
+              <span className="rounded bg-success/15 px-2 py-0.5 text-success">已完成</span>
+            )}
+            {w.status === "locked" && (
+              <span className="rounded bg-secondary px-2 py-0.5 text-muted-foreground">
+                尚未开放（可预览结构）
+              </span>
+            )}
           </div>
           <h1 className="mt-3 text-2xl font-bold md:text-3xl">{w.title}</h1>
           <p className="mt-2 max-w-3xl text-sm text-muted-foreground">{w.goal}</p>
@@ -77,7 +118,8 @@ function WeekDetail() {
             search={{ from: "week", week: w.id, mode: "coach" }}
             className="mt-4 inline-flex items-center gap-2 rounded-md border px-3 py-2 text-sm font-medium hover:border-primary"
           >
-            <Bot className="h-4 w-4 text-primary" /> 向 AI 助教提问
+            <Bot className="h-4 w-4 text-primary" />{" "}
+            {w.id === 8 ? "把问题问清楚" : "向 AI 助教提问"}
           </Link>
         </div>
       </div>
@@ -91,6 +133,8 @@ function WeekDetail() {
 
       <div className="mt-6 grid grid-cols-1 gap-5 lg:grid-cols-[1fr_320px]">
         <div className="space-y-5">
+          {w.id === 8 && <Week8LearningLoop />}
+
           {/* 1. 学习目标 */}
           <Section icon={Target} title="本周学习目标">
             <p className="text-sm text-foreground/90">{w.goal}</p>
@@ -112,7 +156,11 @@ function WeekDetail() {
                       <div className="text-sm font-semibold">{name}</div>
                       <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-primary" />
                     </div>
-                    {k && <div className="mt-1 text-xs leading-relaxed text-muted-foreground">{k.desc}</div>}
+                    {k && (
+                      <div className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                        {k.desc}
+                      </div>
+                    )}
                     <div className="mt-2 inline-flex items-center gap-1 text-[11px] font-medium text-primary">
                       <Play className="h-3 w-3" /> 点击进入 AI 视频学习
                     </div>
@@ -126,8 +174,13 @@ function WeekDetail() {
           <Section icon={FileText} title="学习材料">
             <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2">
               {w.materials.map((m, i) => (
-                <li key={i} className="flex items-center gap-2 rounded-lg border bg-background/40 px-3 py-2 text-sm">
-                  <span className="rounded bg-secondary px-1.5 py-0.5 text-[10px] text-muted-foreground">{m.type}</span>
+                <li
+                  key={i}
+                  className="flex items-center gap-2 rounded-lg border bg-background/40 px-3 py-2 text-sm"
+                >
+                  <span className="rounded bg-secondary px-1.5 py-0.5 text-[10px] text-muted-foreground">
+                    {m.type}
+                  </span>
                   <span className="truncate">{m.name}</span>
                 </li>
               ))}
@@ -138,13 +191,21 @@ function WeekDetail() {
           <Section icon={Play} title="练习任务">
             <div className="space-y-2">
               {w.practice.map((p, i) => (
-                <div key={i} className="flex items-center justify-between rounded-xl border bg-background/40 p-3">
+                <div
+                  key={i}
+                  className="flex items-center justify-between rounded-xl border bg-background/40 p-3"
+                >
                   <div>
                     <div className="text-sm font-semibold">{p.title}</div>
                     <div className="text-xs text-muted-foreground">{p.desc}</div>
                   </div>
                   {p.href ? (
-                    <Link to={p.href as string} className="rounded-md border px-3 py-1.5 text-xs hover:border-primary">前往</Link>
+                    <Link
+                      to={p.href as string}
+                      className="rounded-md border px-3 py-1.5 text-xs hover:border-primary"
+                    >
+                      前往
+                    </Link>
                   ) : (
                     <span className="text-xs text-muted-foreground">即将开放</span>
                   )}
@@ -162,7 +223,12 @@ function WeekDetail() {
             <Section icon={AlertTriangle} title="本周关键规则">
               <ul className="space-y-1.5 text-sm">
                 {w.rules.map((r, i) => (
-                  <li key={i} className="rounded-lg bg-warning/10 px-3 py-2 text-warning-foreground">⚠ {r}</li>
+                  <li
+                    key={i}
+                    className="rounded-lg bg-warning/10 px-3 py-2 text-warning-foreground"
+                  >
+                    ⚠ {r}
+                  </li>
                 ))}
               </ul>
             </Section>
@@ -173,18 +239,33 @@ function WeekDetail() {
             {recommended.length === 0 ? (
               <div className="rounded-xl border bg-background/40 p-4 text-sm text-muted-foreground">
                 本周暂无教师推荐的共创模块。
-                <Link to="/student/workshop" className="ml-1 text-primary hover:underline">去工坊浏览</Link>
+                <Link to="/student/workshop" className="ml-1 text-primary hover:underline">
+                  去工坊浏览
+                </Link>
               </div>
             ) : (
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 {recommended.map((m) => (
-                  <Link key={m.id} to="/student/workshop/$moduleId" params={{ moduleId: m.id }}
-                    className="overflow-hidden rounded-xl border bg-card transition-all hover:-translate-y-0.5 hover:shadow-md">
-                    <div className="flex h-20 items-center justify-center text-3xl" style={{ background: m.gradient }}>{m.cover}</div>
+                  <Link
+                    key={m.id}
+                    to="/student/workshop/$moduleId"
+                    params={{ moduleId: m.id }}
+                    className="overflow-hidden rounded-xl border bg-card transition-all hover:-translate-y-0.5 hover:shadow-md"
+                  >
+                    <div
+                      className="flex h-20 items-center justify-center text-3xl"
+                      style={{ background: m.gradient }}
+                    >
+                      {m.cover}
+                    </div>
                     <div className="p-3">
                       <div className="text-sm font-semibold">{m.title}</div>
-                      <div className="mt-0.5 text-xs text-muted-foreground line-clamp-2">{m.intro}</div>
-                      <div className="mt-2 text-[11px] text-muted-foreground">{m.group} · 👍 {m.likes}</div>
+                      <div className="mt-0.5 text-xs text-muted-foreground line-clamp-2">
+                        {m.intro}
+                      </div>
+                      <div className="mt-2 text-[11px] text-muted-foreground">
+                        {m.group} · 👍 {m.likes}
+                      </div>
                     </div>
                   </Link>
                 ))}
@@ -201,9 +282,18 @@ function WeekDetail() {
           <div className="rounded-2xl border bg-card p-5">
             <div className="text-xs uppercase tracking-widest text-muted-foreground">本周状态</div>
             <div className="mt-2 text-lg font-semibold">
-              {w.status === "current" ? "进行中" : w.status === "completed" ? "已完成" : w.status === "locked" ? "未开放" : "可回顾"}
+              {w.status === "current"
+                ? "进行中"
+                : w.status === "completed"
+                  ? "已完成"
+                  : w.status === "locked"
+                    ? "未开放"
+                    : "可回顾"}
             </div>
             <div className="mt-3 space-y-1.5 text-xs text-muted-foreground">
+              {w.id === 8 && (
+                <div className="font-medium text-primary">下一步：完成一轮初步尝试</div>
+              )}
               <div>方向：{tm.label}</div>
               <div>任务类型：{w.taskTypes.join(" / ")}</div>
               <div>核心概念：{w.concepts.length} 个</div>
@@ -218,6 +308,83 @@ function WeekDetail() {
   );
 }
 
+function Week8LearningLoop() {
+  const steps = [
+    {
+      label: "初次尝试",
+      detail: "先形成可提交的分拣方案，不必一开始就追求完整答案。",
+      to: "/student/submit" as const,
+      action: "开始方案尝试",
+      Icon: Play,
+    },
+    {
+      label: "把问题问清楚",
+      detail: "把你的约束、卡点和已有选择带给 AI 助教，而不是索取现成方案。",
+      to: "/student/assistant" as const,
+      action: "进入任务教练",
+      Icon: Bot,
+    },
+    {
+      label: "补充学习",
+      detail: "回到 Sorting Wave、笼车装载与成本等最相关的知识点。",
+      to: "/student/learn" as const,
+      action: "查看关键概念",
+      Icon: BookOpen,
+    },
+  ];
+
+  return (
+    <section
+      className="overflow-hidden rounded-2xl border bg-card"
+      style={{ boxShadow: "var(--shadow-soft)" }}
+    >
+      <div className="border-b bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground">
+        Week 8 · 从任务开始的学习闭环
+      </div>
+      <div className="grid grid-cols-1 divide-y md:grid-cols-3 md:divide-x md:divide-y-0">
+        {steps.map(({ label, detail, to, action, Icon }, index) => (
+          <div key={label} className="p-5">
+            <div className="flex items-center gap-2 text-xs font-medium text-primary">
+              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary/10">
+                {index + 1}
+              </span>
+              {label}
+            </div>
+            <p className="mt-3 min-h-10 text-sm leading-relaxed text-muted-foreground">{detail}</p>
+            {to === "/student/assistant" ? (
+              <Link
+                to={to}
+                search={{ from: "week", week: 8, mode: "coach" }}
+                className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
+              >
+                <Icon className="h-4 w-4" /> {action}
+              </Link>
+            ) : to === "/student/learn" ? (
+              <Link
+                to={to}
+                search={{ concept: "wave", fromWeek: 8 }}
+                className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
+              >
+                <Icon className="h-4 w-4" /> {action}
+              </Link>
+            ) : (
+              <Link
+                to={to}
+                className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
+              >
+                <Icon className="h-4 w-4" /> {action}
+              </Link>
+            )}
+          </div>
+        ))}
+      </div>
+      <div className="border-t bg-secondary/60 px-5 py-3 text-xs text-muted-foreground">
+        验证与修改在提交页完成：文件预检 → 在线仿真 → AI 批改 → 重新提交。
+      </div>
+    </section>
+  );
+}
+
 function NavWeek({ w }: { w: WeekItem }) {
   const prev = WEEKS.find((x) => x.id === w.id - 1);
   const next = WEEKS.find((x) => x.id === w.id + 1);
@@ -226,15 +393,27 @@ function NavWeek({ w }: { w: WeekItem }) {
       <div className="text-xs uppercase tracking-widest text-muted-foreground">周次导航</div>
       <div className="mt-3 space-y-2">
         {prev && (
-          <Link to="/student/week/$weekId" params={{ weekId: String(prev.id) }} className="block rounded-lg border bg-background/40 p-2 hover:border-primary">
+          <Link
+            to="/student/week/$weekId"
+            params={{ weekId: String(prev.id) }}
+            className="block rounded-lg border bg-background/40 p-2 hover:border-primary"
+          >
             <div className="text-[10px] text-muted-foreground">上一周</div>
-            <div className="text-xs font-semibold">Week {prev.id} · {prev.title}</div>
+            <div className="text-xs font-semibold">
+              Week {prev.id} · {prev.title}
+            </div>
           </Link>
         )}
         {next && (
-          <Link to="/student/week/$weekId" params={{ weekId: String(next.id) }} className="block rounded-lg border bg-background/40 p-2 hover:border-primary">
+          <Link
+            to="/student/week/$weekId"
+            params={{ weekId: String(next.id) }}
+            className="block rounded-lg border bg-background/40 p-2 hover:border-primary"
+          >
             <div className="text-[10px] text-muted-foreground">下一周</div>
-            <div className="text-xs font-semibold">Week {next.id} · {next.title}</div>
+            <div className="text-xs font-semibold">
+              Week {next.id} · {next.title}
+            </div>
           </Link>
         )}
       </div>
@@ -242,7 +421,15 @@ function NavWeek({ w }: { w: WeekItem }) {
   );
 }
 
-function Section({ icon: Icon, title, children }: { icon: typeof Play; title: string; children: React.ReactNode }) {
+function Section({
+  icon: Icon,
+  title,
+  children,
+}: {
+  icon: typeof Play;
+  title: string;
+  children: React.ReactNode;
+}) {
   return (
     <div className="rounded-2xl border bg-card p-5">
       <div className="mb-3 flex items-center gap-2">
@@ -265,50 +452,94 @@ function Week8Blocks() {
             "方案说明 docx（必交）",
             "Python 逻辑文件（选交）",
           ].map((t, i) => (
-            <li key={i} className="flex items-center gap-2 rounded-lg border bg-background/40 px-3 py-2">
+            <li
+              key={i}
+              className="flex items-center gap-2 rounded-lg border bg-background/40 px-3 py-2"
+            >
               <CheckCircle2 className="h-4 w-4 text-success" /> {t}
             </li>
           ))}
         </ul>
-        <Link to="/student/submit" className="mt-3 inline-flex items-center gap-1 rounded-md px-3 py-1.5 text-sm font-medium text-primary-foreground"
-          style={{ background: "var(--gradient-hero)" }}>
+        <Link
+          to="/student/submit"
+          className="mt-3 inline-flex items-center gap-1 rounded-md px-3 py-1.5 text-sm font-medium text-primary-foreground"
+          style={{ background: "var(--gradient-hero)" }}
+        >
           前往方案提交 →
         </Link>
       </Section>
 
       <Section icon={AlertTriangle} title="文件预检与规则提示">
         <ul className="space-y-1.5 text-sm">
-          <li className="rounded-lg bg-success/10 px-3 py-2 text-success">✓ Excel 字段结构已对齐课程统一模板</li>
-          <li className="rounded-lg bg-warning/10 px-3 py-2 text-warning-foreground">⚠ Sorting Wave 上限：每个 wave ≤ 80 carts</li>
-          <li className="rounded-lg bg-warning/10 px-3 py-2 text-warning-foreground">⚠ 总分拣时间向上取整后再计算人力成本</li>
+          <li className="rounded-lg bg-success/10 px-3 py-2 text-success">
+            ✓ Excel 字段结构已对齐课程统一模板
+          </li>
+          <li className="rounded-lg bg-warning/10 px-3 py-2 text-warning-foreground">
+            ⚠ Sorting Wave 上限：每个 wave ≤ 80 carts
+          </li>
+          <li className="rounded-lg bg-warning/10 px-3 py-2 text-warning-foreground">
+            ⚠ 总分拣时间向上取整后再计算人力成本
+          </li>
         </ul>
       </Section>
 
-      <Section icon={Boxes} title="分拣专项练习 · 交互式仿真">
+      <Section icon={Boxes} title="分拣专项练习（可选的直觉训练）">
         <p className="mb-4 text-sm text-muted-foreground">
-          在正式提交作业前，通过下面这个小游戏熟悉分拣资源配置：拖拽右侧分拣员到 4 条传送带上，
-          让包裹被正确分拣到对应目的地区域。得分 ≥ 120 解锁下一关卡，帮助你建立对 lane-sorter 匹配逻辑的直觉。
+          需要建立资源配置直觉时，可用这段练习熟悉 lane-sorter
+          匹配逻辑；它不替代本周的方案尝试、文件预检或在线仿真。
         </p>
         <SortingGame />
       </Section>
 
       <Section icon={Lightbulb} title="分拣仿真结果样例">
         <div className="grid grid-cols-2 gap-2 rounded-lg bg-secondary p-3 text-xs sm:grid-cols-3">
-          <div><div className="text-muted-foreground">仿真任务</div><div className="font-medium">SIM-WAFIA-20260610-001</div></div>
-          <div><div className="text-muted-foreground">总分拣时间</div><div className="font-medium">14h 05m 47s</div></div>
-          <div><div className="text-muted-foreground">最大 wave carts</div><div className="font-medium">79</div></div>
-          <div><div className="text-muted-foreground">是否超 80</div><div className="font-medium">否</div></div>
-          <div><div className="text-muted-foreground">分拣开始</div><div className="font-medium">13:00</div></div>
-          <div><div className="text-muted-foreground">是否可用于评分</div><div className="font-medium">是</div></div>
+          <div>
+            <div className="text-muted-foreground">仿真任务</div>
+            <div className="font-medium">SIM-WAFIA-20260610-001</div>
+          </div>
+          <div>
+            <div className="text-muted-foreground">总分拣时间</div>
+            <div className="font-medium">14h 05m 47s</div>
+          </div>
+          <div>
+            <div className="text-muted-foreground">最大 wave carts</div>
+            <div className="font-medium">79</div>
+          </div>
+          <div>
+            <div className="text-muted-foreground">是否超 80</div>
+            <div className="font-medium">否</div>
+          </div>
+          <div>
+            <div className="text-muted-foreground">分拣开始</div>
+            <div className="font-medium">13:00</div>
+          </div>
+          <div>
+            <div className="text-muted-foreground">是否可用于评分</div>
+            <div className="font-medium">是</div>
+          </div>
         </div>
-        <p className="mt-2 text-xs text-muted-foreground">提交方案后，平台会自动在线仿真并将上述指标写入 AI 批改证据链。</p>
+        <p className="mt-2 text-xs text-muted-foreground">
+          提交方案后，平台会自动在线仿真并将上述指标写入 AI 批改证据链。
+        </p>
       </Section>
 
       <Section icon={Sparkles} title="AI 批改反馈与修改建议">
-        <p className="text-sm text-muted-foreground">完成提交并通过仿真后，可在「AI 批改」中查看四维评分、硬约束检查与修改建议。</p>
+        <p className="text-sm text-muted-foreground">
+          完成提交并通过仿真后，可在「AI 批改」中查看四维评分、硬约束检查与修改建议。
+        </p>
         <div className="mt-3 flex gap-2">
-          <Link to="/student/result" className="rounded-md border px-3 py-1.5 text-xs hover:border-primary">查看示例 AI 报告</Link>
-          <Link to="/student/submissions" className="rounded-md border px-3 py-1.5 text-xs hover:border-primary">查看我的提交记录</Link>
+          <Link
+            to="/student/result"
+            className="rounded-md border px-3 py-1.5 text-xs hover:border-primary"
+          >
+            查看示例 AI 报告
+          </Link>
+          <Link
+            to="/student/submissions"
+            className="rounded-md border px-3 py-1.5 text-xs hover:border-primary"
+          >
+            查看我的提交记录
+          </Link>
         </div>
       </Section>
     </>
@@ -330,10 +561,18 @@ function Week12Blocks() {
 
       <Section icon={Sparkles} title="分拣-配送协同核心规则">
         <ul className="space-y-1.5 text-sm">
-          <li className="rounded-lg bg-warning/10 px-3 py-2 text-warning-foreground">⚠ 车辆发车时间 ≥ 对应 Sorting Wave 最早完成时间</li>
-          <li className="rounded-lg bg-warning/10 px-3 py-2 text-warning-foreground">⚠ 单条配送路线总装载量 ≤ 车辆容量（60 单位）</li>
-          <li className="rounded-lg bg-success/10 px-3 py-2 text-success">✓ 多趟配送时，每趟须从配送中心出发并返回</li>
-          <li className="rounded-lg bg-success/10 px-3 py-2 text-success">✓ 所有门店须在时间窗（Time Window）内完成配送</li>
+          <li className="rounded-lg bg-warning/10 px-3 py-2 text-warning-foreground">
+            ⚠ 车辆发车时间 ≥ 对应 Sorting Wave 最早完成时间
+          </li>
+          <li className="rounded-lg bg-warning/10 px-3 py-2 text-warning-foreground">
+            ⚠ 单条配送路线总装载量 ≤ 车辆容量（60 单位）
+          </li>
+          <li className="rounded-lg bg-success/10 px-3 py-2 text-success">
+            ✓ 多趟配送时，每趟须从配送中心出发并返回
+          </li>
+          <li className="rounded-lg bg-success/10 px-3 py-2 text-success">
+            ✓ 所有门店须在时间窗（Time Window）内完成配送
+          </li>
         </ul>
       </Section>
     </>
