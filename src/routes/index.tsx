@@ -1,5 +1,5 @@
 import { createFileRoute, useRouter } from "@tanstack/react-router";
-import { Sparkles, GraduationCap, UserCog, ArrowRight, Calendar, Boxes, Users } from "lucide-react";
+import { Sparkles, GraduationCap, UserCog, ArrowRight, Calendar, Boxes, Users, Rocket } from "lucide-react";
 import { setState, type Role } from "@/lib/demo-store";
 
 export const Route = createFileRoute("/")({
@@ -48,6 +48,12 @@ function Entry() {
               </p>
             </div>
             <div className="flex gap-2">
+              <a
+                href="/v2"
+                className="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium hover:border-primary"
+              >
+                <Rocket className="h-4 w-4" /> v2 新需求 Demo
+              </a>
               <button onClick={() => enter("student")} className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium text-primary-foreground" style={{ background: "var(--gradient-hero)" }}>
                 <GraduationCap className="h-4 w-4" /> 学生入口 <ArrowRight className="h-4 w-4" />
               </button>
