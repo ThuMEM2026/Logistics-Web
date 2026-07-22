@@ -1,41 +1,43 @@
-# First Three Weeks Teaching Sample Implementation Plan
+# 前三周教学样板执行计划
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **供执行代理使用：** 必须使用 `superpowers:executing-plans` 按任务顺序执行本计划，并通过复选框（`- [ ]`）跟踪进度。
 
-**Goal:** Produce source-backed Week 1–3 content maps, three 90-minute teacher-led lesson designs, a stable-but-configurable website architecture, and reviewable renderings before converting the approved result into SDD 003.
+**目标：** 在转写为 SDD 003 前，完成有原始课件依据的 Week 1–3 内容地图、三套 90 分钟教师引导课堂方案、稳定且可配置的网站架构，以及可供评审的渲染图。
 
-**Architecture:** Treat original PDFs as the factual source, separate course knowledge from weekly classroom choreography, and keep the student/teacher shell stable while composing different weekly activity modules. No production code changes occur until the renderings and design documents are approved and converted into an SDD package.
+**架构：** 以原始 PDF 作为事实来源，将课程知识与每周课堂编排分离。学生端和教师端保持稳定骨架，同时组合不同的周次活动模块；在渲染图和设计文档获批并转成 SDD 之前，不修改生产代码。
 
-**Tech Stack:** Markdown design artifacts, Poppler `pdfinfo`/`pdftoppm`, bundled Python `pypdf` for text extraction, Codex image inspection, ImageGen for concept renderings, existing Logistics_MEM SDD conventions.
+**技术栈：** Markdown 设计资产、Poppler `pdfinfo`/`pdftoppm`、使用内置 Python `pypdf` 提取文本、Codex 图像检查、ImageGen 概念渲染图、现有 Logistics_MEM SDD 规范。
 
-## Global Constraints
+## 全局约束
 
-- Scope is limited to Week 1, Week 2, and Week 3; Week 4 and later content is not fabricated.
-- Read every page of each source PDF and visually inspect representative pages before designing that week.
-- Use a stable first-level website shell with week-specific classroom modules.
-- Teacher remains the classroom orchestrator; AI video and the authorized course digital assistant provide bounded support.
-- In-class interaction must include explicit device-down moments that return attention to the teacher and peers.
-- AI answers and learning assets must preserve source-page provenance.
-- Existing submission, boundary-checking, simulation, AI-feedback, and teacher-review capabilities remain intact.
-- Do not modify production source code until SDD 003 is approved.
+- 范围仅包含 Week 1、Week 2、Week 3，不编造 Week 4 及后续内容。
+- 设计某一周前，必须读取该周原始 PDF 的每一页，并视觉检查具有代表性的页面。
+- 网站一级结构保持稳定，课堂模块根据不同周次教学目标变化。
+- 教师仍是课堂组织者；AI 视频和经授权的课程数字助教只提供有边界的支撑。
+- 课堂交互必须明确设计“放下设备”节点，让学生的注意力回到教师与同伴。
+- AI 回答和学习资料必须保留原始课件页来源。
+- 保留现有作业提交、边界检查、服务器仿真、AI 反馈与教师复核能力。
+- SDD 003 获批前不得修改生产代码。
 
 ---
 
-### Task 1: Establish the Three-Week Source Manifest
+### 任务 1：建立前三周课件源文件清单
 
-**Files:**
-- Create: `design-references/网站框架探索/方案-03-教师引导的PBL课程现场/课程内容地图/README.md`
-- Reference: `/Users/eric/Desktop/任务书/物流管理课件+学生作业/课件/wk1intro_scm.pdf`
-- Reference: `/Users/eric/Desktop/任务书/物流管理课件+学生作业/课件/wk2strategicfit(1).pdf`
-- Reference: `/Users/eric/Desktop/任务书/物流管理课件+学生作业/课件/wk3performanceevaluation.pdf`
+**文件：**
 
-**Interfaces:**
-- Consumes: the three original course PDFs.
-- Produces: one canonical source table containing filename, page count, title, teaching-week label, extraction status, visual-review status, and known calendar mismatch notes.
+- 新建：`design-references/网站框架探索/方案-03-教师引导的PBL课程现场/课程内容地图/README.md`
+- 参考：`/Users/eric/Desktop/任务书/物流管理课件+学生作业/课件/wk1intro_scm.pdf`
+- 参考：`/Users/eric/Desktop/任务书/物流管理课件+学生作业/课件/wk2strategicfit(1).pdf`
+- 参考：`/Users/eric/Desktop/任务书/物流管理课件+学生作业/课件/wk3performanceevaluation.pdf`
 
-- [ ] **Step 1: Verify all source files and metadata**
+**接口：**
 
-Run:
+- 输入：三份原始课程 PDF。
+- 输出：一份标准课件清单，记录文件名、页数、标题、对应教学周、文本读取状态、视觉检查状态和已知日历错位说明。
+
+- [ ] **步骤 1：核对全部源文件与元数据**
+
+运行：
 
 ```bash
 rtk proxy pdfinfo '/Users/eric/Desktop/任务书/物流管理课件+学生作业/课件/wk1intro_scm.pdf'
@@ -43,65 +45,67 @@ rtk proxy pdfinfo '/Users/eric/Desktop/任务书/物流管理课件+学生作业
 rtk proxy pdfinfo '/Users/eric/Desktop/任务书/物流管理课件+学生作业/课件/wk3performanceevaluation.pdf'
 ```
 
-Expected: page counts are 72, 53, and 79 respectively; none are encrypted.
+预期：页数分别为 72、53、79，且文件均未加密。
 
-- [ ] **Step 2: Write the canonical source manifest**
+- [ ] **步骤 2：编写标准课件清单**
 
-The manifest must state that Week 1 has already been fully read, while Week 2 and Week 3 require full extraction and visual review before their content maps are accepted.
+清单必须说明 Week 1 已完成全文读取；Week 2、Week 3 必须在内容地图验收前完成全文读取和视觉检查。
 
-- [ ] **Step 3: Validate the manifest**
+- [ ] **步骤 3：验证课件清单**
 
-Run:
+运行：
 
 ```bash
 rtk proxy rg -n 'wk1intro_scm|wk2strategicfit|wk3performanceevaluation|72|53|79' 'design-references/网站框架探索/方案-03-教师引导的PBL课程现场/课程内容地图/README.md'
 rtk proxy git diff --check -- 'design-references/网站框架探索/方案-03-教师引导的PBL课程现场/课程内容地图/README.md'
 ```
 
-Expected: all three filenames and page counts appear; `git diff --check` returns no output.
+预期：三份文件名与页数全部出现，`git diff --check` 无输出。
 
-### Task 2: Build the Week 2 Source-Backed Content Map
+### 任务 2：建立有原始依据的 Week 2 内容地图
 
-**Files:**
-- Create: `design-references/网站框架探索/方案-03-教师引导的PBL课程现场/课程内容地图/Week-02-战略适配.md`
-- Reference: `/Users/eric/Desktop/任务书/物流管理课件+学生作业/课件/wk2strategicfit(1).pdf`
+**文件：**
 
-**Interfaces:**
-- Consumes: every page of the Week 2 PDF and the source manifest from Task 1.
-- Produces: page-range-backed sections for concepts, cases, teacher prompts, activity opportunities, AI-video candidates, digital-assistant sources, and future-week material.
+- 新建：`design-references/网站框架探索/方案-03-教师引导的PBL课程现场/课程内容地图/Week-02-战略适配.md`
+- 参考：`/Users/eric/Desktop/任务书/物流管理课件+学生作业/课件/wk2strategicfit(1).pdf`
 
-- [ ] **Step 1: Extract all 53 pages with page markers**
+**接口：**
 
-Use bundled `pypdf` to print `--- PAGE N ---` before each page. Save no extracted temporary text in the repository.
+- 输入：Week 2 PDF 的全部页面与任务 1 的课件清单。
+- 输出：按页码记录的概念、案例、教师问题、活动机会、AI 视频候选、数字助教来源和后续周次材料。
 
-- [ ] **Step 2: Render and inspect representative pages**
+- [ ] **步骤 1：提取全部 53 页文本并保留页码标记**
 
-Render the opening, each major concept transition, each major enterprise-case transition, the strategic-fit framework, and the closing review pages to a temporary directory. Inspect every rendered image for diagrams, spatial relationships, and text that extraction may miss.
+使用内置 `pypdf`，在每页前输出 `--- PAGE N ---`。提取出的临时文本不保存到仓库。
 
-- [ ] **Step 3: Write the Week 2 content map**
+- [ ] **步骤 2：渲染并检查代表性页面**
 
-The document must contain these exact sections:
+将开场页、每个主要概念转折页、每个重要企业案例转折页、战略适配框架页和结课复盘页渲染到临时目录。逐张检查文本提取可能遗漏的图示、空间关系与页面信息。
+
+- [ ] **步骤 3：编写 Week 2 内容地图**
+
+文档必须包含以下章节：
 
 ```markdown
-## Source
-## Role in the Three-Week Arc
-## Page-Range Content Inventory
-## Must-Teach Concepts
-## Cases and Evidence
-## Teacher Questions
-## Student Decisions and Discussion Outputs
-## AI Video Candidates
-## Digital Assistant Knowledge and Boundaries
-## Prior-Knowledge Links
-## Future-Week Material
-## Open Questions for Teacher Confirmation
+## 来源
+## 在前三周学习链条中的作用
+## 按页码整理的内容清单
+## 必须讲授的概念
+## 案例与证据
+## 教师问题
+## 学生判断与讨论产出
+## AI 视频候选
+## 数字助教知识与回答边界
+## 前置知识关联
+## 后续周次材料
+## 需要教师确认的问题
 ```
 
-Every factual item must include a source page or page range.
+每项事实都必须附带来源页码或页码范围。
 
-- [ ] **Step 4: Validate page coverage and provenance**
+- [ ] **步骤 4：验证页面覆盖与来源标记**
 
-Run:
+运行：
 
 ```bash
 rtk proxy rg -n '^## ' 'design-references/网站框架探索/方案-03-教师引导的PBL课程现场/课程内容地图/Week-02-战略适配.md'
@@ -109,182 +113,194 @@ rtk proxy rg -n '第 [0-9]+ 页|第 [0-9]+–[0-9]+ 页' 'design-references/网�
 rtk proxy git diff --check -- 'design-references/网站框架探索/方案-03-教师引导的PBL课程现场/课程内容地图/Week-02-战略适配.md'
 ```
 
-Expected: all required headings are present, source-page references are present throughout, and formatting passes.
+预期：全部必需章节存在，正文持续标注课件来源页，格式检查通过。
 
-### Task 3: Build the Week 3 Source-Backed Content Map
+### 任务 3：建立有原始依据的 Week 3 内容地图
 
-**Files:**
-- Create: `design-references/网站框架探索/方案-03-教师引导的PBL课程现场/课程内容地图/Week-03-绩效评价.md`
-- Reference: `/Users/eric/Desktop/任务书/物流管理课件+学生作业/课件/wk3performanceevaluation.pdf`
+**文件：**
 
-**Interfaces:**
-- Consumes: every page of the Week 3 PDF, Task 1 manifest, and Week 2 prerequisite links.
-- Produces: page-range-backed sections separating metric definitions from managerial interpretation and network-design decisions.
+- 新建：`design-references/网站框架探索/方案-03-教师引导的PBL课程现场/课程内容地图/Week-03-绩效评价.md`
+- 参考：`/Users/eric/Desktop/任务书/物流管理课件+学生作业/课件/wk3performanceevaluation.pdf`
 
-- [ ] **Step 1: Extract all 79 pages with page markers**
+**接口：**
 
-Use bundled `pypdf`; do not rely on the earlier high-level summary as a substitute for page-level reading.
+- 输入：Week 3 PDF 的全部页面、任务 1 的课件清单以及 Week 2 的前置知识关联。
+- 输出：按页码整理的内容地图，明确区分指标定义、管理含义与网络设计决策。
 
-- [ ] **Step 2: Render and inspect representative pages**
+- [ ] **步骤 1：提取全部 79 页文本并保留页码标记**
 
-Render each major SCOR/Gartner/financial-metric transition, driver-framework diagram, distribution-network option diagram, activity or calculation prompt, and closing synthesis page.
+使用内置 `pypdf`，不能用之前的高层摘要代替逐页读取。
 
-- [ ] **Step 3: Write the Week 3 content map**
+- [ ] **步骤 2：渲染并检查代表性页面**
 
-Use the same required headings as Task 2. In `Must-Teach Concepts`, explicitly distinguish metric definition, calculation input, managerial meaning, and decision consequence.
+渲染每个 SCOR、Gartner、财务指标转折页，驱动因素框架图，配送网络选项图，课堂活动或计算题，以及结课总结页。
 
-- [ ] **Step 4: Validate page coverage and provenance**
+- [ ] **步骤 3：编写 Week 3 内容地图**
 
-Run the same heading, page-reference, and `git diff --check` validations as Task 2 against `Week-03-绩效评价.md`.
+使用与任务 2 相同的章节结构。在“必须讲授的概念”中明确区分指标定义、计算输入、管理含义和决策影响。
 
-Expected: the document covers all major sections, carries page sources, and passes formatting.
+- [ ] **步骤 4：验证页面覆盖与来源标记**
 
-### Task 4: Normalize the Existing Week 1 Analysis into the Same Content-Map Contract
+对 `Week-03-绩效评价.md` 运行与任务 2 相同的章节、页码来源和 `git diff --check` 检查。
 
-**Files:**
-- Create: `design-references/网站框架探索/方案-03-教师引导的PBL课程现场/课程内容地图/Week-01-课程导入.md`
-- Reference: `/Users/eric/Desktop/任务书/物流管理课件+学生作业/课件/wk1intro_scm.pdf`
+预期：文档覆盖所有主要章节，持续标注课件来源页，并通过格式检查。
 
-**Interfaces:**
-- Consumes: the previously completed 72-page extraction and visual inspection plus the content-map contract from Tasks 2–3.
-- Produces: a Week 1 content map directly comparable with Week 2 and Week 3.
+### 任务 4：将已有 Week 1 分析统一为相同的内容地图结构
 
-- [ ] **Step 1: Reconcile the full Week 1 sequence**
+**文件：**
 
-Cover learning goals, BYD, the procurement game, SHEIN, supply-chain-network comparison, course structure, strategy/business-model content, delayed differentiation, cost/service, and strategic fit. Do not reduce Week 1 to only BYD and SHEIN.
+- 新建：`design-references/网站框架探索/方案-03-教师引导的PBL课程现场/课程内容地图/Week-01-课程导入.md`
+- 参考：`/Users/eric/Desktop/任务书/物流管理课件+学生作业/课件/wk1intro_scm.pdf`
 
-- [ ] **Step 2: Write the Week 1 content map using the required headings**
+**接口：**
 
-Mark which late-deck concepts are brief Week 1 introductions versus deeper Week 2 material.
+- 输入：已经完成的 Week 1 全部 72 页文本读取与视觉检查，以及任务 2–3 使用的内容地图结构。
+- 输出：一份可以与 Week 2、Week 3 直接比较的 Week 1 内容地图。
 
-- [ ] **Step 3: Validate page coverage and provenance**
+- [ ] **步骤 1：校对 Week 1 完整内容顺序**
 
-Run the same heading, page-reference, and formatting validations against `Week-01-课程导入.md`.
+必须覆盖学习目标、BYD、采购游戏、SHEIN、供应链网络比较、课程结构、战略与商业模式、差异性延迟、成本—服务和战略适配，不能将 Week 1 简化为只有 BYD 和 SHEIN。
 
-### Task 5: Design Three 90-Minute Teacher-Led Classroom Choreographies
+- [ ] **步骤 2：按统一章节结构编写 Week 1 内容地图**
 
-**Files:**
-- Create: `design-references/网站框架探索/方案-03-教师引导的PBL课程现场/课堂编排/Week-01-90分钟.md`
-- Create: `design-references/网站框架探索/方案-03-教师引导的PBL课程现场/课堂编排/Week-02-90分钟.md`
-- Create: `design-references/网站框架探索/方案-03-教师引导的PBL课程现场/课堂编排/Week-03-90分钟.md`
+标明课件后半段哪些内容只是 Week 1 的概览，哪些会在 Week 2 深入展开。
 
-**Interfaces:**
-- Consumes: the three accepted content maps.
-- Produces: timed lesson plans whose activity durations total exactly 90 instructional minutes, plus one 5-minute intermission outside that total.
+- [ ] **步骤 3：验证页面覆盖与来源标记**
 
-- [ ] **Step 1: Write Week 1 choreography**
+对 `Week-01-课程导入.md` 运行与任务 2 相同的章节、页码来源和格式检查。
 
-Use a case-introduction and viewpoint-discussion pattern. Include teacher explanation, initial student judgment, group evidence, public disagreement, teacher synthesis, device-down moments, and an exit revision.
+### 任务 5：设计三套教师引导的 90 分钟课堂编排
 
-- [ ] **Step 2: Write Week 2 choreography**
+**文件：**
 
-Use a case-comparison and strategic-judgment pattern. Require students to connect demand uncertainty to responsive/efficient capability and revise a strategic-fit judgment after teacher explanation.
+- 新建：`design-references/网站框架探索/方案-03-教师引导的PBL课程现场/课堂编排/Week-01-90分钟.md`
+- 新建：`design-references/网站框架探索/方案-03-教师引导的PBL课程现场/课堂编排/Week-02-90分钟.md`
+- 新建：`design-references/网站框架探索/方案-03-教师引导的PBL课程现场/课堂编排/Week-03-90分钟.md`
 
-- [ ] **Step 3: Write Week 3 choreography**
+**接口：**
 
-Use a metric-diagnosis and decision-framework pattern. Prevent formula memorization by requiring students to explain what a metric indicates, what it hides, and what network decision it could change.
+- 输入：三份通过验收的内容地图。
+- 输出：教学活动共计 90 分钟，另含 5 分钟课间休息的三套课堂方案。
 
-- [ ] **Step 4: Validate time, roles, and device behavior**
+- [ ] **步骤 1：编写 Week 1 课堂编排**
 
-Each file must contain a timing table with these columns:
+采用案例导入与观点讨论模式，包含教师讲解、学生初始判断、小组证据、公开分歧、教师收束、放下设备节点和离堂修订。
+
+- [ ] **步骤 2：编写 Week 2 课堂编排**
+
+采用案例比较与战略判断模式，要求学生将需求不确定性与响应型/效率型能力关联，并在教师讲解后修订战略适配判断。
+
+- [ ] **步骤 3：编写 Week 3 课堂编排**
+
+采用指标诊断与决策框架模式。要求学生解释指标说明了什么、没有说明什么、可能改变什么网络决策，避免只记公式。
+
+- [ ] **步骤 4：验证时间、角色和设备行为**
+
+每份文档必须包含以下时间表字段：
 
 ```markdown
 | 时间 | 教师行为 | 学生行为 | 大屏 | 小组设备 | 个人设备 | 留下的证据 |
 ```
 
-Verify manually that instructional segments total 90 minutes, each plan contains at least two explicit device-down moments, and each plan identifies teacher intervention points.
+人工核对教学活动总计 90 分钟；每份方案至少包含两个明确的放下设备节点，并标明教师介入点。
 
-### Task 6: Define the Stable Shell and Weekly Module Contract
+### 任务 6：定义稳定网站骨架与每周模块协议
 
-**Files:**
-- Create: `design-references/网站框架探索/方案-03-教师引导的PBL课程现场/前三周网站骨架.md`
-- Modify: `design-references/网站框架探索/方案-03-教师引导的PBL课程现场/前3周教学样板-需求.md`
+**文件：**
 
-**Interfaces:**
-- Consumes: the three classroom choreographies.
-- Produces: a stable navigation shell, a weekly module catalogue, role-specific views, and an exact mapping from classroom stage to website surface.
+- 新建：`design-references/网站框架探索/方案-03-教师引导的PBL课程现场/前三周网站骨架.md`
+- 修改：`design-references/网站框架探索/方案-03-教师引导的PBL课程现场/前3周教学样板-需求.md`
 
-- [ ] **Step 1: Compare all three choreographies**
+**接口：**
 
-Classify each activity as stable across all weeks, shared by two weeks, or unique to one week.
+- 输入：三份课堂编排。
+- 输出：稳定导航骨架、周次模块目录、不同角色界面，以及从课堂阶段到网站界面的准确映射。
 
-- [ ] **Step 2: Write the stable shell**
+- [ ] **步骤 1：比较三份课堂编排**
 
-Define student, teacher-big-screen, and teacher/TA views. For each module, record its purpose, required inputs, output evidence, allowed device context, digital-assistant context, and empty/error state.
+将每个活动标记为三周共有、两周共有或某一周独有。
 
-- [ ] **Step 3: Define AI-video and digital-assistant placement**
+- [ ] **步骤 2：编写稳定网站骨架**
 
-Specify where a contextual assistant entry appears, what context is attached, when a video is teacher-controlled, when it is student-selected, and when a question escalates to a teacher/TA queue.
+定义学生端、教师大屏和教师/助教端。每个模块需记录用途、必需输入、输出证据、适用设备、数字助教上下文和空状态/错误状态。
 
-- [ ] **Step 4: Reconcile the requirement document**
+- [ ] **步骤 3：定义 AI 视频与数字助教位置**
 
-Update only statements that the three detailed plans have clarified. Preserve the approved Week 1–3 scope and all exclusions.
+明确上下文问答入口位于何处、携带哪些上下文、视频何时由教师控制、何时由学生自主观看，以及问题何时转入教师/助教队列。
 
-- [ ] **Step 5: Validate consistency**
+- [ ] **步骤 4：校准需求文档**
 
-Search all four design documents for conflicting navigation labels, different names for the authorized course digital assistant, unsupported Week 4+ content, and missing device-down states. Fix inconsistencies before rendering.
+只更新三份详细课堂方案已经明确的内容，保留已批准的 Week 1–3 范围与所有排除项。
 
-### Task 7: Produce and Review the First-Three-Weeks Renderings
+- [ ] **步骤 5：验证一致性**
 
-**Files:**
-- Create: `design-references/网站框架探索/方案-03-教师引导的PBL课程现场/前三周渲染图/01-Week1-课堂现场.png`
-- Create: `design-references/网站框架探索/方案-03-教师引导的PBL课程现场/前三周渲染图/02-Week2-战略判断.png`
-- Create: `design-references/网站框架探索/方案-03-教师引导的PBL课程现场/前三周渲染图/03-Week3-指标诊断.png`
-- Create: `design-references/网站框架探索/方案-03-教师引导的PBL课程现场/前三周渲染图/04-教师课堂编排与洞察.png`
-- Create: `design-references/网站框架探索/方案-03-教师引导的PBL课程现场/前三周渲染图/README.md`
+检查四份设计文档中是否存在导航名称不一致、课程数字助教名称不一致、没有依据的 Week 4+ 内容，以及缺少放下设备状态。渲染前修复全部矛盾。
 
-**Interfaces:**
-- Consumes: the stable shell, weekly module contract, content maps, and lesson plans.
-- Produces: four review images with a source-and-placeholder ledger.
+### 任务 7：制作并评审前三周渲染图
 
-- [ ] **Step 1: Write source-grounded rendering briefs**
+**文件：**
 
-Each brief must identify the real source content being shown, the user role, the classroom moment, the primary action, and which text or metrics remain illustrative.
+- 新建：`design-references/网站框架探索/方案-03-教师引导的PBL课程现场/前三周渲染图/01-Week1-课堂现场.png`
+- 新建：`design-references/网站框架探索/方案-03-教师引导的PBL课程现场/前三周渲染图/02-Week2-战略判断.png`
+- 新建：`design-references/网站框架探索/方案-03-教师引导的PBL课程现场/前三周渲染图/03-Week3-指标诊断.png`
+- 新建：`design-references/网站框架探索/方案-03-教师引导的PBL课程现场/前三周渲染图/04-教师课堂编排与洞察.png`
+- 新建：`design-references/网站框架探索/方案-03-教师引导的PBL课程现场/前三周渲染图/README.md`
 
-- [ ] **Step 2: Generate the four renderings**
+**接口：**
 
-Use the approved restrained Tsinghua-purple visual direction. Avoid large purple colour blocks, excessive line-only structure, unsupported metrics, fake browser chrome, and identical layouts across the three weeks.
+- 输入：稳定网站骨架、每周模块协议、内容地图和课堂编排。
+- 输出：四张评审图以及来源与占位内容说明。
 
-- [ ] **Step 3: Perform visual inspection**
+- [ ] **步骤 1：编写有内容依据的渲染简报**
 
-Check legibility, hierarchy, rounded surfaces, colour restraint, content fidelity, and whether each screen makes its classroom moment obvious. Regenerate any image that invents course facts or implies students remain on-screen continuously.
+每份简报必须说明展示的真实课件内容、使用角色、课堂时刻、主要操作，以及哪些文案或指标仅为示意。
 
-- [ ] **Step 4: Write the rendering README**
+- [ ] **步骤 2：生成四张渲染图**
 
-For each image, list the represented moment, real source references, illustrative content, and unresolved questions requiring user review.
+使用已批准的克制清华紫视觉方向。避免大面积紫色色块、过多纯线框结构、没有来源的指标、伪造浏览器外框，以及三周使用完全相同的布局。
 
-- [ ] **Step 5: User review gate**
+- [ ] **步骤 3：进行视觉检查**
 
-Present all four images together. Do not convert the design into production code until the user approves the architecture and classroom relationship.
+检查可读性、信息层级、圆角表面、用色克制、内容真实性，以及每个界面能否准确表达所处课堂时刻。若图中编造课程事实或暗示学生持续盯着屏幕，必须重新生成。
 
-### Task 8: Convert the Approved Design into SDD 003
+- [ ] **步骤 4：编写渲染图说明**
 
-**Files:**
-- Create: `docs/sdd/specs/003-first-three-weeks-teaching-sample/spec.md`
-- Create: `docs/sdd/specs/003-first-three-weeks-teaching-sample/plan.md`
-- Create: `docs/sdd/specs/003-first-three-weeks-teaching-sample/tasks.md`
-- Modify: `docs/sdd/constitution.md` only if the approved three-week architecture changes an active constitutional statement.
+逐图记录代表的课堂时刻、真实来源、示意内容以及需要用户评审的未决问题。
 
-**Interfaces:**
-- Consumes: user-approved renderings and all Week 1–3 design artifacts.
-- Produces: an implementation-ready SDD package with file-level scope, test strategy, mobile requirements, and ordered tasks.
+- [ ] **步骤 5：用户评审关卡**
 
-- [ ] **Step 1: Write the SDD spec**
+同时展示四张渲染图。在用户确认网站架构和课堂关系前，不转入生产代码实现。
 
-Carry forward only approved behavior and visual decisions. Separate real integrations from demo simulations and preserve the no-Week-4+ scope.
+### 任务 8：将获批设计转写为 SDD 003
 
-- [ ] **Step 2: Write the file-level implementation plan**
+**文件：**
 
-Map the approved design onto existing routes, shared shells, data modules, tests, and style tokens without deleting production capabilities.
+- 新建：`docs/sdd/specs/003-first-three-weeks-teaching-sample/spec.md`
+- 新建：`docs/sdd/specs/003-first-three-weeks-teaching-sample/plan.md`
+- 新建：`docs/sdd/specs/003-first-three-weeks-teaching-sample/tasks.md`
+- 仅在获批的前三周架构改变现行宪法条款时修改：`docs/sdd/constitution.md`
 
-- [ ] **Step 3: Write ordered TDD tasks**
+**接口：**
 
-Each implementation task must identify the failing test, minimal change, verification command, and expected result.
+- 输入：用户确认的渲染图和全部 Week 1–3 设计资产。
+- 输出：可实施的 SDD 规格包，包含文件级范围、测试策略、移动端要求和有序任务。
 
-- [ ] **Step 4: Validate the SDD package**
+- [ ] **步骤 1：编写 SDD 规格**
 
-Run placeholder scans, `git diff --check`, route-scope checks, and a consistency review against the approved design documents.
+只纳入已经批准的行为和视觉决策，区分真实集成与 Demo 模拟，并保持不制作 Week 4+ 的边界。
 
-- [ ] **Step 5: Commit the approved SDD package**
+- [ ] **步骤 2：编写文件级实施计划**
 
-Commit only SDD and approved design artifacts; leave unrelated worktree files untouched.
+在不删除生产能力的前提下，将获批设计映射到现有路由、共享壳层、数据模块、测试和样式 token。
+
+- [ ] **步骤 3：编写有序 TDD 任务**
+
+每个实施任务都要说明失败测试、最小改动、验证命令和预期结果。
+
+- [ ] **步骤 4：验证 SDD 规格包**
+
+运行占位符扫描、`git diff --check`、路由范围检查，并与获批设计文档进行一致性复核。
+
+- [ ] **步骤 5：提交获批的 SDD 规格包**
+
+只提交 SDD 和获批设计资产，保持无关工作树文件不变。
