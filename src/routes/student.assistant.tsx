@@ -22,7 +22,7 @@ type ChatMessage = { role: "assistant" | "user"; text: string };
 
 const MODES: Record<AgentMode, { label: string; desc: string; icon: typeof Bot }> = {
   qa: { label: "课程问答", desc: "解释概念、案例和课堂材料", icon: GraduationCap },
-  coach: { label: "任务教练", desc: "拆解作业步骤，不直接代写方案", icon: Lightbulb },
+  coach: { label: "任务教练", desc: "拆解作业步骤，不直接代做方案", icon: Lightbulb },
   rules: { label: "规则解释", desc: "说明预检、仿真和评分规则", icon: ShieldCheck },
   vibe: { label: "Vibe Coding 教练", desc: "把学习痛点拆成可共创的小工具", icon: Code2 },
 };
@@ -37,8 +37,14 @@ function AssistantPage() {
   };
   const initialMode = search.mode && MODES[search.mode] ? search.mode : "qa";
   const [mode, setMode] = useState<AgentMode>(initialMode);
-  const context = useMemo(() => buildContext(search), [search.from, search.week, search.concept, search.focus]);
-  const suggestions = useMemo(() => buildSuggestions(search, mode), [search.from, search.week, search.concept, search.focus, mode]);
+  const context = useMemo(
+    () => buildContext(search),
+    [search.from, search.week, search.concept, search.focus],
+  );
+  const suggestions = useMemo(
+    () => buildSuggestions(search, mode),
+    [search.from, search.week, search.concept, search.focus, mode],
+  );
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
@@ -67,7 +73,8 @@ function AssistantPage() {
           </div>
           <h1 className="mt-3 text-3xl font-bold">课程助教 Agent</h1>
           <p className="mt-1 max-w-3xl text-sm text-muted-foreground">
-            围绕 Wafia Bakery、仓内分拣、配送协同和 Vibe Coding 共创，帮助学生理解规则、拆解任务、定位问题。
+            围绕 Wafia Bakery、仓内分拣、配送协同和 Vibe Coding
+            共创，帮助学生基于已有尝试定位问题、补充证据并规划下一次修改。
           </p>
         </div>
         {context.backLink && (
@@ -95,7 +102,9 @@ function AssistantPage() {
                     key={key}
                     onClick={() => setMode(key)}
                     className={`w-full rounded-xl border p-3 text-left transition-all ${
-                      mode === key ? "border-primary bg-accent" : "bg-background/40 hover:border-primary/50"
+                      mode === key
+                        ? "border-primary bg-accent"
+                        : "bg-background/40 hover:border-primary/50"
                     }`}
                   >
                     <div className="flex items-center gap-2 text-sm font-semibold">
@@ -114,10 +123,13 @@ function AssistantPage() {
             </div>
             <div className="mt-3 rounded-xl bg-secondary p-3 text-sm">
               <div className="font-medium">{context.label}</div>
-              <div className="mt-1 text-xs leading-relaxed text-muted-foreground">{context.detail}</div>
+              <div className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                {context.detail}
+              </div>
             </div>
             <p className="mt-3 text-xs text-muted-foreground">
-              AI 建议仅供学习，最终以教师要求、课程任务书和课堂说明为准。
+              请先说明你已经尝试过什么、看到什么结果、卡在哪里。AI
+              不直接代做方案，最终以教师要求、课程任务书和课堂说明为准。
             </p>
           </div>
         </aside>
@@ -143,7 +155,10 @@ function AssistantPage() {
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-2xl border bg-card" style={{ boxShadow: "var(--shadow-soft)" }}>
+          <div
+            className="overflow-hidden rounded-2xl border bg-card"
+            style={{ boxShadow: "var(--shadow-soft)" }}
+          >
             <div className="border-b bg-secondary/70 px-5 py-3">
               <div className="flex items-center gap-2 text-sm font-semibold">
                 <MessageSquareText className="h-4 w-4 text-primary" /> 多轮问答
@@ -151,7 +166,10 @@ function AssistantPage() {
             </div>
             <div className="max-h-[520px] space-y-4 overflow-y-auto p-5">
               {messages.map((m, i) => (
-                <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
+                <div
+                  key={i}
+                  className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}
+                >
                   <div
                     className={`max-w-[82%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
                       m.role === "user"
@@ -187,9 +205,21 @@ function AssistantPage() {
           </div>
 
           <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
-            <InfoCard icon={BookOpen} title="依据课程材料" text="后续接入课件、任务书、评分规则和典型错误库。" />
-            <InfoCard icon={ShieldCheck} title="保留学习边界" text="帮助理解和修改，不直接生成完整作业答案。" />
-            <InfoCard icon={Code2} title="连接共创" text="可把痛点转为动画、工具、小游戏或 Prompt/Agent 模块。" />
+            <InfoCard
+              icon={BookOpen}
+              title="依据课程材料"
+              text="后续接入课件、任务书、评分规则和典型错误库。"
+            />
+            <InfoCard
+              icon={ShieldCheck}
+              title="保留学习边界"
+              text="帮助理解和修改，不直接生成完整作业答案。"
+            />
+            <InfoCard
+              icon={Code2}
+              title="连接共创"
+              text="可把痛点转为动画、工具、小游戏或 Prompt/Agent 模块。"
+            />
           </div>
         </main>
       </div>
@@ -207,14 +237,22 @@ function InfoCard({ icon: Icon, title, text }: { icon: typeof Bot; title: string
   );
 }
 
-function buildContext(search: { from?: string; week?: string | number; concept?: string; focus?: string }) {
+function buildContext(search: {
+  from?: string;
+  week?: string | number;
+  concept?: string;
+  focus?: string;
+}) {
   const week = search.week ? WEEKS.find((w) => w.id === Number(search.week)) : null;
   const concept = search.concept ? KNOWLEDGE.find((k) => k.id === search.concept) : null;
   if (search.from === "learn" && concept) {
     return {
       label: `概念学习：${concept.name}`,
       detail: `${concept.desc}。当前问题会优先围绕视频知识点、案例体现和常见错误展开。`,
-      backLink: { to: "/student/learn" as const, search: { concept: concept.id, fromWeek: search.week } },
+      backLink: {
+        to: "/student/learn" as const,
+        search: { concept: concept.id, fromWeek: search.week },
+      },
     };
   }
   if (search.from === "submit") {
@@ -240,7 +278,8 @@ function buildContext(search: { from?: string; week?: string | number; concept?:
   }
   return {
     label: "全课程学习",
-    detail: "当前问题会优先围绕 Wafia Bakery 案例、仓内分拣、配送协同、AI 批改和 Vibe Coding 共创展开。",
+    detail:
+      "当前问题会优先围绕 Wafia Bakery 案例、仓内分拣、配送协同、AI 批改和 Vibe Coding 共创展开。",
     backLink: null,
   };
 }
@@ -297,7 +336,11 @@ function buildSuggestions(
   ];
 }
 
-function makeMockAnswer(question: string, mode: AgentMode, context: ReturnType<typeof buildContext>) {
+function makeMockAnswer(
+  question: string,
+  mode: AgentMode,
+  context: ReturnType<typeof buildContext>,
+) {
   const prefix = {
     qa: "可以先把概念放回课程场景里看：",
     coach: "我会按“理解任务、检查约束、形成方案、验证修改”的顺序拆：",
