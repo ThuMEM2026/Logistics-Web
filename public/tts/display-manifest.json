@@ -8,17 +8,20 @@
     {
       "id": "cainew",
       "name": "蔡老师·35秒",
-      "reference_seconds": 35
+      "reference_seconds": 35,
+      "model_count": 4
     },
     {
       "id": "cai",
       "name": "蔡老师·10秒",
-      "reference_seconds": 10
+      "reference_seconds": 10,
+      "model_count": 5
     },
     {
       "id": "zhangwei",
       "name": "张伟老师",
-      "reference_seconds": 10
+      "reference_seconds": 10,
+      "model_count": 4
     }
   ],
   "results": [
@@ -261,6 +264,30 @@
       },
       "file": "audio/7e2ca878c70a46fcf531f1ae.mp3",
       "reference_file": "audio/816003bdf283822d4d1ff961.wav"
+    },
+    {
+      "person": "cai",
+      "speaker": "蔡老师",
+      "blind_code": "E",
+      "model": "CosyVoice 3.0 · 开源0.5B",
+      "seconds": 29.92,
+      "audio_sha256": "f5518b5b4d28e17d3dd16a56a1e6054eba19cb012e341e5eb213cb14545ee5c5",
+      "reference_sha256": "4bd9e430890fc9ed3f46a146b8902164f7497aa2743ea2f95016aab3394af9f9",
+      "text_sha256": "19a99402980e7bd7510fc92d675cb40d60eb01e3eb706b0524d9657b83bc54f9",
+      "cost_estimate": {
+        "clone_once_cny": 0,
+        "tts_cny": null,
+        "first_clone_and_one_tts_cny": null,
+        "clone_display": "无授权费",
+        "tts_display": "算力另计",
+        "first_display": "算力另计",
+        "billing_model": "self_hosted_compute",
+        "demo_charge_cny": 0,
+        "rate_note": "官方在线演示本次免费；私有化没有按字符API费，GPU、存储及运维另计",
+        "reuse_note": ""
+      },
+      "file": "audio/f5518b5b4d28e17d3dd16a56.wav",
+      "reference_file": "audio/4bd9e430890fc9ed3f46a146.wav"
     }
   ],
   "price_sources": {
@@ -284,5 +311,15 @@
     "ali_http_limit": "Not explicitly listed in reviewed HTTP docs; do not apply WebSocket limits to HTTP as a confirmed bound."
   },
   "cost_note": "Long-term estimates; Youdao 85% discount; trial credits and final invoice are separate.",
-  "ai_generated_audio": true
+  "ai_generated_audio": true,
+  "opensource3": {
+    "status": "partial",
+    "model": "FunAudioLLM/Fun-CosyVoice3-0.5B-2512",
+    "source": "https://huggingface.co/spaces/FunAudioLLM/Fun-CosyVoice3-0.5B",
+    "reference_limit": "Official zero-shot demo requires <=10s reference; 35s group excluded",
+    "quality_comparison": "Subjective naturalness and similarity unscored; listen against A within each identical-reference tab",
+    "generated_people": [
+      "cai"
+    ]
+  }
 }
