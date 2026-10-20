@@ -3,19 +3,19 @@
   "text": "同学们，今天我们用生产计划理解需求、产能与库存之间的关系。预测需求不是实际订单，安全库存也不是越多越好。请先判断当前的瓶颈工序，再比较增加人员、安排加班和调整批量三种方案。产能提高以后，还要观察在制品是否积压，不能只看单台设备的利用率。",
   "text_characters": 118,
   "text_sha256": "19a99402980e7bd7510fc92d675cb40d60eb01e3eb706b0524d9657b83bc54f9",
-  "default_person": "cainew",
+  "default_person": "cai",
   "people": [
+    {
+      "id": "cai",
+      "name": "蔡老师",
+      "reference_seconds": 10,
+      "model_count": 5
+    },
     {
       "id": "cainew",
       "name": "蔡老师·35秒",
       "reference_seconds": 35,
       "model_count": 4
-    },
-    {
-      "id": "cai",
-      "name": "蔡老师·10秒",
-      "reference_seconds": 10,
-      "model_count": 5
     },
     {
       "id": "zhangwei",
