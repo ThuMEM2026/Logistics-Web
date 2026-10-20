@@ -9,7 +9,7 @@
       "id": "cai",
       "name": "蔡老师",
       "reference_seconds": 10,
-      "model_count": 5
+      "model_count": 6
     },
     {
       "id": "cainew",
@@ -288,6 +288,30 @@
       },
       "file": "audio/f5518b5b4d28e17d3dd16a56.wav",
       "reference_file": "audio/4bd9e430890fc9ed3f46a146.wav"
+    },
+    {
+      "person": "cai",
+      "speaker": "蔡老师",
+      "blind_code": "F",
+      "model": "有道 Confucius4-TTS · 开源",
+      "seconds": 21.492698412698413,
+      "audio_sha256": "36109e74ac401a34e28624b00d3818a1aa529a028608983c614bcea2b248aab2",
+      "reference_sha256": "4bd9e430890fc9ed3f46a146b8902164f7497aa2743ea2f95016aab3394af9f9",
+      "text_sha256": "19a99402980e7bd7510fc92d675cb40d60eb01e3eb706b0524d9657b83bc54f9",
+      "cost_estimate": {
+        "clone_once_cny": null,
+        "tts_cny": null,
+        "first_clone_and_one_tts_cny": null,
+        "clone_display": "本次免费",
+        "tts_display": "算力另计",
+        "first_display": "算力另计",
+        "billing_model": "self_hosted_compute",
+        "demo_charge_cny": 0,
+        "rate_note": "官方在线演示本次免费；自部署算力、存储及运维另计",
+        "reuse_note": ""
+      },
+      "file": "audio/36109e74ac401a34e28624b0.wav",
+      "reference_file": "audio/4bd9e430890fc9ed3f46a146.wav"
     }
   ],
   "price_sources": {
@@ -298,7 +322,9 @@
     "qwen_ws": "https://help.aliyun.com/zh/model-studio/qwen-audio-tts-client-events",
     "cosy_ws": "https://help.aliyun.com/zh/model-studio/cosyvoice-client-events",
     "qwen_http": "https://help.aliyun.com/zh/model-studio/qwen-audio-tts-http-api",
-    "cosy_http": "https://help.aliyun.com/zh/model-studio/cosyvoice-tts-http-api"
+    "cosy_http": "https://help.aliyun.com/zh/model-studio/cosyvoice-tts-http-api",
+    "youdao_confucius4_repo": "https://github.com/netease-youdao/Confucius4-TTS",
+    "youdao_confucius4_demo": "https://confucius4-tts.youdao.com/gradio"
   },
   "length_limits": {
     "youdao_sync_q_characters": 600,
@@ -321,5 +347,15 @@
     "generated_people": [
       "cai"
     ]
+  },
+  "confucius4": {
+    "status": "cai_ready",
+    "sample": "cai-F",
+    "reference_seconds": 10,
+    "text_characters": 118,
+    "reference_sha256": "4bd9e430890fc9ed3f46a146b8902164f7497aa2743ea2f95016aab3394af9f9",
+    "text_sha256": "19a99402980e7bd7510fc92d675cb40d60eb01e3eb706b0524d9657b83bc54f9",
+    "demo_recommendation": "3-10s reference",
+    "quality_comparison": "Naturalness and speaker similarity await human listening; compare to B (Youdao Pro) within same-reference Cai tab"
   }
 }
