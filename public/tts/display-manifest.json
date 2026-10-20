@@ -1,0 +1,288 @@
+{
+  "date": "2026-10-20",
+  "text": "同学们，今天我们用生产计划理解需求、产能与库存之间的关系。预测需求不是实际订单，安全库存也不是越多越好。请先判断当前的瓶颈工序，再比较增加人员、安排加班和调整批量三种方案。产能提高以后，还要观察在制品是否积压，不能只看单台设备的利用率。",
+  "text_characters": 118,
+  "text_sha256": "19a99402980e7bd7510fc92d675cb40d60eb01e3eb706b0524d9657b83bc54f9",
+  "default_person": "cainew",
+  "people": [
+    {
+      "id": "cainew",
+      "name": "蔡老师·35秒",
+      "reference_seconds": 35
+    },
+    {
+      "id": "cai",
+      "name": "蔡老师·10秒",
+      "reference_seconds": 10
+    },
+    {
+      "id": "zhangwei",
+      "name": "张伟老师",
+      "reference_seconds": 10
+    }
+  ],
+  "results": [
+    {
+      "person": "cainew",
+      "speaker": "蔡老师 · 新35秒原声",
+      "blind_code": "A",
+      "model": "CosyVoice 3.5 Plus",
+      "seconds": 19.800816,
+      "audio_sha256": "084d7b8d50575fb1e5b724b6359131645e849756dc0878471b2bbceea22bc7b5",
+      "reference_sha256": "68cad3408c49b1de24a8c5346a4f1d2e666eafafa7dabe1ea5722583abf81be8",
+      "text_sha256": "19a99402980e7bd7510fc92d675cb40d60eb01e3eb706b0524d9657b83bc54f9",
+      "cost_estimate": {
+        "clone_once_cny": 0,
+        "tts_cny": 0.03375,
+        "first_clone_and_one_tts_cny": 0.03375,
+        "rate_cny_per_10000_billing_units": 1.5,
+        "billing_units": 225,
+        "rate_note": "1.5元/万计费字符；纯汉字约3元/万汉字"
+      },
+      "file": "audio/084d7b8d50575fb1e5b724b6.mp3",
+      "reference_file": "audio/68cad3408c49b1de24a8c534.wav"
+    },
+    {
+      "person": "cainew",
+      "speaker": "蔡老师 · 新35秒原声",
+      "blind_code": "B",
+      "model": "有道 Pro",
+      "seconds": 24.4675,
+      "audio_sha256": "5695d504c1577812878e113e3ebcc60f9c7310b9866d2064eb6bca2bcb6a9d13",
+      "reference_sha256": "68cad3408c49b1de24a8c5346a4f1d2e666eafafa7dabe1ea5722583abf81be8",
+      "text_sha256": "19a99402980e7bd7510fc92d675cb40d60eb01e3eb706b0524d9657b83bc54f9",
+      "cost_estimate": {
+        "clone_once_cny": 8.5,
+        "tts_cny": 0.02006,
+        "first_clone_and_one_tts_cny": 8.52006,
+        "rate_cny_per_10000_billing_units": 1.7,
+        "billing_units": 118,
+        "rate_note": "原价克隆10元、合成2元/万字符；全部85折后8.50元、1.70元/万字符"
+      },
+      "file": "audio/5695d504c1577812878e113e.mp3",
+      "reference_file": "audio/68cad3408c49b1de24a8c534.wav"
+    },
+    {
+      "person": "cainew",
+      "speaker": "蔡老师 · 新35秒原声",
+      "blind_code": "C",
+      "model": "Qwen-Audio 3.0 TTS Plus",
+      "seconds": 22.517551,
+      "audio_sha256": "39ebeff5481328c09d1d2b83b318d59377770018a4034ed70b3ef2dc3272ab8f",
+      "reference_sha256": "68cad3408c49b1de24a8c5346a4f1d2e666eafafa7dabe1ea5722583abf81be8",
+      "text_sha256": "19a99402980e7bd7510fc92d675cb40d60eb01e3eb706b0524d9657b83bc54f9",
+      "cost_estimate": {
+        "clone_once_cny": 0,
+        "tts_cny": 0.0315,
+        "first_clone_and_one_tts_cny": 0.0315,
+        "rate_cny_per_10000_billing_units": 1.4,
+        "billing_units": 225,
+        "rate_note": "1.4元/万计费字符；纯汉字约2.8元/万汉字"
+      },
+      "file": "audio/39ebeff5481328c09d1d2b83.mp3",
+      "reference_file": "audio/68cad3408c49b1de24a8c534.wav"
+    },
+    {
+      "person": "cainew",
+      "speaker": "蔡老师 · 新35秒原声",
+      "blind_code": "D",
+      "model": "CosyVoice 3.5 Flash",
+      "seconds": 22.439184,
+      "audio_sha256": "3260cf12cce9638d899137cc63201b8e6973c622098bfc795f15cb3dcc1fbcc1",
+      "reference_sha256": "68cad3408c49b1de24a8c5346a4f1d2e666eafafa7dabe1ea5722583abf81be8",
+      "text_sha256": "19a99402980e7bd7510fc92d675cb40d60eb01e3eb706b0524d9657b83bc54f9",
+      "cost_estimate": {
+        "clone_once_cny": 0,
+        "tts_cny": 0.018,
+        "first_clone_and_one_tts_cny": 0.018,
+        "rate_cny_per_10000_billing_units": 0.8,
+        "billing_units": 225,
+        "rate_note": "0.8元/万计费字符；纯汉字约1.6元/万汉字"
+      },
+      "file": "audio/3260cf12cce9638d899137cc.mp3",
+      "reference_file": "audio/68cad3408c49b1de24a8c534.wav"
+    },
+    {
+      "person": "cai",
+      "speaker": "蔡老师",
+      "blind_code": "A",
+      "model": "CosyVoice 3.5 Plus",
+      "seconds": 25.315,
+      "audio_sha256": "a93105b7ae80298f0704b44995edf6399d94bcbee473c7b3d054734ba4b0e03d",
+      "reference_sha256": "4bd9e430890fc9ed3f46a146b8902164f7497aa2743ea2f95016aab3394af9f9",
+      "text_sha256": "19a99402980e7bd7510fc92d675cb40d60eb01e3eb706b0524d9657b83bc54f9",
+      "cost_estimate": {
+        "clone_once_cny": 0,
+        "tts_cny": 0.03375,
+        "first_clone_and_one_tts_cny": 0.03375,
+        "rate_cny_per_10000_billing_units": 1.5,
+        "billing_units": 225,
+        "rate_note": "1.5元/万计费字符；纯汉字约3元/万汉字"
+      },
+      "file": "audio/a93105b7ae80298f0704b449.mp3",
+      "reference_file": "audio/4bd9e430890fc9ed3f46a146.wav"
+    },
+    {
+      "person": "cai",
+      "speaker": "蔡老师",
+      "blind_code": "B",
+      "model": "有道 Pro",
+      "seconds": 22.366,
+      "audio_sha256": "0106a2bea41d35e86b66f0c35bd5c342b073fb1b02e9f19018e6bbece0af5e98",
+      "reference_sha256": "4bd9e430890fc9ed3f46a146b8902164f7497aa2743ea2f95016aab3394af9f9",
+      "text_sha256": "19a99402980e7bd7510fc92d675cb40d60eb01e3eb706b0524d9657b83bc54f9",
+      "cost_estimate": {
+        "clone_once_cny": 8.5,
+        "tts_cny": 0.02006,
+        "first_clone_and_one_tts_cny": 8.52006,
+        "rate_cny_per_10000_billing_units": 1.7,
+        "billing_units": 118,
+        "rate_note": "原价克隆10元、合成2元/万字符；全部85折后8.50元、1.70元/万字符"
+      },
+      "file": "audio/0106a2bea41d35e86b66f0c3.mp3",
+      "reference_file": "audio/4bd9e430890fc9ed3f46a146.wav"
+    },
+    {
+      "person": "cai",
+      "speaker": "蔡老师",
+      "blind_code": "C",
+      "model": "Qwen-Audio 3.0 TTS Plus",
+      "seconds": 24.113,
+      "audio_sha256": "e1a62e25edc6a97168d069417df327ba1b48197c549b21b184be2fe0d83c88b5",
+      "reference_sha256": "4bd9e430890fc9ed3f46a146b8902164f7497aa2743ea2f95016aab3394af9f9",
+      "text_sha256": "19a99402980e7bd7510fc92d675cb40d60eb01e3eb706b0524d9657b83bc54f9",
+      "cost_estimate": {
+        "clone_once_cny": 0,
+        "tts_cny": 0.0315,
+        "first_clone_and_one_tts_cny": 0.0315,
+        "rate_cny_per_10000_billing_units": 1.4,
+        "billing_units": 225,
+        "rate_note": "1.4元/万计费字符；纯汉字约2.8元/万汉字"
+      },
+      "file": "audio/e1a62e25edc6a97168d06941.mp3",
+      "reference_file": "audio/4bd9e430890fc9ed3f46a146.wav"
+    },
+    {
+      "person": "cai",
+      "speaker": "蔡老师",
+      "blind_code": "D",
+      "model": "CosyVoice 3.5 Flash",
+      "seconds": 22.128,
+      "audio_sha256": "f0b1043961d3622c51ab5ca0ee1c77346c12b94438a071a9daf30ec6a3d720af",
+      "reference_sha256": "4bd9e430890fc9ed3f46a146b8902164f7497aa2743ea2f95016aab3394af9f9",
+      "text_sha256": "19a99402980e7bd7510fc92d675cb40d60eb01e3eb706b0524d9657b83bc54f9",
+      "cost_estimate": {
+        "clone_once_cny": 0,
+        "tts_cny": 0.018,
+        "first_clone_and_one_tts_cny": 0.018,
+        "rate_cny_per_10000_billing_units": 0.8,
+        "billing_units": 225,
+        "rate_note": "0.8元/万计费字符；纯汉字约1.6元/万汉字"
+      },
+      "file": "audio/f0b1043961d3622c51ab5ca0.mp3",
+      "reference_file": "audio/4bd9e430890fc9ed3f46a146.wav"
+    },
+    {
+      "person": "zhangwei",
+      "speaker": "张伟老师",
+      "blind_code": "A",
+      "model": "CosyVoice 3.5 Plus",
+      "seconds": 22.049,
+      "audio_sha256": "7f75ade147b37e3769c6f77867b36ee4494f981ed85070c018e0d52e17971e17",
+      "reference_sha256": "816003bdf283822d4d1ff96111cf63a904a9f8d15e13d42ad25e20a0a699401d",
+      "text_sha256": "19a99402980e7bd7510fc92d675cb40d60eb01e3eb706b0524d9657b83bc54f9",
+      "cost_estimate": {
+        "clone_once_cny": 0,
+        "tts_cny": 0.03375,
+        "first_clone_and_one_tts_cny": 0.03375,
+        "rate_cny_per_10000_billing_units": 1.5,
+        "billing_units": 225,
+        "rate_note": "1.5元/万计费字符；纯汉字约3元/万汉字"
+      },
+      "file": "audio/7f75ade147b37e3769c6f778.mp3",
+      "reference_file": "audio/816003bdf283822d4d1ff961.wav"
+    },
+    {
+      "person": "zhangwei",
+      "speaker": "张伟老师",
+      "blind_code": "B",
+      "model": "有道 Pro",
+      "seconds": 26.639,
+      "audio_sha256": "955e5c111204fc79391afe3a333c1f3a6018399d479e9155d96aa84af543f025",
+      "reference_sha256": "816003bdf283822d4d1ff96111cf63a904a9f8d15e13d42ad25e20a0a699401d",
+      "text_sha256": "19a99402980e7bd7510fc92d675cb40d60eb01e3eb706b0524d9657b83bc54f9",
+      "cost_estimate": {
+        "clone_once_cny": 8.5,
+        "tts_cny": 0.02006,
+        "first_clone_and_one_tts_cny": 8.52006,
+        "rate_cny_per_10000_billing_units": 1.7,
+        "billing_units": 118,
+        "rate_note": "原价克隆10元、合成2元/万字符；全部85折后8.50元、1.70元/万字符"
+      },
+      "file": "audio/955e5c111204fc79391afe3a.mp3",
+      "reference_file": "audio/816003bdf283822d4d1ff961.wav"
+    },
+    {
+      "person": "zhangwei",
+      "speaker": "张伟老师",
+      "blind_code": "C",
+      "model": "Qwen-Audio 3.0 TTS Plus",
+      "seconds": 26.438,
+      "audio_sha256": "3e4492fb320b0dd90b2f4f8185fafa6a6935488a13973095e684111dab4a6945",
+      "reference_sha256": "816003bdf283822d4d1ff96111cf63a904a9f8d15e13d42ad25e20a0a699401d",
+      "text_sha256": "19a99402980e7bd7510fc92d675cb40d60eb01e3eb706b0524d9657b83bc54f9",
+      "cost_estimate": {
+        "clone_once_cny": 0,
+        "tts_cny": 0.0315,
+        "first_clone_and_one_tts_cny": 0.0315,
+        "rate_cny_per_10000_billing_units": 1.4,
+        "billing_units": 225,
+        "rate_note": "1.4元/万计费字符；纯汉字约2.8元/万汉字"
+      },
+      "file": "audio/3e4492fb320b0dd90b2f4f81.mp3",
+      "reference_file": "audio/816003bdf283822d4d1ff961.wav"
+    },
+    {
+      "person": "zhangwei",
+      "speaker": "张伟老师",
+      "blind_code": "D",
+      "model": "CosyVoice 3.5 Flash",
+      "seconds": 23.643,
+      "audio_sha256": "7e2ca878c70a46fcf531f1ae9d762642958b8ca96cba2007333bd37cf5da69cf",
+      "reference_sha256": "816003bdf283822d4d1ff96111cf63a904a9f8d15e13d42ad25e20a0a699401d",
+      "text_sha256": "19a99402980e7bd7510fc92d675cb40d60eb01e3eb706b0524d9657b83bc54f9",
+      "cost_estimate": {
+        "clone_once_cny": 0,
+        "tts_cny": 0.018,
+        "first_clone_and_one_tts_cny": 0.018,
+        "rate_cny_per_10000_billing_units": 0.8,
+        "billing_units": 225,
+        "rate_note": "0.8元/万计费字符；纯汉字约1.6元/万汉字"
+      },
+      "file": "audio/7e2ca878c70a46fcf531f1ae.mp3",
+      "reference_file": "audio/816003bdf283822d4d1ff961.wav"
+    }
+  ],
+  "price_sources": {
+    "youdao_price": "https://ai.youdao.com/DOCSIRMA/html/tts/price/dmxyyfkhc/index.html",
+    "youdao_api": "https://ai.youdao.com/DOCSIRMA/html/tts/api/dmxyyfkhc/index.html",
+    "ali_price": "https://help.aliyun.com/zh/model-studio/model-pricing",
+    "ali_clone": "https://help.aliyun.com/zh/model-studio/voice-cloning-user-guide",
+    "qwen_ws": "https://help.aliyun.com/zh/model-studio/qwen-audio-tts-client-events",
+    "cosy_ws": "https://help.aliyun.com/zh/model-studio/cosyvoice-client-events",
+    "qwen_http": "https://help.aliyun.com/zh/model-studio/qwen-audio-tts-http-api",
+    "cosy_http": "https://help.aliyun.com/zh/model-studio/cosyvoice-tts-http-api"
+  },
+  "length_limits": {
+    "youdao_sync_q_characters": 600,
+    "qwen_audio_websocket_characters_per_continue_task": 20000,
+    "qwen_audio_websocket_characters_per_task": 200000,
+    "cosyvoice_websocket_characters_per_continue_task": 20000,
+    "cosyvoice_websocket_characters_per_task": 200000,
+    "ali_websocket_max_interval_seconds": 23,
+    "bailian_clone_preview_ui_characters_observed": 230,
+    "ali_http_limit": "Not explicitly listed in reviewed HTTP docs; do not apply WebSocket limits to HTTP as a confirmed bound."
+  },
+  "cost_note": "Long-term estimates; Youdao 85% discount; trial credits and final invoice are separate.",
+  "ai_generated_audio": true
+}

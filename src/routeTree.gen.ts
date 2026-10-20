@@ -9,36 +9,31 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as TeacherRouteImport } from './routes/teacher'
-import { Route as StudentRouteImport } from './routes/student'
-import { Route as ProposalRouteImport } from './routes/proposal'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as TeacherIndexRouteImport } from './routes/teacher.index'
+import { Route as ProposalRouteImport } from './routes/proposal'
+import { Route as StudentRouteImport } from './routes/student'
+import { Route as TeacherRouteImport } from './routes/teacher'
 import { Route as StudentIndexRouteImport } from './routes/student.index'
-import { Route as TeacherWorkshopReviewRouteImport } from './routes/teacher.workshop-review'
-import { Route as TeacherVariablesRouteImport } from './routes/teacher.variables'
-import { Route as TeacherRulesRouteImport } from './routes/teacher.rules'
-import { Route as TeacherReviewRouteImport } from './routes/teacher.review'
-import { Route as TeacherCasesRouteImport } from './routes/teacher.cases'
-import { Route as StudentWorkshopRouteImport } from './routes/student.workshop'
-import { Route as StudentSubmitRouteImport } from './routes/student.submit'
-import { Route as StudentSubmissionsRouteImport } from './routes/student.submissions'
-import { Route as StudentResultRouteImport } from './routes/student.result'
-import { Route as StudentMapRouteImport } from './routes/student.map'
-import { Route as StudentLearnRouteImport } from './routes/student.learn'
-import { Route as StudentCasesRouteImport } from './routes/student.cases'
 import { Route as StudentAssistantRouteImport } from './routes/student.assistant'
-import { Route as StudentWorkshopModuleIdRouteImport } from './routes/student.workshop.$moduleId'
+import { Route as StudentCasesRouteImport } from './routes/student.cases'
+import { Route as StudentLearnRouteImport } from './routes/student.learn'
+import { Route as StudentMapRouteImport } from './routes/student.map'
+import { Route as StudentResultRouteImport } from './routes/student.result'
+import { Route as StudentSubmissionsRouteImport } from './routes/student.submissions'
+import { Route as StudentSubmitRouteImport } from './routes/student.submit'
+import { Route as StudentWorkshopRouteImport } from './routes/student.workshop'
+import { Route as TeacherIndexRouteImport } from './routes/teacher.index'
+import { Route as TeacherCasesRouteImport } from './routes/teacher.cases'
+import { Route as TeacherReviewRouteImport } from './routes/teacher.review'
+import { Route as TeacherRulesRouteImport } from './routes/teacher.rules'
+import { Route as TeacherVariablesRouteImport } from './routes/teacher.variables'
+import { Route as TeacherWorkshopReviewRouteImport } from './routes/teacher.workshop-review'
 import { Route as StudentWeekWeekIdRouteImport } from './routes/student.week.$weekId'
+import { Route as StudentWorkshopModuleIdRouteImport } from './routes/student.workshop.$moduleId'
 
-const TeacherRoute = TeacherRouteImport.update({
-  id: '/teacher',
-  path: '/teacher',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const StudentRoute = StudentRouteImport.update({
-  id: '/student',
-  path: '/student',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProposalRoute = ProposalRouteImport.update({
@@ -46,79 +41,19 @@ const ProposalRoute = ProposalRouteImport.update({
   path: '/proposal',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const StudentRoute = StudentRouteImport.update({
+  id: '/student',
+  path: '/student',
   getParentRoute: () => rootRouteImport,
 } as any)
-const TeacherIndexRoute = TeacherIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => TeacherRoute,
+const TeacherRoute = TeacherRouteImport.update({
+  id: '/teacher',
+  path: '/teacher',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const StudentIndexRoute = StudentIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => StudentRoute,
-} as any)
-const TeacherWorkshopReviewRoute = TeacherWorkshopReviewRouteImport.update({
-  id: '/workshop-review',
-  path: '/workshop-review',
-  getParentRoute: () => TeacherRoute,
-} as any)
-const TeacherVariablesRoute = TeacherVariablesRouteImport.update({
-  id: '/variables',
-  path: '/variables',
-  getParentRoute: () => TeacherRoute,
-} as any)
-const TeacherRulesRoute = TeacherRulesRouteImport.update({
-  id: '/rules',
-  path: '/rules',
-  getParentRoute: () => TeacherRoute,
-} as any)
-const TeacherReviewRoute = TeacherReviewRouteImport.update({
-  id: '/review',
-  path: '/review',
-  getParentRoute: () => TeacherRoute,
-} as any)
-const TeacherCasesRoute = TeacherCasesRouteImport.update({
-  id: '/cases',
-  path: '/cases',
-  getParentRoute: () => TeacherRoute,
-} as any)
-const StudentWorkshopRoute = StudentWorkshopRouteImport.update({
-  id: '/workshop',
-  path: '/workshop',
-  getParentRoute: () => StudentRoute,
-} as any)
-const StudentSubmitRoute = StudentSubmitRouteImport.update({
-  id: '/submit',
-  path: '/submit',
-  getParentRoute: () => StudentRoute,
-} as any)
-const StudentSubmissionsRoute = StudentSubmissionsRouteImport.update({
-  id: '/submissions',
-  path: '/submissions',
-  getParentRoute: () => StudentRoute,
-} as any)
-const StudentResultRoute = StudentResultRouteImport.update({
-  id: '/result',
-  path: '/result',
-  getParentRoute: () => StudentRoute,
-} as any)
-const StudentMapRoute = StudentMapRouteImport.update({
-  id: '/map',
-  path: '/map',
-  getParentRoute: () => StudentRoute,
-} as any)
-const StudentLearnRoute = StudentLearnRouteImport.update({
-  id: '/learn',
-  path: '/learn',
-  getParentRoute: () => StudentRoute,
-} as any)
-const StudentCasesRoute = StudentCasesRouteImport.update({
-  id: '/cases',
-  path: '/cases',
   getParentRoute: () => StudentRoute,
 } as any)
 const StudentAssistantRoute = StudentAssistantRouteImport.update({
@@ -126,15 +61,80 @@ const StudentAssistantRoute = StudentAssistantRouteImport.update({
   path: '/assistant',
   getParentRoute: () => StudentRoute,
 } as any)
-const StudentWorkshopModuleIdRoute = StudentWorkshopModuleIdRouteImport.update({
-  id: '/$moduleId',
-  path: '/$moduleId',
-  getParentRoute: () => StudentWorkshopRoute,
+const StudentCasesRoute = StudentCasesRouteImport.update({
+  id: '/cases',
+  path: '/cases',
+  getParentRoute: () => StudentRoute,
+} as any)
+const StudentLearnRoute = StudentLearnRouteImport.update({
+  id: '/learn',
+  path: '/learn',
+  getParentRoute: () => StudentRoute,
+} as any)
+const StudentMapRoute = StudentMapRouteImport.update({
+  id: '/map',
+  path: '/map',
+  getParentRoute: () => StudentRoute,
+} as any)
+const StudentResultRoute = StudentResultRouteImport.update({
+  id: '/result',
+  path: '/result',
+  getParentRoute: () => StudentRoute,
+} as any)
+const StudentSubmissionsRoute = StudentSubmissionsRouteImport.update({
+  id: '/submissions',
+  path: '/submissions',
+  getParentRoute: () => StudentRoute,
+} as any)
+const StudentSubmitRoute = StudentSubmitRouteImport.update({
+  id: '/submit',
+  path: '/submit',
+  getParentRoute: () => StudentRoute,
+} as any)
+const StudentWorkshopRoute = StudentWorkshopRouteImport.update({
+  id: '/workshop',
+  path: '/workshop',
+  getParentRoute: () => StudentRoute,
+} as any)
+const TeacherIndexRoute = TeacherIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => TeacherRoute,
+} as any)
+const TeacherCasesRoute = TeacherCasesRouteImport.update({
+  id: '/cases',
+  path: '/cases',
+  getParentRoute: () => TeacherRoute,
+} as any)
+const TeacherReviewRoute = TeacherReviewRouteImport.update({
+  id: '/review',
+  path: '/review',
+  getParentRoute: () => TeacherRoute,
+} as any)
+const TeacherRulesRoute = TeacherRulesRouteImport.update({
+  id: '/rules',
+  path: '/rules',
+  getParentRoute: () => TeacherRoute,
+} as any)
+const TeacherVariablesRoute = TeacherVariablesRouteImport.update({
+  id: '/variables',
+  path: '/variables',
+  getParentRoute: () => TeacherRoute,
+} as any)
+const TeacherWorkshopReviewRoute = TeacherWorkshopReviewRouteImport.update({
+  id: '/workshop-review',
+  path: '/workshop-review',
+  getParentRoute: () => TeacherRoute,
 } as any)
 const StudentWeekWeekIdRoute = StudentWeekWeekIdRouteImport.update({
   id: '/week/$weekId',
   path: '/week/$weekId',
   getParentRoute: () => StudentRoute,
+} as any)
+const StudentWorkshopModuleIdRoute = StudentWorkshopModuleIdRouteImport.update({
+  id: '/$moduleId',
+  path: '/$moduleId',
+  getParentRoute: () => StudentWorkshopRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -284,18 +284,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/teacher': {
-      id: '/teacher'
-      path: '/teacher'
-      fullPath: '/teacher'
-      preLoaderRoute: typeof TeacherRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/student': {
-      id: '/student'
-      path: '/student'
-      fullPath: '/student'
-      preLoaderRoute: typeof StudentRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/proposal': {
@@ -305,109 +298,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProposalRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/student': {
+      id: '/student'
+      path: '/student'
+      fullPath: '/student'
+      preLoaderRoute: typeof StudentRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/teacher/': {
-      id: '/teacher/'
-      path: '/'
-      fullPath: '/teacher/'
-      preLoaderRoute: typeof TeacherIndexRouteImport
-      parentRoute: typeof TeacherRoute
+    '/teacher': {
+      id: '/teacher'
+      path: '/teacher'
+      fullPath: '/teacher'
+      preLoaderRoute: typeof TeacherRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/student/': {
       id: '/student/'
       path: '/'
       fullPath: '/student/'
       preLoaderRoute: typeof StudentIndexRouteImport
-      parentRoute: typeof StudentRoute
-    }
-    '/teacher/workshop-review': {
-      id: '/teacher/workshop-review'
-      path: '/workshop-review'
-      fullPath: '/teacher/workshop-review'
-      preLoaderRoute: typeof TeacherWorkshopReviewRouteImport
-      parentRoute: typeof TeacherRoute
-    }
-    '/teacher/variables': {
-      id: '/teacher/variables'
-      path: '/variables'
-      fullPath: '/teacher/variables'
-      preLoaderRoute: typeof TeacherVariablesRouteImport
-      parentRoute: typeof TeacherRoute
-    }
-    '/teacher/rules': {
-      id: '/teacher/rules'
-      path: '/rules'
-      fullPath: '/teacher/rules'
-      preLoaderRoute: typeof TeacherRulesRouteImport
-      parentRoute: typeof TeacherRoute
-    }
-    '/teacher/review': {
-      id: '/teacher/review'
-      path: '/review'
-      fullPath: '/teacher/review'
-      preLoaderRoute: typeof TeacherReviewRouteImport
-      parentRoute: typeof TeacherRoute
-    }
-    '/teacher/cases': {
-      id: '/teacher/cases'
-      path: '/cases'
-      fullPath: '/teacher/cases'
-      preLoaderRoute: typeof TeacherCasesRouteImport
-      parentRoute: typeof TeacherRoute
-    }
-    '/student/workshop': {
-      id: '/student/workshop'
-      path: '/workshop'
-      fullPath: '/student/workshop'
-      preLoaderRoute: typeof StudentWorkshopRouteImport
-      parentRoute: typeof StudentRoute
-    }
-    '/student/submit': {
-      id: '/student/submit'
-      path: '/submit'
-      fullPath: '/student/submit'
-      preLoaderRoute: typeof StudentSubmitRouteImport
-      parentRoute: typeof StudentRoute
-    }
-    '/student/submissions': {
-      id: '/student/submissions'
-      path: '/submissions'
-      fullPath: '/student/submissions'
-      preLoaderRoute: typeof StudentSubmissionsRouteImport
-      parentRoute: typeof StudentRoute
-    }
-    '/student/result': {
-      id: '/student/result'
-      path: '/result'
-      fullPath: '/student/result'
-      preLoaderRoute: typeof StudentResultRouteImport
-      parentRoute: typeof StudentRoute
-    }
-    '/student/map': {
-      id: '/student/map'
-      path: '/map'
-      fullPath: '/student/map'
-      preLoaderRoute: typeof StudentMapRouteImport
-      parentRoute: typeof StudentRoute
-    }
-    '/student/learn': {
-      id: '/student/learn'
-      path: '/learn'
-      fullPath: '/student/learn'
-      preLoaderRoute: typeof StudentLearnRouteImport
-      parentRoute: typeof StudentRoute
-    }
-    '/student/cases': {
-      id: '/student/cases'
-      path: '/cases'
-      fullPath: '/student/cases'
-      preLoaderRoute: typeof StudentCasesRouteImport
       parentRoute: typeof StudentRoute
     }
     '/student/assistant': {
@@ -417,12 +326,96 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StudentAssistantRouteImport
       parentRoute: typeof StudentRoute
     }
-    '/student/workshop/$moduleId': {
-      id: '/student/workshop/$moduleId'
-      path: '/$moduleId'
-      fullPath: '/student/workshop/$moduleId'
-      preLoaderRoute: typeof StudentWorkshopModuleIdRouteImport
-      parentRoute: typeof StudentWorkshopRoute
+    '/student/cases': {
+      id: '/student/cases'
+      path: '/cases'
+      fullPath: '/student/cases'
+      preLoaderRoute: typeof StudentCasesRouteImport
+      parentRoute: typeof StudentRoute
+    }
+    '/student/learn': {
+      id: '/student/learn'
+      path: '/learn'
+      fullPath: '/student/learn'
+      preLoaderRoute: typeof StudentLearnRouteImport
+      parentRoute: typeof StudentRoute
+    }
+    '/student/map': {
+      id: '/student/map'
+      path: '/map'
+      fullPath: '/student/map'
+      preLoaderRoute: typeof StudentMapRouteImport
+      parentRoute: typeof StudentRoute
+    }
+    '/student/result': {
+      id: '/student/result'
+      path: '/result'
+      fullPath: '/student/result'
+      preLoaderRoute: typeof StudentResultRouteImport
+      parentRoute: typeof StudentRoute
+    }
+    '/student/submissions': {
+      id: '/student/submissions'
+      path: '/submissions'
+      fullPath: '/student/submissions'
+      preLoaderRoute: typeof StudentSubmissionsRouteImport
+      parentRoute: typeof StudentRoute
+    }
+    '/student/submit': {
+      id: '/student/submit'
+      path: '/submit'
+      fullPath: '/student/submit'
+      preLoaderRoute: typeof StudentSubmitRouteImport
+      parentRoute: typeof StudentRoute
+    }
+    '/student/workshop': {
+      id: '/student/workshop'
+      path: '/workshop'
+      fullPath: '/student/workshop'
+      preLoaderRoute: typeof StudentWorkshopRouteImport
+      parentRoute: typeof StudentRoute
+    }
+    '/teacher/': {
+      id: '/teacher/'
+      path: '/'
+      fullPath: '/teacher/'
+      preLoaderRoute: typeof TeacherIndexRouteImport
+      parentRoute: typeof TeacherRoute
+    }
+    '/teacher/cases': {
+      id: '/teacher/cases'
+      path: '/cases'
+      fullPath: '/teacher/cases'
+      preLoaderRoute: typeof TeacherCasesRouteImport
+      parentRoute: typeof TeacherRoute
+    }
+    '/teacher/review': {
+      id: '/teacher/review'
+      path: '/review'
+      fullPath: '/teacher/review'
+      preLoaderRoute: typeof TeacherReviewRouteImport
+      parentRoute: typeof TeacherRoute
+    }
+    '/teacher/rules': {
+      id: '/teacher/rules'
+      path: '/rules'
+      fullPath: '/teacher/rules'
+      preLoaderRoute: typeof TeacherRulesRouteImport
+      parentRoute: typeof TeacherRoute
+    }
+    '/teacher/variables': {
+      id: '/teacher/variables'
+      path: '/variables'
+      fullPath: '/teacher/variables'
+      preLoaderRoute: typeof TeacherVariablesRouteImport
+      parentRoute: typeof TeacherRoute
+    }
+    '/teacher/workshop-review': {
+      id: '/teacher/workshop-review'
+      path: '/workshop-review'
+      fullPath: '/teacher/workshop-review'
+      preLoaderRoute: typeof TeacherWorkshopReviewRouteImport
+      parentRoute: typeof TeacherRoute
     }
     '/student/week/$weekId': {
       id: '/student/week/$weekId'
@@ -430,6 +423,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/student/week/$weekId'
       preLoaderRoute: typeof StudentWeekWeekIdRouteImport
       parentRoute: typeof StudentRoute
+    }
+    '/student/workshop/$moduleId': {
+      id: '/student/workshop/$moduleId'
+      path: '/$moduleId'
+      fullPath: '/student/workshop/$moduleId'
+      preLoaderRoute: typeof StudentWorkshopModuleIdRouteImport
+      parentRoute: typeof StudentWorkshopRoute
     }
   }
 }

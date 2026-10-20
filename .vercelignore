@@ -1,0 +1,17 @@
+.git
+.vercel
+node_modules
+.worktrees
+dist
+dist-ssr
+.output
+.tanstack
+.wrangler
+.audit
+.uploads
+.superpowers
+design-references
+docs
+.env*
+*.local
+.DS_Store

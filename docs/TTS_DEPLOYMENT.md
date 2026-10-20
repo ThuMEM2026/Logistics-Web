@@ -1,0 +1,29 @@
+# 教师复刻音色试听
+
+入口：https://thumem.top/tts/
+
+新增独立静态目录 `public/tts/`，不修改教学平台路由或组件。`/tts` 重定向到 `/tts/`。音频从原离线页拆出，使用内容哈希命名和按需加载；网页包含蔡老师35秒、原10秒和张伟老师三组选项，各4条同文样音，默认蔡老师35秒。有道默认使用35秒音色的最新一次合成。
+
+发布包仅含试听页、脱敏展示清单、12条合成音频与3份原声。没有API凭据、音色ID、私密检查点或本地绝对路径。费用和官方来源保留在页面中；评分仅存浏览器本地，导出JSON，不上传服务器。
+
+源离线文件位于 AIMEM 的TTS教学应用调研目录。`prepare_web_release.py`用于首次提取；后续修改应对照发布清单核验音频哈希。
+
+原生产基线为Git提交 `403368157d60667c1584b9b3b7f76af1d78e69a5`，原部署 `dpl_HZLXAWagUF1Zcr53GPJLrKTQJmxN`。若需要回退，可在Vercel将该原部署重新提升为Production。
+
+`.vercelignore`排除本地worktree、构建缓存、文档及环境文件，避免CLI发布携带无关资料。部署到既有Vercel项目 `leevcan`，沿用域名与构建配置，不修改DNS。
+
+## 2026-10-20 发布与验证
+
+正式部署：`dpl_rucP2nqG8tmvh2sd51v6wa3irURV`；构建地址：`https://leevcan-je3ckv85a-liweican1992-4831s-projects.vercel.app`。完成构建后使用Vercel Promote将域名切到该版本。
+
+首次部署被平台的CVE-2026-102989检查拒绝，未切换线上。按TanStack官方修复说明，将`@tanstack/react-start`固定到`1.168.60`、对应直接路由依赖固定到`react-router@1.170.41`及`router-plugin@1.168.42`，锁文件包含已修复的`start-server-core@1.169.39`。未设置漏洞绕过变量；原24小时包发布龄保护保持。React、React DOM、Vite、Tailwind的锁定版本保持不变。官方说明：https://tanstack.com/blog/tanstack-start-security-update-cve-2026-102989
+
+验证结果：
+
+- 本地生产构建、Vercel生产构建通过；原课程5项测试通过。
+- `/tts/` HTML和公开清单与本机SHA256一致，15份音频全部字节/哈希一致；Range请求206，`/tts`返回308到`/tts/`。
+- 浏览器确认默认蔡老师35秒、三标签各4个样音、费用揭晓与隐藏正常。有道35秒样音实际播放，媒体readyState=4、时长24.4675秒、无播放错误。
+- 320/375/414/768宽度截图及DOM布局核验，无横向溢出，临时视口已重置。
+- 原首页、学生端、教师端、`/proposal/`均返回200，标题与发布前一致，引用的主要脚本/样式返回200。浏览器首页可正常显示。
+
+完整线上资源与截图记录保存于AIMEM的本次TTS调研目录。当前版本通过`public/tts/`和根`vercel.json`维护；更新音频时应同步公开清单中的文件名与哈希。
