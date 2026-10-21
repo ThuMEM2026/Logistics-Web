@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-20",
+  "date": "2026-10-21",
   "text": "同学们，今天我们用生产计划理解需求、产能与库存之间的关系。预测需求不是实际订单，安全库存也不是越多越好。请先判断当前的瓶颈工序，再比较增加人员、安排加班和调整批量三种方案。产能提高以后，还要观察在制品是否积压，不能只看单台设备的利用率。",
   "text_characters": 118,
   "text_sha256": "19a99402980e7bd7510fc92d675cb40d60eb01e3eb706b0524d9657b83bc54f9",
@@ -15,7 +15,7 @@
       "id": "cainew",
       "name": "蔡老师·35秒",
       "reference_seconds": 35,
-      "model_count": 4
+      "model_count": 5
     },
     {
       "id": "zhangwei",
@@ -312,6 +312,27 @@
       },
       "file": "audio/36109e74ac401a34e28624b0.wav",
       "reference_file": "audio/4bd9e430890fc9ed3f46a146.wav"
+    },
+    {
+      "person": "cainew",
+      "speaker": "蔡老师 · 新35秒原声",
+      "blind_code": "G",
+      "model": "阿里 千问3.0 Realtime Flash",
+      "seconds": 21.12,
+      "audio_sha256": "8dfebf52ee0c197448d0b18dd85975bda707bcd370e55e562ecaf22bbd466bf2",
+      "reference_sha256": "68cad3408c49b1de24a8c5346a4f1d2e666eafafa7dabe1ea5722583abf81be8",
+      "text_sha256": "19a99402980e7bd7510fc92d675cb40d60eb01e3eb706b0524d9657b83bc54f9",
+      "cost_estimate": {
+        "clone_once_cny": 0,
+        "tts_cny": 0.003375,
+        "first_clone_and_one_tts_cny": 0.003375,
+        "tts_display": "¥0.003375 ≈ 0.34分钱",
+        "first_display": "¥0.003375",
+        "rate_note": "北京原价：文本输入1.5元/百万Token，音频输出12元/百万Token；本段138输入文本＋264输出音频Token，伴随文本免费。",
+        "reuse_note": "按实际Token用量测算，非最终账单；不适用汉字×2。"
+      },
+      "file": "audio/8dfebf52ee0c197448d0b18d.wav",
+      "reference_file": "audio/68cad3408c49b1de24a8c534.wav"
     }
   ],
   "price_sources": {
@@ -324,7 +345,8 @@
     "qwen_http": "https://help.aliyun.com/zh/model-studio/qwen-audio-tts-http-api",
     "cosy_http": "https://help.aliyun.com/zh/model-studio/cosyvoice-tts-http-api",
     "youdao_confucius4_repo": "https://github.com/netease-youdao/Confucius4-TTS",
-    "youdao_confucius4_demo": "https://confucius4-tts.youdao.com/gradio"
+    "youdao_confucius4_demo": "https://confucius4-tts.youdao.com/gradio",
+    "realtime": "https://help.aliyun.com/zh/model-studio/qwen-audio-3-0-realtime-flash"
   },
   "length_limits": {
     "youdao_sync_q_characters": 600,
@@ -336,7 +358,7 @@
     "bailian_clone_preview_ui_characters_observed": 230,
     "ali_http_limit": "Not explicitly listed in reviewed HTTP docs; do not apply WebSocket limits to HTTP as a confirmed bound."
   },
-  "cost_note": "Long-term estimates; Youdao 85% discount; trial credits and final invoice are separate.",
+  "cost_note": "TTS: list-price estimates; Youdao provisional 85% quote, larger discount unconfirmed. Realtime: measured usage times list prices, not settled invoice; no Han x2 conversion.",
   "ai_generated_audio": true,
   "opensource3": {
     "status": "partial",
@@ -357,5 +379,159 @@
     "text_sha256": "19a99402980e7bd7510fc92d675cb40d60eb01e3eb706b0524d9657b83bc54f9",
     "demo_recommendation": "3-10s reference",
     "quality_comparison": "Naturalness and speaker similarity await human listening; compare to B (Youdao Pro) within same-reference Cai tab"
+  },
+  "realtime": {
+    "model": "qwen-audio-3.0-realtime-flash",
+    "short_cost_cny": "0.003375",
+    "long_cost_cny": "0.035073",
+    "long_url": "long/",
+    "cost_basis": "Actual usage times official Beijing prices; not settled bill",
+    "short_reference_note": "Same 35-second uploaded file; voice-enrollment defaults to at most 10 seconds of effective prompt audio",
+    "long_test": {
+      "date": "2026-10-21",
+      "model": "qwen-audio-3.0-realtime-flash",
+      "same_voice_as_short_test": true,
+      "reference_sha256": "68cad3408c49b1de24a8c5346a4f1d2e666eafafa7dabe1ea5722583abf81be8",
+      "single_request": true,
+      "input_han_characters": 1000,
+      "input_all_characters": 1105,
+      "audio_seconds": 226.77,
+      "generation_elapsed_seconds": 34.840722209075466,
+      "first_audio_latency_seconds": 2.0623586250003427,
+      "input_text_tokens": 710,
+      "output_audio_tokens": 2834,
+      "output_text_tokens_not_charged": 606,
+      "clone_additional_cny": 0,
+      "generation_cost_list_cny": "0.035073",
+      "cost_basis": "Actual usage times official Beijing list prices; not a settled invoice.",
+      "provider_transcript_exactly_matches": true,
+      "independent_asr": {
+        "reference_han": 1000,
+        "observed_han": 1000,
+        "exact_han_match": false,
+        "edit_distance": 7,
+        "character_error_rate": 0.007,
+        "differences": [
+          {
+            "type": "replace",
+            "reference_start_han": 253,
+            "expected": "队",
+            "observed": "对",
+            "reference_context": "设备最忙还要观察工序前后的等待队列设备停机原因以及订单交付情况"
+          },
+          {
+            "type": "replace",
+            "reference_start_han": 284,
+            "expected": "返工",
+            "observed": "反供",
+            "reference_context": "某个岗位看起来很忙可能是在处理返工某台设备利用率不高也可能是因为"
+          },
+          {
+            "type": "replace",
+            "reference_start_han": 432,
+            "expected": "在",
+            "observed": "再",
+            "reference_context": "就可能忽略车间里正在积压的大量在制品低估整个系统面临的压力安全"
+          },
+          {
+            "type": "replace",
+            "reference_start_han": 475,
+            "expected": "得",
+            "observed": "的",
+            "reference_context": "和补货延迟而不是保证仓库永远装得满满当当比如某种电池平时每天消"
+          },
+          {
+            "type": "replace",
+            "reference_start_han": 756,
+            "expected": "负荷",
+            "observed": "复合",
+            "reference_context": "切换成本交货期限产品种类和瓶颈负荷而不是只比较某一道工序的平均加"
+          }
+        ],
+        "number_normalization": {
+          "200": "两百",
+          "100": "一百"
+        },
+        "interpretation": "No insertions/deletions after numeric equivalence normalization. Five ASR word-form differences remain; ASR alone cannot prove spoken word changes. Four are homophone spelling ambiguity; fuhe is a pronunciation review point.",
+        "confirmed_synthesis_word_errors": null
+      },
+      "speaker_stability": {
+        "method": "Chinese WeSpeaker CN-Celeb ResNet34 speaker embeddings via sherpa-onnx",
+        "model_sha256": "f86cd6c509f331f0e20b07bd48d1b2eb7de54202643401c4e84695ac861a0e5a",
+        "segment_pair_cosine": {
+          "start__middle": 0.9793232679367065,
+          "start__end": 0.965876042842865,
+          "middle__end": 0.9710750579833984
+        },
+        "reference_comparison_cosine": {
+          "start": {
+            "cai_reference": 0.9006192088127136,
+            "cai_short_realtime": 0.9740000367164612,
+            "zhang_reference_control": 0.32513031363487244
+          },
+          "middle": {
+            "cai_reference": 0.8873959183692932,
+            "cai_short_realtime": 0.9717903733253479,
+            "zhang_reference_control": 0.3544391691684723
+          },
+          "end": {
+            "cai_reference": 0.8814390301704407,
+            "cai_short_realtime": 0.9586368799209595,
+            "zhang_reference_control": 0.3590838611125946
+          }
+        },
+        "clips": [
+          {
+            "position": "start",
+            "start_seconds": 1.0,
+            "seconds": 15.0,
+            "file": "音色抽检_start_15秒.wav"
+          },
+          {
+            "position": "middle",
+            "start_seconds": 105.885,
+            "seconds": 15.0,
+            "file": "音色抽检_middle_15秒.wav"
+          },
+          {
+            "position": "end",
+            "start_seconds": 210.77,
+            "seconds": 15.0,
+            "file": "音色抽检_end_15秒.wav"
+          }
+        ],
+        "note": "Cosine values are diagnostic similarities, not identity probabilities or naturalness scores; no universal pass threshold is assumed."
+      },
+      "independent_asr_cer_is_not_tts_error_rate": true,
+      "content_conclusion": "No missing passages or insertions/deletions detected after equivalent-number normalization. Five ASR spelling/near-homophone differences; actual word/pronunciation accuracy is not claimed as 100%.",
+      "pronunciation_review": {
+        "term": "负荷",
+        "audio_seconds": [
+          160,
+          174
+        ],
+        "two_local_asr_outputs": [
+          "复合",
+          "复合"
+        ],
+        "interpretation": "A pronunciation/listening review point; ASR spelling does not prove synthesis changed the word."
+      },
+      "subjective_human_listening_complete": false,
+      "speaker_conclusion": "Start/middle/end embeddings are mutually close (0.966-0.979); no obvious drift indicated by sampled embeddings, not a probability or full subjective quality evaluation.",
+      "audio_validation": {
+        "seconds": 226.77,
+        "fixed_600hz_tail_windows": [],
+        "peak": 0.999969482421875,
+        "sha256": "7207ae0edbca02e8e9616dbd3b2eb1bf6559bb908317bd5a2ece0784c3196e09"
+      },
+      "asr_paid_api_calls": 0,
+      "asr_method": "Local MLX Whisper large-v3-turbo, plus two local Whisper-small spotchecks; no source text prompt.",
+      "speaker_method": "Local Chinese WeSpeaker CN-Celeb ResNet34 via sherpa-onnx.",
+      "sources": [
+        "https://help.aliyun.com/zh/model-studio/qwen-audio-3-0-realtime-flash",
+        "https://github.com/ml-explore/mlx-examples/tree/main/whisper",
+        "https://github.com/k2-fsa/sherpa-onnx/blob/master/python-api-examples/speaker-identification.py"
+      ]
+    }
   }
 }
