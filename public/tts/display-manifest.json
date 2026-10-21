@@ -55,12 +55,12 @@
       "reference_sha256": "68cad3408c49b1de24a8c5346a4f1d2e666eafafa7dabe1ea5722583abf81be8",
       "text_sha256": "19a99402980e7bd7510fc92d675cb40d60eb01e3eb706b0524d9657b83bc54f9",
       "cost_estimate": {
-        "clone_once_cny": 8.5,
-        "tts_cny": 0.02006,
-        "first_clone_and_one_tts_cny": 8.52006,
-        "rate_cny_per_10000_billing_units": 1.7,
+        "clone_once_cny": 0,
+        "tts_cny": 0.0118,
+        "first_clone_and_one_tts_cny": 0.0118,
+        "rate_cny_per_10000_billing_units": 1,
         "billing_units": 118,
-        "rate_note": "原价克隆10元、合成2元/万字符；全部85折后8.50元、1.70元/万字符"
+        "rate_note": "有道项目报价：定制免费；官方2元/万字符×50%＝1元/万汉字（汉字计1）；非账单实扣"
       },
       "file": "audio/5695d504c1577812878e113e.mp3",
       "reference_file": "audio/68cad3408c49b1de24a8c534.wav"
@@ -135,12 +135,12 @@
       "reference_sha256": "4bd9e430890fc9ed3f46a146b8902164f7497aa2743ea2f95016aab3394af9f9",
       "text_sha256": "19a99402980e7bd7510fc92d675cb40d60eb01e3eb706b0524d9657b83bc54f9",
       "cost_estimate": {
-        "clone_once_cny": 8.5,
-        "tts_cny": 0.02006,
-        "first_clone_and_one_tts_cny": 8.52006,
-        "rate_cny_per_10000_billing_units": 1.7,
+        "clone_once_cny": 0,
+        "tts_cny": 0.0118,
+        "first_clone_and_one_tts_cny": 0.0118,
+        "rate_cny_per_10000_billing_units": 1,
         "billing_units": 118,
-        "rate_note": "原价克隆10元、合成2元/万字符；全部85折后8.50元、1.70元/万字符"
+        "rate_note": "有道项目报价：定制免费；官方2元/万字符×50%＝1元/万汉字（汉字计1）；非账单实扣"
       },
       "file": "audio/0106a2bea41d35e86b66f0c3.mp3",
       "reference_file": "audio/4bd9e430890fc9ed3f46a146.wav"
@@ -215,12 +215,12 @@
       "reference_sha256": "816003bdf283822d4d1ff96111cf63a904a9f8d15e13d42ad25e20a0a699401d",
       "text_sha256": "19a99402980e7bd7510fc92d675cb40d60eb01e3eb706b0524d9657b83bc54f9",
       "cost_estimate": {
-        "clone_once_cny": 8.5,
-        "tts_cny": 0.02006,
-        "first_clone_and_one_tts_cny": 8.52006,
-        "rate_cny_per_10000_billing_units": 1.7,
+        "clone_once_cny": 0,
+        "tts_cny": 0.0118,
+        "first_clone_and_one_tts_cny": 0.0118,
+        "rate_cny_per_10000_billing_units": 1,
         "billing_units": 118,
-        "rate_note": "原价克隆10元、合成2元/万字符；全部85折后8.50元、1.70元/万字符"
+        "rate_note": "有道项目报价：定制免费；官方2元/万字符×50%＝1元/万汉字（汉字计1）；非账单实扣"
       },
       "file": "audio/955e5c111204fc79391afe3a.mp3",
       "reference_file": "audio/816003bdf283822d4d1ff961.wav"
@@ -358,7 +358,7 @@
     "bailian_clone_preview_ui_characters_observed": 230,
     "ali_http_limit": "Not explicitly listed in reviewed HTTP docs; do not apply WebSocket limits to HTTP as a confirmed bound."
   },
-  "cost_note": "TTS: list-price estimates; Youdao provisional 85% quote, larger discount unconfirmed. Realtime: measured usage times list prices, not settled invoice; no Han x2 conversion.",
+  "cost_note": "TTS: list-price or project-quote estimates; Youdao customization free and calls at 50% of list price, project-specific quote dated 2026-10-21. Realtime: measured usage times list prices, not settled invoice; no Han x2 conversion.",
   "ai_generated_audio": true,
   "opensource3": {
     "status": "partial",
@@ -999,9 +999,8 @@
           "billing_units_conservative": 1105
         },
         "tts_list_price_cny": 0.221,
-        "tts_provisional_85pct_cny": 0.18785,
         "invoice_verified": false,
-        "cost_basis": "计费暂按含换行1105字符保守估算；原价2元/万字符，85折仅暂行报价；失败请求费用待账单核实。",
+        "cost_basis": "计费暂按含换行1105字符保守估算；原价2元/万字符×50%＝0.11050元。2026.10.21项目报价：定制免费、调用5折，非官网统一调价；非账单实扣，失败请求费用待核。",
         "seconds": 230.23854166666666,
         "cleaned_audio_sha256": "c2296a3b2d3fc3609d967086ec1649066b653a2670f4c625dd5729cc3996ec11",
         "processing": [
@@ -1186,6 +1185,24 @@
           "method": "Independent local Whisper, no source-script prompt; requires human listening for correctness and expression."
         },
         "human_listening_complete": false,
+        "tts_project_quote_cny": 0.1105,
+        "tts_discount": 0.5,
+        "commercial_terms": {
+          "date": "2026-10-21",
+          "provider": "有道",
+          "scope": "本项目商务报价，非官网统一调价",
+          "source": "用户提供的供应商聊天截图",
+          "source_quote": "定制我们不收钱了，然后调用的价格按5折来",
+          "clone_once_cny": 0,
+          "tts_discount": 0.5,
+          "public_clone_once_cny": 10,
+          "public_tts_cny_per_10000_billing_characters": 2,
+          "han_billing_multiplier": 1,
+          "project_tts_cny_per_10000_han": 1,
+          "account_invoice_verified": false,
+          "supersedes": "此前暂行85折方案",
+          "validity_and_volume_terms": "截图未给出优惠期限或用量条件，不另行假定"
+        },
         "emotion_note": "默认语速、音量；不额外设置情绪指令。",
         "file": "../../audio/c2296a3b2d3fc3609d967086.wav",
         "audio_sha256": "c2296a3b2d3fc3609d967086ec1649066b653a2670f4c625dd5729cc3996ec11",
