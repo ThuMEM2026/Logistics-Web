@@ -554,7 +554,10 @@
         "file": "../../audio/7207ae0edbca02e8e9616dbd.wav",
         "audio_sha256": "7207ae0edbca02e8e9616dbd3b2eb1bf6559bb908317bd5a2ece0784c3196e09",
         "opening_file": "../../audio/3c1e0b7ea5a22031a0851a07.wav",
-        "opening_sha256": "3c1e0b7ea5a22031a0851a077060874b77916fdc7f2d32bbf639cd2018fd65f9"
+        "opening_sha256": "3c1e0b7ea5a22031a0851a077060874b77916fdc7f2d32bbf639cd2018fd65f9",
+        "test_type": "single_request_full_text",
+        "continuous_long_generation_tested": true,
+        "voice_continuity_accepted": false
       },
       {
         "model": "qwen-audio-3.0-tts-plus",
@@ -691,7 +694,10 @@
         "file": "../../audio/5611884f1e238e1425c4d0b8.wav",
         "audio_sha256": "5611884f1e238e1425c4d0b8325b3a1444810be37980a5a9fd3da8868f0cef5d",
         "opening_file": "../../audio/b6e0fa0ad6797dbfad454188.wav",
-        "opening_sha256": "b6e0fa0ad6797dbfad45418885b68d8fdb36b1aeac116ae0e0a35caf38b2b7e7"
+        "opening_sha256": "b6e0fa0ad6797dbfad45418885b68d8fdb36b1aeac116ae0e0a35caf38b2b7e7",
+        "test_type": "nine_independent_requests_concatenated",
+        "continuous_long_generation_tested": false,
+        "voice_continuity_accepted": false
       },
       {
         "model": "cosyvoice-v3.5-plus",
@@ -828,7 +834,10 @@
         "file": "../../audio/5b5b4f2cbe3cc2c35ef88a80.wav",
         "audio_sha256": "5b5b4f2cbe3cc2c35ef88a80ce5ff1122c1aef68424cd73b4efd67989bc6dba7",
         "opening_file": "../../audio/d1eb65e9d49e7b719bbb824b.wav",
-        "opening_sha256": "d1eb65e9d49e7b719bbb824b4e9087ddc78e0537a706775c5908aafe8259e0a6"
+        "opening_sha256": "d1eb65e9d49e7b719bbb824b4e9087ddc78e0537a706775c5908aafe8259e0a6",
+        "test_type": "nine_independent_requests_concatenated",
+        "continuous_long_generation_tested": false,
+        "voice_continuity_accepted": false
       },
       {
         "model": "cosyvoice-v3.5-flash",
@@ -983,7 +992,12 @@
         "file": "../../audio/8d1ea3489cfe4ed5b5565eda.wav",
         "audio_sha256": "8d1ea3489cfe4ed5b5565edad885cee966fe9805f8df61056eb08980f500ffbd",
         "opening_file": "../../audio/ebc2c4cd448fac90e4f95468.wav",
-        "opening_sha256": "ebc2c4cd448fac90e4f954683d9e24348d7367c7ede1175ff75230c1810c9f02"
+        "opening_sha256": "ebc2c4cd448fac90e4f954683d9e24348d7367c7ede1175ff75230c1810c9f02",
+        "test_type": "nine_independent_requests_concatenated",
+        "continuous_long_generation_tested": false,
+        "voice_continuity_accepted": false,
+        "user_listening_feedback": "用户反馈后段声音发生变化，尚未通过音色连续性验收；根因未确定。",
+        "voice_audit_note": "9段原始音频与控制台对应历史卡片的下载哈希全部一致，模型和音色名称标签相同；未取得逐次实际音色ID，不能确认变化原因。"
       },
       {
         "model": "youdao-pro",
@@ -1207,7 +1221,10 @@
         "file": "../../audio/c2296a3b2d3fc3609d967086.wav",
         "audio_sha256": "c2296a3b2d3fc3609d967086ec1649066b653a2670f4c625dd5729cc3996ec11",
         "opening_file": "../../audio/fa1cbc5503898a7d27d610a6.wav",
-        "opening_sha256": "fa1cbc5503898a7d27d610a635ba280892db6b552be5c74759771ae0f765ef89"
+        "opening_sha256": "fa1cbc5503898a7d27d610a635ba280892db6b552be5c74759771ae0f765ef89",
+        "test_type": "nine_independent_requests_concatenated",
+        "continuous_long_generation_tested": false,
+        "voice_continuity_accepted": false
       }
     ],
     "human_expression_ranking_complete": false,
