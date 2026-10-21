@@ -534,6 +534,21 @@
       ]
     }
   },
+  "provider_choice": {
+    "mode": "user_selectable_providers",
+    "url": "long/compare/#quote-preview",
+    "options": [
+      "qwen-audio-3.0-realtime-flash",
+      "youdao-pro"
+    ],
+    "price_preview_only": true,
+    "paid_generation_integrated": false,
+    "realtime_audio_output_cny_per_minute": 0.009,
+    "realtime_text_input_cny_per_million_tokens": 1.5,
+    "realtime_price_checked_at": "2026-10-21",
+    "youdao_project_cny_per_10000_billing_characters": 1,
+    "final_invoice_verified": false
+  },
   "long_comparison": {
     "url": "long/compare/",
     "models": 5,
