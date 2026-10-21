@@ -533,5 +533,667 @@
         "https://github.com/k2-fsa/sherpa-onnx/blob/master/python-api-examples/speaker-identification.py"
       ]
     }
+  },
+  "long_comparison": {
+    "url": "long/compare/",
+    "models": 5,
+    "audio_players": 10,
+    "records": [
+      {
+        "model": "qwen-audio-3.0-realtime-flash",
+        "model_label": "阿里 千问3.0 Realtime Flash",
+        "seconds": 226.77,
+        "clone_cost_cny": 0,
+        "tts_list_price_cny": 0.035073,
+        "request_count": 1,
+        "split_note": "整篇单次生成；此前已完成，本次未重生成。",
+        "cost_basis": "实际710输入文本＋2834输出音频Token×北京原价；伴随文本免费，非实扣。",
+        "reference_sha256": "68cad3408c49b1de24a8c5346a4f1d2e666eafafa7dabe1ea5722583abf81be8",
+        "text_sha256": "ea8c9a9d1eeb37ce77063858308b71eb756a5af2a026b7a74f7f526c130afebe",
+        "emotion_note": "此前使用自然讲课、逐字朗读的提示词。",
+        "file": "../../audio/7207ae0edbca02e8e9616dbd.wav",
+        "audio_sha256": "7207ae0edbca02e8e9616dbd3b2eb1bf6559bb908317bd5a2ece0784c3196e09",
+        "opening_file": "../../audio/3c1e0b7ea5a22031a0851a07.wav",
+        "opening_sha256": "3c1e0b7ea5a22031a0851a077060874b77916fdc7f2d32bbf639cd2018fd65f9"
+      },
+      {
+        "model": "qwen-audio-3.0-tts-plus",
+        "model_label": "阿里 千问TTS Plus",
+        "request_count": 9,
+        "split_note": "通过控制台沿用原音色，按同样9个自然段生成再拼接；正文不增删，不额外插入停顿。",
+        "clone_cost_cny": 0,
+        "text_sha256": "ea8c9a9d1eeb37ce77063858308b71eb756a5af2a026b7a74f7f526c130afebe",
+        "reference_sha256": "68cad3408c49b1de24a8c5346a4f1d2e666eafafa7dabe1ea5722583abf81be8",
+        "usage": null,
+        "tts_list_price_cny": 0.29581999999999997,
+        "cost_basis": "按1000汉字×2＋标点和控制台换行，暂以2113计费字符保守估算；非账单实扣，试用额度未抵扣。此前不完整整段试验费用另待核。",
+        "channel": "Bailian console existing-voice TTS",
+        "original_full_attempt_accepted": false,
+        "seconds": 214.1,
+        "cleaned_audio_sha256": "5611884f1e238e1425c4d0b8325b3a1444810be37980a5a9fd3da8868f0cef5d",
+        "processing": [
+          {
+            "source": "part1.mp3",
+            "source_sha256": "6d1afbc2bc12bedab89e2ed6556510aa5859eaa69902c61a2c7d58cf8fa70b8d",
+            "original_seconds": 24.99,
+            "cleaned_seconds": 23.3,
+            "tail_tone_detected": true,
+            "cutoff_seconds": 23.3
+          },
+          {
+            "source": "part2.mp3",
+            "source_sha256": "b6226ba8a9b1a2585123877885d5aa6e1794e280124c5bf6dcca8158fbbf69c8",
+            "original_seconds": 25.07,
+            "cleaned_seconds": 23.38,
+            "tail_tone_detected": true,
+            "cutoff_seconds": 23.380000000000003
+          },
+          {
+            "source": "part3.mp3",
+            "source_sha256": "143c54940827bc5c577800fe40ef98d825d21e0839553f65041399fc35b968da",
+            "original_seconds": 27.23,
+            "cleaned_seconds": 25.54,
+            "tail_tone_detected": true,
+            "cutoff_seconds": 25.540000000000003
+          },
+          {
+            "source": "part4.mp3",
+            "source_sha256": "8eb81a68d625eff4a002b036b63309b2e8d243defca7378f4da6cad22268881d",
+            "original_seconds": 24.19,
+            "cleaned_seconds": 22.5,
+            "tail_tone_detected": true,
+            "cutoff_seconds": 22.5
+          },
+          {
+            "source": "part5.mp3",
+            "source_sha256": "75cecf10e74baba9e6d247117fc92c06afa1f7df32b74ab354a55cf2b585e68a",
+            "original_seconds": 26.51,
+            "cleaned_seconds": 24.82,
+            "tail_tone_detected": true,
+            "cutoff_seconds": 24.82
+          },
+          {
+            "source": "part6.mp3",
+            "source_sha256": "d35fa0f37dedd930d0c97b90a2c9860a6093ec1c6e2c00a7bffa3ef4c6a4ab90",
+            "original_seconds": 26.51,
+            "cleaned_seconds": 24.82,
+            "tail_tone_detected": true,
+            "cutoff_seconds": 24.82
+          },
+          {
+            "source": "part7.mp3",
+            "source_sha256": "ae04b18210232e83c3fb314dc9571034172713c4de4d9a66d5cdafdea332ad91",
+            "original_seconds": 24.43,
+            "cleaned_seconds": 22.74,
+            "tail_tone_detected": true,
+            "cutoff_seconds": 22.740000000000002
+          },
+          {
+            "source": "part8.mp3",
+            "source_sha256": "95c3ceb72e883e2edfdc7f0685fa4ac54128079e3a17669f5d3c8dcfe72b47d6",
+            "original_seconds": 26.67,
+            "cleaned_seconds": 24.98,
+            "tail_tone_detected": true,
+            "cutoff_seconds": 24.98
+          },
+          {
+            "source": "part9.mp3",
+            "source_sha256": "79b82014be8db109afd6ac3a2a3c590421e46274f2b4aa153b2d0f82a885adf3",
+            "original_seconds": 23.71,
+            "cleaned_seconds": 22.02,
+            "tail_tone_detected": true,
+            "cutoff_seconds": 22.020000000000003
+          }
+        ],
+        "no_fixed_600hz_tail": true,
+        "ai_generated_audio": true,
+        "subjective_quality_rank": null,
+        "independent_audio_check": {
+          "source_audio_sha256": "5611884f1e238e1425c4d0b8325b3a1444810be37980a5a9fd3da8868f0cef5d",
+          "reference_han": 1000,
+          "observed_han_after_number_normalization": 1000,
+          "number_normalization": {
+            "200": "两百",
+            "100": "一百"
+          },
+          "differences": [
+            {
+              "type": "replace",
+              "reference_start_han": 253,
+              "expected": "队",
+              "observed": "对"
+            },
+            {
+              "type": "replace",
+              "reference_start_han": 284,
+              "expected": "返工",
+              "observed": "反攻"
+            },
+            {
+              "type": "replace",
+              "reference_start_han": 432,
+              "expected": "在",
+              "observed": "载"
+            },
+            {
+              "type": "replace",
+              "reference_start_han": 915,
+              "expected": "序",
+              "observed": "具"
+            }
+          ],
+          "insertions_or_deletions_detected": false,
+          "not_a_confirmed_tts_error_rate": true,
+          "method": "Independent local Whisper, no source-script prompt; requires human listening for correctness and expression."
+        },
+        "human_listening_complete": false,
+        "emotion_note": "默认语速、音量；不额外设置情绪指令。",
+        "file": "../../audio/5611884f1e238e1425c4d0b8.wav",
+        "audio_sha256": "5611884f1e238e1425c4d0b8325b3a1444810be37980a5a9fd3da8868f0cef5d",
+        "opening_file": "../../audio/b6e0fa0ad6797dbfad454188.wav",
+        "opening_sha256": "b6e0fa0ad6797dbfad45418885b68d8fdb36b1aeac116ae0e0a35caf38b2b7e7"
+      },
+      {
+        "model": "cosyvoice-v3.5-plus",
+        "model_label": "阿里 CosyVoice 3.5 Plus",
+        "request_count": 9,
+        "split_note": "通过控制台沿用原音色，按同样9个自然段生成再拼接；正文不增删，不额外插入停顿。",
+        "clone_cost_cny": 0,
+        "text_sha256": "ea8c9a9d1eeb37ce77063858308b71eb756a5af2a026b7a74f7f526c130afebe",
+        "reference_sha256": "68cad3408c49b1de24a8c5346a4f1d2e666eafafa7dabe1ea5722583abf81be8",
+        "usage": null,
+        "tts_list_price_cny": 0.31695,
+        "cost_basis": "按1000汉字×2＋标点和控制台换行，暂以2113计费字符保守估算；非账单实扣，试用额度未抵扣。",
+        "channel": "Bailian console existing-voice TTS",
+        "original_full_attempt_accepted": null,
+        "seconds": 228.75,
+        "cleaned_audio_sha256": "5b5b4f2cbe3cc2c35ef88a80ce5ff1122c1aef68424cd73b4efd67989bc6dba7",
+        "processing": [
+          {
+            "source": "part1.mp3",
+            "source_sha256": "602756993fbc393f983b690051562eb011bda112fd0b1a812ff038c396c065ca",
+            "original_seconds": 25.56,
+            "cleaned_seconds": 23.87,
+            "tail_tone_detected": true,
+            "cutoff_seconds": 23.87
+          },
+          {
+            "source": "part2.mp3",
+            "source_sha256": "839668a3025198c0892415b4c5cf152b271b9e938eeece2b2a63144804181829",
+            "original_seconds": 27.48,
+            "cleaned_seconds": 25.79,
+            "tail_tone_detected": true,
+            "cutoff_seconds": 25.790000000000003
+          },
+          {
+            "source": "part3.mp3",
+            "source_sha256": "8946c4bbd23a47670790506dc7c6a0b8474c06e0f293c930c6e65b7a332f2978",
+            "original_seconds": 27.96,
+            "cleaned_seconds": 26.27,
+            "tail_tone_detected": true,
+            "cutoff_seconds": 26.270000000000003
+          },
+          {
+            "source": "part4.mp3",
+            "source_sha256": "972cd5d70afd8f26a6414d3bd3eeb871f2feb1583e056783f7f3d0f2f3236ff9",
+            "original_seconds": 27.16,
+            "cleaned_seconds": 25.47,
+            "tail_tone_detected": true,
+            "cutoff_seconds": 25.470000000000002
+          },
+          {
+            "source": "part5.mp3",
+            "source_sha256": "40fd4965e3b5734aa96f8c59d99724a6005ba602a7ced0c78117b0690a705569",
+            "original_seconds": 27.08,
+            "cleaned_seconds": 25.39,
+            "tail_tone_detected": true,
+            "cutoff_seconds": 25.39
+          },
+          {
+            "source": "part6.mp3",
+            "source_sha256": "229a057cfcce6ed387291fb1cfae09040beda4c5d22d2318f886ead4cd2390de",
+            "original_seconds": 26.36,
+            "cleaned_seconds": 24.67,
+            "tail_tone_detected": true,
+            "cutoff_seconds": 24.67
+          },
+          {
+            "source": "part7.mp3",
+            "source_sha256": "bf3d50041a5febc3b403c1c4e239c473a667936f015f2c4a9c340f4b45791bc3",
+            "original_seconds": 26.76,
+            "cleaned_seconds": 25.07,
+            "tail_tone_detected": true,
+            "cutoff_seconds": 25.07
+          },
+          {
+            "source": "part8.mp3",
+            "source_sha256": "1d0398b841d8d107e8c4f9fc567171dcfdca40e1e3810c39c9aed9bc0cb2803e",
+            "original_seconds": 29.8,
+            "cleaned_seconds": 28.11,
+            "tail_tone_detected": true,
+            "cutoff_seconds": 28.110000000000003
+          },
+          {
+            "source": "part9.mp3",
+            "source_sha256": "f63be43f588c01c1c25e7956dc2796a2d53b0e1155a1f37c489e30794ce855cf",
+            "original_seconds": 25.8,
+            "cleaned_seconds": 24.11,
+            "tail_tone_detected": true,
+            "cutoff_seconds": 24.110000000000003
+          }
+        ],
+        "no_fixed_600hz_tail": true,
+        "ai_generated_audio": true,
+        "subjective_quality_rank": null,
+        "independent_audio_check": {
+          "source_audio_sha256": "5b5b4f2cbe3cc2c35ef88a80ce5ff1122c1aef68424cd73b4efd67989bc6dba7",
+          "reference_han": 1000,
+          "observed_han_after_number_normalization": 1000,
+          "number_normalization": {
+            "200": "两百",
+            "100": "一百"
+          },
+          "differences": [
+            {
+              "type": "replace",
+              "reference_start_han": 253,
+              "expected": "队",
+              "observed": "对"
+            },
+            {
+              "type": "replace",
+              "reference_start_han": 284,
+              "expected": "返工",
+              "observed": "反攻"
+            },
+            {
+              "type": "replace",
+              "reference_start_han": 432,
+              "expected": "在",
+              "observed": "再"
+            },
+            {
+              "type": "replace",
+              "reference_start_han": 461,
+              "expected": "补货",
+              "observed": "捕获"
+            }
+          ],
+          "insertions_or_deletions_detected": false,
+          "not_a_confirmed_tts_error_rate": true,
+          "method": "Independent local Whisper, no source-script prompt; requires human listening for correctness and expression."
+        },
+        "human_listening_complete": false,
+        "emotion_note": "默认语速、音量；不额外设置情绪指令。",
+        "file": "../../audio/5b5b4f2cbe3cc2c35ef88a80.wav",
+        "audio_sha256": "5b5b4f2cbe3cc2c35ef88a80ce5ff1122c1aef68424cd73b4efd67989bc6dba7",
+        "opening_file": "../../audio/d1eb65e9d49e7b719bbb824b.wav",
+        "opening_sha256": "d1eb65e9d49e7b719bbb824b4e9087ddc78e0537a706775c5908aafe8259e0a6"
+      },
+      {
+        "model": "cosyvoice-v3.5-flash",
+        "model_label": "阿里 CosyVoice 3.5 Flash",
+        "request_count": 9,
+        "split_note": "通过控制台沿用原音色，按同样9个自然段生成再拼接；正文不增删，不额外插入停顿。",
+        "clone_cost_cny": 0,
+        "text_sha256": "ea8c9a9d1eeb37ce77063858308b71eb756a5af2a026b7a74f7f526c130afebe",
+        "reference_sha256": "68cad3408c49b1de24a8c5346a4f1d2e666eafafa7dabe1ea5722583abf81be8",
+        "usage": null,
+        "tts_list_price_cny": 0.16904,
+        "cost_basis": "按1000汉字×2＋标点和控制台换行，暂以2113计费字符保守估算；非账单实扣，试用额度未抵扣。此前不完整整段试验费用另待核。",
+        "channel": "Bailian console existing-voice TTS",
+        "original_full_attempt_accepted": false,
+        "seconds": 225.55,
+        "cleaned_audio_sha256": "8d1ea3489cfe4ed5b5565edad885cee966fe9805f8df61056eb08980f500ffbd",
+        "processing": [
+          {
+            "source": "part1.mp3",
+            "source_sha256": "7f9a7b486e5cfef4af8fc3205f7f716baf1339526da3e3a3aa8f9fe2632e9707",
+            "original_seconds": 26.52,
+            "cleaned_seconds": 24.83,
+            "tail_tone_detected": true,
+            "cutoff_seconds": 24.830000000000002
+          },
+          {
+            "source": "part2.mp3",
+            "source_sha256": "8453e61c5ea3778c978492ea17557d253979279f4761d061b78a2bf8b1b80496",
+            "original_seconds": 26.2,
+            "cleaned_seconds": 24.51,
+            "tail_tone_detected": true,
+            "cutoff_seconds": 24.51
+          },
+          {
+            "source": "part3.mp3",
+            "source_sha256": "b7cc633c3932dfb5669169982caeda775ee9be4a036f40d433ff63e24da5e951",
+            "original_seconds": 28.28,
+            "cleaned_seconds": 26.59,
+            "tail_tone_detected": true,
+            "cutoff_seconds": 26.590000000000003
+          },
+          {
+            "source": "part4.mp3",
+            "source_sha256": "2ed4d870375bfc36eef26265481297f1d97d2d65046bd38c631d91fc3c25f97d",
+            "original_seconds": 25.72,
+            "cleaned_seconds": 24.03,
+            "tail_tone_detected": true,
+            "cutoff_seconds": 24.03
+          },
+          {
+            "source": "part5.mp3",
+            "source_sha256": "9f17ffcddf0d6d49108cbc46b6a0710a97ad0c04504d94d80c45af6ee9c072e8",
+            "original_seconds": 25.64,
+            "cleaned_seconds": 23.95,
+            "tail_tone_detected": true,
+            "cutoff_seconds": 23.950000000000003
+          },
+          {
+            "source": "part6.mp3",
+            "source_sha256": "4bdad8ac194210c3eca596f18ba062b5e5644ffe50d5e6d397bd4aea2abf9321",
+            "original_seconds": 28.52,
+            "cleaned_seconds": 26.83,
+            "tail_tone_detected": true,
+            "cutoff_seconds": 26.830000000000002
+          },
+          {
+            "source": "part7.mp3",
+            "source_sha256": "640814c6a50258dbc7ec2203dc8639b7ad2a6bcc1a42fbb12c83f9ed8408cca2",
+            "original_seconds": 26.84,
+            "cleaned_seconds": 25.15,
+            "tail_tone_detected": true,
+            "cutoff_seconds": 25.150000000000002
+          },
+          {
+            "source": "part8.mp3",
+            "source_sha256": "3b11ea6751e6b8ad33717396b922a7a24085e815e09f9fc4e272699d14154e4f",
+            "original_seconds": 29.0,
+            "cleaned_seconds": 27.31,
+            "tail_tone_detected": true,
+            "cutoff_seconds": 27.310000000000002
+          },
+          {
+            "source": "part9.mp3",
+            "source_sha256": "f6dfd75c032c9fe1b5a0a2c7eb5f23154d32d46f6a4b118f2adc176122003f20",
+            "original_seconds": 24.04,
+            "cleaned_seconds": 22.35,
+            "tail_tone_detected": true,
+            "cutoff_seconds": 22.35
+          }
+        ],
+        "no_fixed_600hz_tail": true,
+        "ai_generated_audio": true,
+        "subjective_quality_rank": null,
+        "independent_audio_check": {
+          "source_audio_sha256": "8d1ea3489cfe4ed5b5565edad885cee966fe9805f8df61056eb08980f500ffbd",
+          "reference_han": 1000,
+          "observed_han_after_number_normalization": 1000,
+          "number_normalization": {
+            "200": "两百",
+            "100": "一百"
+          },
+          "differences": [
+            {
+              "type": "replace",
+              "reference_start_han": 253,
+              "expected": "队",
+              "observed": "对"
+            },
+            {
+              "type": "replace",
+              "reference_start_han": 284,
+              "expected": "返工",
+              "observed": "反攻"
+            },
+            {
+              "type": "replace",
+              "reference_start_han": 432,
+              "expected": "在",
+              "observed": "载"
+            },
+            {
+              "type": "replace",
+              "reference_start_han": 461,
+              "expected": "补货",
+              "observed": "捕获"
+            },
+            {
+              "type": "replace",
+              "reference_start_han": 515,
+              "expected": "补货",
+              "observed": "捕获"
+            },
+            {
+              "type": "replace",
+              "reference_start_han": 522,
+              "expected": "再",
+              "observed": "在"
+            },
+            {
+              "type": "replace",
+              "reference_start_han": 756,
+              "expected": "负荷",
+              "observed": "复合"
+            }
+          ],
+          "insertions_or_deletions_detected": false,
+          "not_a_confirmed_tts_error_rate": true,
+          "method": "Independent local Whisper, no source-script prompt; requires human listening for correctness and expression."
+        },
+        "human_listening_complete": false,
+        "emotion_note": "默认语速、音量；不额外设置情绪指令。",
+        "file": "../../audio/8d1ea3489cfe4ed5b5565eda.wav",
+        "audio_sha256": "8d1ea3489cfe4ed5b5565edad885cee966fe9805f8df61056eb08980f500ffbd",
+        "opening_file": "../../audio/ebc2c4cd448fac90e4f95468.wav",
+        "opening_sha256": "ebc2c4cd448fac90e4f954683d9e24348d7367c7ede1175ff75230c1810c9f02"
+      },
+      {
+        "model": "youdao-pro",
+        "model_label": "有道 Pro",
+        "request_count": 9,
+        "split_note": "491字符请求遇服务端错误，后按9个自然段生成；正文逐字保留，段间直接拼接，不额外加停顿。",
+        "clone_cost_cny": 0,
+        "generation_seconds": 51.314,
+        "text_sha256": "ea8c9a9d1eeb37ce77063858308b71eb756a5af2a026b7a74f7f526c130afebe",
+        "reference_sha256": "68cad3408c49b1de24a8c5346a4f1d2e666eafafa7dabe1ea5722583abf81be8",
+        "usage": {
+          "characters": 1105,
+          "billing_units_conservative": 1105
+        },
+        "tts_list_price_cny": 0.221,
+        "tts_provisional_85pct_cny": 0.18785,
+        "invoice_verified": false,
+        "cost_basis": "计费暂按含换行1105字符保守估算；原价2元/万字符，85折仅暂行报价；失败请求费用待账单核实。",
+        "seconds": 230.23854166666666,
+        "cleaned_audio_sha256": "c2296a3b2d3fc3609d967086ec1649066b653a2670f4c625dd5729cc3996ec11",
+        "processing": [
+          {
+            "source": "part1.mp3",
+            "source_sha256": "8cd81cc8c60a51fb457289fd12f9b2a07bd1ee6b121df8d011d351068f4bb849",
+            "original_seconds": 26.49925,
+            "cleaned_seconds": 26.49925,
+            "tail_tone_detected": false,
+            "cutoff_seconds": null
+          },
+          {
+            "source": "part2.mp3",
+            "source_sha256": "0834fb36f0f9a428efdc623850f64502d7e612e859d4d49a784aa0004d8ee5d4",
+            "original_seconds": 25.001583333333333,
+            "cleaned_seconds": 25.001583333333333,
+            "tail_tone_detected": false,
+            "cutoff_seconds": null
+          },
+          {
+            "source": "part3.mp3",
+            "source_sha256": "620c75af51b7045af987788f57d3e1fd3d4fcd54694c7fd99a0527e954b85d74",
+            "original_seconds": 23.7825,
+            "cleaned_seconds": 23.7825,
+            "tail_tone_detected": false,
+            "cutoff_seconds": null
+          },
+          {
+            "source": "part4.mp3",
+            "source_sha256": "1a481f88442e25bc6c4271203fe6b6ea9fca25ac90f7f92bca79cf757688b953",
+            "original_seconds": 27.428041666666665,
+            "cleaned_seconds": 27.428041666666665,
+            "tail_tone_detected": false,
+            "cutoff_seconds": null
+          },
+          {
+            "source": "part5.mp3",
+            "source_sha256": "663674d138bcf45492756b357c7cd8eff621072eead74acf9ade104828d7241f",
+            "original_seconds": 25.616875,
+            "cleaned_seconds": 25.616875,
+            "tail_tone_detected": false,
+            "cutoff_seconds": null
+          },
+          {
+            "source": "part6.mp3",
+            "source_sha256": "24615d0baf49b2f9f1f7c8899efc31671e3da64346a7040c951877ca17f0dbaf",
+            "original_seconds": 25.384708333333332,
+            "cleaned_seconds": 25.384708333333332,
+            "tail_tone_detected": false,
+            "cutoff_seconds": null
+          },
+          {
+            "source": "part7.mp3",
+            "source_sha256": "02b1b0e20a0c89c9919d4972af9479b13a6bb91fa9b14dba324c0e18e5e0d10d",
+            "original_seconds": 23.910208333333333,
+            "cleaned_seconds": 23.910208333333333,
+            "tail_tone_detected": false,
+            "cutoff_seconds": null
+          },
+          {
+            "source": "part8.mp3",
+            "source_sha256": "90783257f160a22a30c4026512adb24fe3a092ee1d681eb53f2e2a1bf79b7dd7",
+            "original_seconds": 28.171083333333332,
+            "cleaned_seconds": 28.171083333333332,
+            "tail_tone_detected": false,
+            "cutoff_seconds": null
+          },
+          {
+            "source": "part9.mp3",
+            "source_sha256": "e5c40fde503c873c481c3f3c6ac253a4cbc0a37b68410f9413c99a2949d1f816",
+            "original_seconds": 24.44429166666667,
+            "cleaned_seconds": 24.44429166666667,
+            "tail_tone_detected": false,
+            "cutoff_seconds": null
+          }
+        ],
+        "no_fixed_600hz_tail": true,
+        "ai_generated_audio": true,
+        "subjective_quality_rank": null,
+        "independent_audio_check": {
+          "source_audio_sha256": "c2296a3b2d3fc3609d967086ec1649066b653a2670f4c625dd5729cc3996ec11",
+          "reference_han": 1000,
+          "observed_han_after_number_normalization": 1000,
+          "number_normalization": {
+            "200": "两百",
+            "100": "一百"
+          },
+          "differences": [
+            {
+              "type": "replace",
+              "reference_start_han": 216,
+              "expected": "成",
+              "observed": "程"
+            },
+            {
+              "type": "replace",
+              "reference_start_han": 218,
+              "expected": "排",
+              "observed": "牌"
+            },
+            {
+              "type": "replace",
+              "reference_start_han": 253,
+              "expected": "队列",
+              "observed": "对裂"
+            },
+            {
+              "type": "replace",
+              "reference_start_han": 284,
+              "expected": "返工",
+              "observed": "反攻"
+            },
+            {
+              "type": "replace",
+              "reference_start_han": 292,
+              "expected": "率",
+              "observed": "力"
+            },
+            {
+              "type": "replace",
+              "reference_start_han": 414,
+              "expected": "品",
+              "observed": "命"
+            },
+            {
+              "type": "replace",
+              "reference_start_han": 461,
+              "expected": "补货",
+              "observed": "捕获"
+            },
+            {
+              "type": "replace",
+              "reference_start_han": 475,
+              "expected": "得",
+              "observed": "的"
+            },
+            {
+              "type": "replace",
+              "reference_start_han": 538,
+              "expected": "地",
+              "observed": "的"
+            },
+            {
+              "type": "replace",
+              "reference_start_han": 549,
+              "expected": "交付",
+              "observed": "脚腹"
+            },
+            {
+              "type": "replace",
+              "reference_start_han": 613,
+              "expected": "混",
+              "observed": "谎"
+            },
+            {
+              "type": "replace",
+              "reference_start_han": 666,
+              "expected": "慢",
+              "observed": "卖"
+            },
+            {
+              "type": "replace",
+              "reference_start_han": 754,
+              "expected": "瓶颈",
+              "observed": "平静"
+            },
+            {
+              "type": "replace",
+              "reference_start_han": 790,
+              "expected": "瓶颈",
+              "observed": "平静"
+            },
+            {
+              "type": "replace",
+              "reference_start_han": 939,
+              "expected": "汇",
+              "observed": "追"
+            }
+          ],
+          "insertions_or_deletions_detected": false,
+          "not_a_confirmed_tts_error_rate": true,
+          "method": "Independent local Whisper, no source-script prompt; requires human listening for correctness and expression."
+        },
+        "human_listening_complete": false,
+        "emotion_note": "默认语速、音量；不额外设置情绪指令。",
+        "file": "../../audio/c2296a3b2d3fc3609d967086.wav",
+        "audio_sha256": "c2296a3b2d3fc3609d967086ec1649066b653a2670f4c625dd5729cc3996ec11",
+        "opening_file": "../../audio/fa1cbc5503898a7d27d610a6.wav",
+        "opening_sha256": "fa1cbc5503898a7d27d610a635ba280892db6b552be5c74759771ae0f765ef89"
+      }
+    ],
+    "human_expression_ranking_complete": false,
+    "api_key_permissions_changed": false
   }
 }
