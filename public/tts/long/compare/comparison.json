@@ -23,7 +23,10 @@
       "opening_sha256": "3c1e0b7ea5a22031a0851a077060874b77916fdc7f2d32bbf639cd2018fd65f9",
       "test_type": "single_request_full_text",
       "continuous_long_generation_tested": true,
-      "voice_continuity_accepted": false
+      "voice_continuity_accepted": false,
+      "long_review_status": "情绪偏平",
+      "long_review_feedback": "用户试听反馈；长稿一次生成，仍需复听术语。",
+      "long_course_accepted": false
     },
     {
       "model": "qwen-audio-3.0-tts-plus",
@@ -163,7 +166,10 @@
       "opening_sha256": "b6e0fa0ad6797dbfad45418885b68d8fdb36b1aeac116ae0e0a35caf38b2b7e7",
       "test_type": "nine_independent_requests_concatenated",
       "continuous_long_generation_tested": false,
-      "voice_continuity_accepted": false
+      "voice_continuity_accepted": false,
+      "long_review_status": "待完整听验",
+      "long_review_feedback": "样音已生成；尚未完成长稿自然度与音色连续性人工验收。",
+      "long_course_accepted": false
     },
     {
       "model": "cosyvoice-v3.5-plus",
@@ -303,7 +309,10 @@
       "opening_sha256": "d1eb65e9d49e7b719bbb824b4e9087ddc78e0537a706775c5908aafe8259e0a6",
       "test_type": "nine_independent_requests_concatenated",
       "continuous_long_generation_tested": false,
-      "voice_continuity_accepted": false
+      "voice_continuity_accepted": false,
+      "long_review_status": "待完整听验",
+      "long_review_feedback": "样音已生成；尚未完成长稿自然度与音色连续性人工验收。",
+      "long_course_accepted": false
     },
     {
       "model": "cosyvoice-v3.5-flash",
@@ -463,7 +472,10 @@
       "continuous_long_generation_tested": false,
       "voice_continuity_accepted": false,
       "user_listening_feedback": "用户反馈后段声音发生变化，尚未通过音色连续性验收；根因未确定。",
-      "voice_audit_note": "9段原始音频与控制台对应历史卡片的下载哈希全部一致，模型和音色名称标签相同；未取得逐次实际音色ID，不能确认变化原因。"
+      "voice_audit_note": "9段原始音频与控制台对应历史卡片的下载哈希全部一致，模型和音色名称标签相同；未取得逐次实际音色ID，不能确认变化原因。",
+      "long_review_status": "长稿暂不采用",
+      "long_review_feedback": "短稿听感可接受；千字长稿后段听到音色变化（用户反馈）。",
+      "long_course_accepted": false
     },
     {
       "model": "youdao-pro",
@@ -690,7 +702,10 @@
       "opening_sha256": "fa1cbc5503898a7d27d610a635ba280892db6b552be5c74759771ae0f765ef89",
       "test_type": "nine_independent_requests_concatenated",
       "continuous_long_generation_tested": false,
-      "voice_continuity_accepted": false
+      "voice_continuity_accepted": false,
+      "long_review_status": "待完整听验",
+      "long_review_feedback": "样音已生成；尚未完成长稿自然度与音色连续性人工验收。",
+      "long_course_accepted": false
     }
   ],
   "human_quality_ranking_complete": false
