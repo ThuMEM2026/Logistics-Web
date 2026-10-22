@@ -1,0 +1,14 @@
+@import url('./site.css');
+.detail main{max-width:1100px;margin:auto;padding:var(--space-6) var(--space-5) var(--space-8)}
+.detail h1{font-size:clamp(28px,4vw,42px);margin-top:var(--space-5)}
+.detail h2{margin:var(--space-6) 0 var(--space-4);font-size:24px}
+.detail h3{font-size:18px}.detail audio{margin:var(--space-4) 0}
+.detail .panel,.detail article{border:1px solid var(--color-rule);background:var(--color-surface);border-radius:var(--radius);padding:var(--space-5);margin:var(--space-4) 0}
+.detail .hero{background:var(--color-soft);max-width:none;padding:var(--space-4) var(--space-5)}
+.detail .muted{font-size:14px;color:var(--color-muted)}.detail .lead{font-size:18px}
+.detail .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-4)}
+.detail .notice{border-left:3px solid var(--color-warning);background:var(--color-warning-bg);padding:var(--space-4) var(--space-5);margin:var(--space-5) 0}
+.detail .tablewrap{overflow:auto}.detail table{width:100%;border-collapse:collapse;font-size:15px}
+.detail th,.detail td{padding:var(--space-3);border-bottom:1px solid var(--color-rule);text-align:left}.detail th{background:var(--color-soft)}
+.detail details{border-bottom:1px solid var(--color-rule);padding:var(--space-3) 0}.detail pre{white-space:pre-wrap;font:15px/1.85 var(--font-body)}
+@media(max-width:760px){.detail .grid{grid-template-columns:minmax(0,1fr)}.detail .panel,.detail article{padding:var(--space-4)}}

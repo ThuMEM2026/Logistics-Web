@@ -1,0 +1,16 @@
+:root{
+ --color-paper:oklch(97% .009 100);--color-surface:oklch(99% .004 110);
+ --color-soft:oklch(94% .015 145);--color-ink:oklch(25% .022 160);
+ --color-muted:oklch(46% .017 155);--color-rule:oklch(83% .018 145);
+ --color-accent:oklch(40% .085 155);--color-accent-ink:oklch(99% .004 110);
+ --color-focus:oklch(40% .085 155);--color-error:oklch(44% .15 28);
+ --color-disabled:oklch(90% .008 145);--color-warning:oklch(42% .08 65);
+ --color-warning-bg:oklch(95% .025 85);--color-transparent:transparent;
+ --font-display:"Songti SC","STSong",serif;
+ --font-body:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+ --font-mono:ui-monospace,"SFMono-Regular",monospace;
+ --space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;
+ --space-5:24px;--space-6:32px;--space-7:48px;--space-8:64px;
+ --radius:12px;--radius-small:6px;
+ color-scheme:light;
+}
