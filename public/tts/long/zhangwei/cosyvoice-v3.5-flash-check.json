@@ -1,0 +1,63 @@
+{
+  "model": "cosyvoice-v3.5-flash",
+  "audio_sha256": "8e05e3510f48774eb2ad608b2e40994784820330c3b3c79fba13830fd3211a0a",
+  "independent_asr_method": "本机Whisper large-v3-turbo；未输入原稿提示；数字作同义归一。识别差异需听辨，不能直接认定漏读或改词。",
+  "reference_han": 1000,
+  "asr_han": 1000,
+  "asr_differences": [
+    {
+      "type": "replace",
+      "position_han": 253,
+      "expected": "队",
+      "observed": "对"
+    },
+    {
+      "type": "replace",
+      "position_han": 284,
+      "expected": "返工",
+      "observed": "反供"
+    },
+    {
+      "type": "replace",
+      "position_han": 432,
+      "expected": "在",
+      "observed": "再"
+    },
+    {
+      "type": "replace",
+      "position_han": 475,
+      "expected": "得",
+      "observed": "的"
+    },
+    {
+      "type": "replace",
+      "position_han": 538,
+      "expected": "地",
+      "observed": "的"
+    },
+    {
+      "type": "replace",
+      "position_han": 756,
+      "expected": "负荷",
+      "observed": "复合"
+    }
+  ],
+  "number_normalization": {
+    "200": "两百",
+    "100": "一百"
+  },
+  "speaker_diagnostics": {
+    "reference_cosine": {
+      "开头": 0.8162529472680246,
+      "中间": 0.8133413964717542,
+      "结尾": 0.8087048440405238
+    },
+    "pair_cosine": {
+      "开头-中间": 0.9747526182436944,
+      "开头-结尾": 0.9659796308711954,
+      "中间-结尾": 0.9680934502328435
+    }
+  },
+  "speaker_note": "余弦相似度只作诊断，不代表自然度或身份概率，不能替代听感。",
+  "human_full_listening_complete": false
+}
