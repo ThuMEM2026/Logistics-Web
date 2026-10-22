@@ -1,0 +1,276 @@
+{
+  "date": "2026-10-22",
+  "speaker": "张伟老师",
+  "han_count": 1000,
+  "total_characters": 1105,
+  "records": [
+    {
+      "model": "youdao-pro",
+      "request_count": 9,
+      "method": "同蔡老师基线，按9个自然段分别请求后拼接；同一个已复刻音色，默认参数。",
+      "cost_cny": 0.1105,
+      "list_cost_cny": 0.221,
+      "cost_basis": "含换行1105字符×2元/万字符×项目5折；复用音色，新增克隆费0元；优惠是否到账待账单确认。",
+      "existing_voice_reused": true,
+      "seconds": 241.54670833333333,
+      "audio_sha256": "602be0f9204bac9028a1285cac0a72ddcb9f38ec92a35893018951cf03e4f926",
+      "text_sha256": "ea8c9a9d1eeb37ce77063858308b71eb756a5af2a026b7a74f7f526c130afebe",
+      "reference_sha256": "816003bdf283822d4d1ff96111cf63a904a9f8d15e13d42ad25e20a0a699401d",
+      "processing": [
+        {
+          "source": "part1.mp3",
+          "source_sha256": "100535e1fe0febd9f4f584104a29801af7abb9ec2320ac9abe8f88dc2f54f7d8",
+          "original_seconds": 26.406375,
+          "cleaned_seconds": 26.406375,
+          "tail_tone_detected": false,
+          "cutoff_seconds": null
+        },
+        {
+          "source": "part2.mp3",
+          "source_sha256": "ff43f108362b7827954c4f6447c11c92e7311e30522440d7b6ce309847b43cfe",
+          "original_seconds": 25.709791666666668,
+          "cleaned_seconds": 25.709791666666668,
+          "tail_tone_detected": false,
+          "cutoff_seconds": null
+        },
+        {
+          "source": "part3.mp3",
+          "source_sha256": "1364c03110c82b13543234764fe4ced2bd5f72c4c229dec00f69cf043a31b7d2",
+          "original_seconds": 25.024791666666665,
+          "cleaned_seconds": 25.024791666666665,
+          "tail_tone_detected": false,
+          "cutoff_seconds": null
+        },
+        {
+          "source": "part4.mp3",
+          "source_sha256": "3ea6cb33385340a1ffe21a64ae158e8b44c928c55224b806d5fe437700b36f89",
+          "original_seconds": 26.522458333333333,
+          "cleaned_seconds": 26.522458333333333,
+          "tail_tone_detected": false,
+          "cutoff_seconds": null
+        },
+        {
+          "source": "part5.mp3",
+          "source_sha256": "5939e1eb52062a62adae35778a95a3b125fad7bde222009a441f0ade11a56cef",
+          "original_seconds": 27.915666666666667,
+          "cleaned_seconds": 27.915666666666667,
+          "tail_tone_detected": false,
+          "cutoff_seconds": null
+        },
+        {
+          "source": "part6.mp3",
+          "source_sha256": "dd4d563f16e1a2a85c8e0c6993de651bccbfc8727ee6301312998c48573e686b",
+          "original_seconds": 26.766291666666667,
+          "cleaned_seconds": 26.766291666666667,
+          "tail_tone_detected": false,
+          "cutoff_seconds": null
+        },
+        {
+          "source": "part7.mp3",
+          "source_sha256": "006aba53cc7efc85b274fcf2840983070aeffbc57ce95c409cc1c9472ff05773",
+          "original_seconds": 25.500791666666668,
+          "cleaned_seconds": 25.500791666666668,
+          "tail_tone_detected": false,
+          "cutoff_seconds": null
+        },
+        {
+          "source": "part8.mp3",
+          "source_sha256": "dcce93860a8f42a3c2c3a77ccce21ba01c4ff5abf6099e0f2c1fd3b01caf8803",
+          "original_seconds": 28.217541666666666,
+          "cleaned_seconds": 28.217541666666666,
+          "tail_tone_detected": false,
+          "cutoff_seconds": null
+        },
+        {
+          "source": "part9.mp3",
+          "source_sha256": "b5cb4e70a0710a382cb2165543aef77014567c99883ab12878c1ffe61fe9613d",
+          "original_seconds": 29.483,
+          "cleaned_seconds": 29.483,
+          "tail_tone_detected": false,
+          "cutoff_seconds": null
+        }
+      ],
+      "subjective_quality": "待完整试听确认",
+      "label": "有道 Pro",
+      "file": "youdao-pro.mp3",
+      "published_audio_sha256": "30178945fe9ac8e58f845b1da055a0d6635ea987ceff8ac8efae1c4d176f7ba3",
+      "independent_check": {
+        "model": "youdao-pro",
+        "audio_sha256": "602be0f9204bac9028a1285cac0a72ddcb9f38ec92a35893018951cf03e4f926",
+        "independent_asr_method": "本机Whisper large-v3-turbo；未输入原稿提示；数字作同义归一。识别差异需听辨，不能直接认定漏读或改词。",
+        "reference_han": 1000,
+        "asr_han": 1000,
+        "asr_differences": [
+          {
+            "type": "replace",
+            "position_han": 218,
+            "expected": "排",
+            "observed": "牌"
+          },
+          {
+            "type": "replace",
+            "position_han": 284,
+            "expected": "返工",
+            "observed": "反攻"
+          },
+          {
+            "type": "replace",
+            "position_han": 461,
+            "expected": "补货",
+            "observed": "捕获"
+          },
+          {
+            "type": "replace",
+            "position_han": 538,
+            "expected": "地",
+            "observed": "的"
+          },
+          {
+            "type": "replace",
+            "position_han": 557,
+            "expected": "制",
+            "observed": "自"
+          },
+          {
+            "type": "replace",
+            "position_han": 756,
+            "expected": "负荷",
+            "observed": "复合"
+          },
+          {
+            "type": "replace",
+            "position_han": 955,
+            "expected": "依据",
+            "observed": "一句"
+          }
+        ],
+        "number_normalization": {
+          "200": "两百",
+          "100": "一百"
+        },
+        "speaker_diagnostics": {
+          "reference_cosine": {
+            "开头": 0.6637949353703881,
+            "中间": 0.6164824202067307,
+            "结尾": 0.6552417643809216
+          },
+          "pair_cosine": {
+            "开头-中间": 0.9306683403407245,
+            "开头-结尾": 0.9337733851191317,
+            "中间-结尾": 0.9441625623950141
+          }
+        },
+        "speaker_note": "余弦相似度只作诊断，不代表自然度或身份概率，不能替代听感。",
+        "human_full_listening_complete": false
+      }
+    },
+    {
+      "model": "qwen-audio-3.0-realtime-flash",
+      "request_count": 1,
+      "method": "整篇一次请求，使用与蔡老师测试相同的逐字朗读指令；本次从张伟同一原声新建对应音色。",
+      "cost_cny": 0.035265000000000005,
+      "cost_basis": "接口实际Token用量×北京官方单价；非账单实扣。创建音色不收费。",
+      "usage": {
+        "total_tokens": 4166,
+        "input_tokens": 710,
+        "output_tokens": 3456,
+        "input_tokens_details": {
+          "text_tokens": 710
+        },
+        "output_tokens_details": {
+          "text_tokens": 606,
+          "audio_tokens": 2850
+        }
+      },
+      "provider_transcript_exact_match": true,
+      "clone_cost_cny": 0,
+      "seconds": 228.05,
+      "audio_sha256": "eca54b0f4a34549ece609ce27c5a9c212726f6877e03f0b81f3cc89ea4c20b64",
+      "text_sha256": "ea8c9a9d1eeb37ce77063858308b71eb756a5af2a026b7a74f7f526c130afebe",
+      "reference_sha256": "816003bdf283822d4d1ff96111cf63a904a9f8d15e13d42ad25e20a0a699401d",
+      "processing": [
+        {
+          "source": "long-script-original.wav",
+          "source_sha256": "5bb571e28f94744c8eeb2539b909ac4e9ac6256de44f17b71117e58bcd86ef8e",
+          "original_seconds": 228.05,
+          "cleaned_seconds": 228.05,
+          "tail_tone_detected": false,
+          "cutoff_seconds": null
+        }
+      ],
+      "subjective_quality": "待完整试听确认",
+      "label": "阿里 千问3.0 Realtime Flash",
+      "file": "qwen-audio-3.0-realtime-flash.mp3",
+      "published_audio_sha256": "c67c9d033329d3bfa550fb403163ae9ebf4265a21c25fd57aa99f7c92dc95453",
+      "independent_check": {
+        "model": "qwen-audio-3.0-realtime-flash",
+        "audio_sha256": "eca54b0f4a34549ece609ce27c5a9c212726f6877e03f0b81f3cc89ea4c20b64",
+        "independent_asr_method": "本机Whisper large-v3-turbo；未输入原稿提示；数字作同义归一。识别差异需听辨，不能直接认定漏读或改词。",
+        "reference_han": 1000,
+        "asr_han": 1000,
+        "asr_differences": [
+          {
+            "type": "replace",
+            "position_han": 253,
+            "expected": "队",
+            "observed": "对"
+          },
+          {
+            "type": "replace",
+            "position_han": 284,
+            "expected": "返工",
+            "observed": "反攻"
+          },
+          {
+            "type": "replace",
+            "position_han": 432,
+            "expected": "在",
+            "observed": "再"
+          },
+          {
+            "type": "replace",
+            "position_han": 461,
+            "expected": "补货",
+            "observed": "捕获"
+          },
+          {
+            "type": "replace",
+            "position_han": 515,
+            "expected": "补货",
+            "observed": "捕获"
+          },
+          {
+            "type": "replace",
+            "position_han": 538,
+            "expected": "地",
+            "observed": "的"
+          },
+          {
+            "type": "replace",
+            "position_han": 790,
+            "expected": "瓶颈",
+            "observed": "评景"
+          }
+        ],
+        "number_normalization": {
+          "200": "两百",
+          "100": "一百"
+        },
+        "speaker_diagnostics": {
+          "reference_cosine": {
+            "开头": 0.8345491487688571,
+            "中间": 0.8502569673611647,
+            "结尾": 0.8638858229921749
+          },
+          "pair_cosine": {
+            "开头-中间": 0.9691176912381511,
+            "开头-结尾": 0.9694472522171397,
+            "中间-结尾": 0.9628424650053914
+          }
+        },
+        "speaker_note": "余弦相似度只作诊断，不代表自然度或身份概率，不能替代听感。",
+        "human_full_listening_complete": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "model": "youdao-pro",
+  "audio_sha256": "602be0f9204bac9028a1285cac0a72ddcb9f38ec92a35893018951cf03e4f926",
+  "independent_asr_method": "本机Whisper large-v3-turbo；未输入原稿提示；数字作同义归一。识别差异需听辨，不能直接认定漏读或改词。",
+  "reference_han": 1000,
+  "asr_han": 1000,
+  "asr_differences": [
+    {
+      "type": "replace",
+      "position_han": 218,
+      "expected": "排",
+      "observed": "牌"
+    },
+    {
+      "type": "replace",
+      "position_han": 284,
+      "expected": "返工",
+      "observed": "反攻"
+    },
+    {
+      "type": "replace",
+      "position_han": 461,
+      "expected": "补货",
+      "observed": "捕获"
+    },
+    {
+      "type": "replace",
+      "position_han": 538,
+      "expected": "地",
+      "observed": "的"
+    },
+    {
+      "type": "replace",
+      "position_han": 557,
+      "expected": "制",
+      "observed": "自"
+    },
+    {
+      "type": "replace",
+      "position_han": 756,
+      "expected": "负荷",
+      "observed": "复合"
+    },
+    {
+      "type": "replace",
+      "position_han": 955,
+      "expected": "依据",
+      "observed": "一句"
+    }
+  ],
+  "number_normalization": {
+    "200": "两百",
+    "100": "一百"
+  },
+  "speaker_diagnostics": {
+    "reference_cosine": {
+      "开头": 0.6637949353703881,
+      "中间": 0.6164824202067307,
+      "结尾": 0.6552417643809216
+    },
+    "pair_cosine": {
+      "开头-中间": 0.9306683403407245,
+      "开头-结尾": 0.9337733851191317,
+      "中间-结尾": 0.9441625623950141
+    }
+  },
+  "speaker_note": "余弦相似度只作诊断，不代表自然度或身份概率，不能替代听感。",
+  "human_full_listening_complete": false
+}
