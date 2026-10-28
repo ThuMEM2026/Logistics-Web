@@ -227,7 +227,9 @@
       "costBasis": "官方在线演示本次免费；私有化没有按字符API费，GPU、存储及运维另计",
       "audioHash": "f5518b5b4d28e17d3dd16a56a1e6054eba19cb012e341e5eb213cb14545ee5c5",
       "referenceHash": "4bd9e430890fc9ed3f46a146b8902164f7497aa2743ea2f95016aab3394af9f9",
-      "textHash": "19a99402980e7bd7510fc92d675cb40d60eb01e3eb706b0524d9657b83bc54f9"
+      "textHash": "19a99402980e7bd7510fc92d675cb40d60eb01e3eb706b0524d9657b83bc54f9",
+      "playbackFile": "audio/listen/f5518b5b4d28e17d3dd16a56.mp3",
+      "playbackBytes": 480044
     },
     {
       "id": "cai-F",
@@ -244,7 +246,9 @@
       "costBasis": "官方在线演示本次免费；自部署算力、存储及运维另计",
       "audioHash": "36109e74ac401a34e28624b00d3818a1aa529a028608983c614bcea2b248aab2",
       "referenceHash": "4bd9e430890fc9ed3f46a146b8902164f7497aa2743ea2f95016aab3394af9f9",
-      "textHash": "19a99402980e7bd7510fc92d675cb40d60eb01e3eb706b0524d9657b83bc54f9"
+      "textHash": "19a99402980e7bd7510fc92d675cb40d60eb01e3eb706b0524d9657b83bc54f9",
+      "playbackFile": "audio/listen/36109e74ac401a34e28624b0.mp3",
+      "playbackBytes": 345277
     },
     {
       "id": "cainew-G",
@@ -261,7 +265,9 @@
       "costBasis": "北京原价：文本输入1.5元/百万Token，音频输出12元/百万Token；本段138输入文本＋264输出音频Token，伴随文本免费。",
       "audioHash": "8dfebf52ee0c197448d0b18dd85975bda707bcd370e55e562ecaf22bbd466bf2",
       "referenceHash": "68cad3408c49b1de24a8c5346a4f1d2e666eafafa7dabe1ea5722583abf81be8",
-      "textHash": "19a99402980e7bd7510fc92d675cb40d60eb01e3eb706b0524d9657b83bc54f9"
+      "textHash": "19a99402980e7bd7510fc92d675cb40d60eb01e3eb706b0524d9657b83bc54f9",
+      "playbackFile": "audio/listen/8dfebf52ee0c197448d0b18d.mp3",
+      "playbackBytes": 339116
     },
     {
       "id": "cai-long-realtime",
@@ -278,7 +284,9 @@
       "costBasis": "实际710输入文本＋2834输出音频Token×北京原价；伴随文本免费，非实扣。",
       "audioHash": "7207ae0edbca02e8e9616dbd3b2eb1bf6559bb908317bd5a2ece0784c3196e09",
       "referenceHash": "68cad3408c49b1de24a8c5346a4f1d2e666eafafa7dabe1ea5722583abf81be8",
-      "textHash": "ea8c9a9d1eeb37ce77063858308b71eb756a5af2a026b7a74f7f526c130afebe"
+      "textHash": "ea8c9a9d1eeb37ce77063858308b71eb756a5af2a026b7a74f7f526c130afebe",
+      "playbackFile": "audio/listen/7207ae0edbca02e8e9616dbd.mp3",
+      "playbackBytes": 3629612
     },
     {
       "id": "cai-long-qwen-plus",
@@ -295,7 +303,9 @@
       "costBasis": "按1000汉字×2＋标点和控制台换行，暂以2113计费字符保守估算；非账单实扣，试用额度未抵扣。此前不完整整段试验费用另待核。",
       "audioHash": "5611884f1e238e1425c4d0b8325b3a1444810be37980a5a9fd3da8868f0cef5d",
       "referenceHash": "68cad3408c49b1de24a8c5346a4f1d2e666eafafa7dabe1ea5722583abf81be8",
-      "textHash": "ea8c9a9d1eeb37ce77063858308b71eb756a5af2a026b7a74f7f526c130afebe"
+      "textHash": "ea8c9a9d1eeb37ce77063858308b71eb756a5af2a026b7a74f7f526c130afebe",
+      "playbackFile": "audio/listen/5611884f1e238e1425c4d0b8.mp3",
+      "playbackBytes": 3426860
     },
     {
       "id": "cai-long-cosy-plus",
@@ -312,7 +322,9 @@
       "costBasis": "按1000汉字×2＋标点和控制台换行，暂以2113计费字符保守估算；非账单实扣，试用额度未抵扣。",
       "audioHash": "5b5b4f2cbe3cc2c35ef88a80ce5ff1122c1aef68424cd73b4efd67989bc6dba7",
       "referenceHash": "68cad3408c49b1de24a8c5346a4f1d2e666eafafa7dabe1ea5722583abf81be8",
-      "textHash": "ea8c9a9d1eeb37ce77063858308b71eb756a5af2a026b7a74f7f526c130afebe"
+      "textHash": "ea8c9a9d1eeb37ce77063858308b71eb756a5af2a026b7a74f7f526c130afebe",
+      "playbackFile": "audio/listen/5b5b4f2cbe3cc2c35ef88a80.mp3",
+      "playbackBytes": 3661484
     },
     {
       "id": "cai-long-cosy-flash",
@@ -329,7 +341,9 @@
       "costBasis": "按1000汉字×2＋标点和控制台换行，暂以2113计费字符保守估算；非账单实扣，试用额度未抵扣。此前不完整整段试验费用另待核。",
       "audioHash": "8d1ea3489cfe4ed5b5565edad885cee966fe9805f8df61056eb08980f500ffbd",
       "referenceHash": "68cad3408c49b1de24a8c5346a4f1d2e666eafafa7dabe1ea5722583abf81be8",
-      "textHash": "ea8c9a9d1eeb37ce77063858308b71eb756a5af2a026b7a74f7f526c130afebe"
+      "textHash": "ea8c9a9d1eeb37ce77063858308b71eb756a5af2a026b7a74f7f526c130afebe",
+      "playbackFile": "audio/listen/8d1ea3489cfe4ed5b5565eda.mp3",
+      "playbackBytes": 3610028
     },
     {
       "id": "cai-long-youdao",
@@ -346,7 +360,9 @@
       "costBasis": "计费暂按含换行1105字符保守估算；原价2元/万字符×50%＝0.11050元。2026.10.21项目报价：定制免费、调用5折，非官网统一调价；非账单实扣，失败请求费用待核。",
       "audioHash": "c2296a3b2d3fc3609d967086ec1649066b653a2670f4c625dd5729cc3996ec11",
       "referenceHash": "68cad3408c49b1de24a8c5346a4f1d2e666eafafa7dabe1ea5722583abf81be8",
-      "textHash": "ea8c9a9d1eeb37ce77063858308b71eb756a5af2a026b7a74f7f526c130afebe"
+      "textHash": "ea8c9a9d1eeb37ce77063858308b71eb756a5af2a026b7a74f7f526c130afebe",
+      "playbackFile": "audio/listen/c2296a3b2d3fc3609d967086.mp3",
+      "playbackBytes": 3685292
     },
     {
       "id": "zhangwei-long-youdao",
@@ -399,5 +415,11 @@
       "referenceHash": "816003bdf283822d4d1ff96111cf63a904a9f8d15e13d42ad25e20a0a699401d",
       "textHash": "ea8c9a9d1eeb37ce77063858308b71eb756a5af2a026b7a74f7f526c130afebe"
     }
-  ]
+  ],
+  "playbackUpdated": "2026-10-28",
+  "referencePlayback": {
+    "cai": "audio/listen/4bd9e430890fc9ed3f46a146.mp3",
+    "cainew": "audio/listen/68cad3408c49b1de24a8c534.mp3",
+    "zhangwei": "audio/listen/816003bdf283822d4d1ff961.mp3"
+  }
 }

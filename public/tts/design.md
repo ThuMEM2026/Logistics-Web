@@ -26,3 +26,15 @@ Feedback stays in localStorage and JSON export; existing short-sample keys retai
 Pre-emit self-check: P4 H4 E4 S4 R4 V4. Genre: education comparison tool.
 Contrast: forest text on paper/surface; muted text minimum body size 14px.
 Shared visual tokens live in tokens.css; all new CSS uses these tokens.
+# Playback maintenance · 2026-10-28
+
+Use MP3 derivatives for online listening and retain the original media and its
+audit hash. The catalog's `file` remains the original; `playbackFile` selects a
+smaller download. Prices, speaker source, synthesis text and test findings do
+not change. All native players use `preload="none"`; a click starts the request.
+The shared audio player provides an inline retry, including interrupted-play
+position, and starts play during a user gesture before deferred seeking.
+Only `/tts` on the apex host redirects to the working www host. Other project
+routes and subdomains retain their configuration. This reduces avoidable
+transfer and recovers transient failures; it does not guarantee mainland routes
+to the overseas hosting platform.

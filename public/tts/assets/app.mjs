@@ -1,5 +1,6 @@
 import {models,modelById} from './models.mjs';
 import {estimateQuote} from './estimate_quote.mjs';
+import {attachAudioPlayers} from './audio-player.mjs';
 
 const BASE='/tts/', $=s=>document.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -9,6 +10,7 @@ const oldKey='tts-listening-20261020-compact35-v1',longKey='tts-listening-long-2
 function readStore(key){try{const v=JSON.parse(localStorage.getItem(key)||'{}');return v&&typeof v==='object'&&!Array.isArray(v)?v:{};}catch{return {};}}
 const scores={short:readStore(oldKey),long:readStore(longKey)};
 let data,state,visible=[],blind=false;
+let audioBinding={dispose(){}};
 function routeState(){
  const p=new URLSearchParams(location.search),hash=location.hash;
  let s={teacher:document.body.dataset.teacher||'cai',mode:'long',source:35};
@@ -30,6 +32,7 @@ function review(s){
 }
 function sampleHTML(s){
  const m=modelById[s.model],isLong=s.mode==='long',cost=s.cost==null?'算力另计':`¥${money(s.cost)}`;
+ const playback=s.playbackFile||s.file;
  const code=`样音 ${s.code}`,method=isLong?(s.requests===1?'整篇1次生成':'9段分别生成后拼接'):'短稿1次生成';
  const costLabel=s.cost==null?'自部署费用另算':'本条样音合成测算';
  const options=['<option value="">未评分</option>',...[1,2,3,4,5].map(n=>`<option value="${n}">${n}分</option>`)].join('');
@@ -37,8 +40,8 @@ function sampleHTML(s){
  return `<article class="sample" id="${anchor}" data-sample="${esc(s.id)}">
  <div class="sample-top"><div><p class="vendor identity">${esc(m.vendor)}</p><h3><span class="identity">${esc(m.name)}</span><span class="blind-name" ${blind?'':'hidden'}>${code}</span></h3></div><div class="cost sample-cost"><strong>${cost}</strong><span>${costLabel}</span></div></div>
  <p class="sample-meta">${duration(s.seconds)} · ${method} · ${isLong?'1000个汉字':'107个汉字'}</p>
- <audio controls preload="metadata" src="${BASE+esc(s.file)}" aria-label="${blind?code:esc(m.name)}，${state.teacher==='cai'?'蔡老师':'张伟老师'}${isLong?'长稿':'短稿'}"></audio>
- ${isLong?`<div class="play-tools"><button class="jump" data-seek="0">听开头</button><button class="jump" data-seek="${Math.max(0,s.seconds/2-8).toFixed(2)}">听中段</button><button class="jump" data-seek="${Math.max(0,s.seconds-32).toFixed(2)}">听后段</button><a class="download" href="${BASE+esc(s.file)}" download>下载样音</a></div>`:''}
+ <audio controls preload="none" src="${BASE+esc(playback)}" aria-label="${blind?code:esc(m.name)}，${state.teacher==='cai'?'蔡老师':'张伟老师'}${isLong?'长稿':'短稿'}"></audio>
+ <div class="play-tools">${isLong?`<button class="jump" data-seek="0">听开头</button><button class="jump" data-seek="${Math.max(0,s.seconds/2-8).toFixed(2)}">听中段</button><button class="jump" data-seek="${Math.max(0,s.seconds-32).toFixed(2)}">听后段</button>`:''}<a class="download" href="${BASE+esc(playback)}" download>下载MP3试听</a>${playback!==s.file?`<a class="original-download" href="${BASE+esc(s.file)}" download>原始WAV</a>`:''}</div>
  ${review(s)}
  <div class="sample-facts"><div><strong>${esc(m.price)}</strong><small>${s.model==='realtime'?'本轮样本折算，不是固定单价':s.model==='youdao'?'项目5折报价；非官网统一价':s.model.endsWith('open')?'官方在线演示；私有化成本另算':'纯汉字基准；标点英数另计'}</small></div><p>${esc(m.limit)}<small>音色复刻：${esc(m.clone)}</small></p></div>
  <details class="model-detail"><summary>费用怎么算？这次怎么测的？</summary><p>${esc(s.costBasis)}</p><p>${esc(m.conversion)}</p><p>${esc(m.detail)}</p><p class="quiet">${s.cost==null?'本次为官方在线演示。':'以上为成功样音费用测算，未抵扣试用额度，不是账单实扣；失败请求或返工另计。'}</p><a href="#price-${m.id}">查看官方规格、原声要求与来源</a></details>
@@ -46,7 +49,8 @@ function sampleHTML(s){
  </article>`;
 }
 function render(){
- document.querySelectorAll('audio').forEach(a=>a.pause());
+ audioBinding.dispose();
+ document.querySelectorAll('audio').forEach(a=>{a.pause();a.removeAttribute('src');a.load();});
  const teacher=state.teacher==='cai'?'蔡老师':'张伟老师',isLong=state.mode==='long';
  const person=state.teacher==='zhangwei'?'zhangwei':state.source===35?'cainew':'cai';
  visible=data.samples.filter(s=>s.teacher===state.teacher&&s.mode===state.mode&&(isLong||s.sourceSeconds===state.source));
@@ -60,8 +64,10 @@ function render(){
  $('#context-notes').textContent=isLong?'同一份1000汉字讲稿，含标点换行共1105字符。生成方式各有不同，请结合下面的标记比较。':'同一份107汉字短稿，含标点共118字符。短稿用于比较音色，长稿更能观察情绪和音色是否持续稳定。';
  $('#reference-note').textContent=state.teacher==='cai'&&sourceSeconds===35?'本组上传源文件相同，均为会议录音3分40秒至4分15秒。部分阿里复刻接口默认最多使用10秒有效提示。':'本组使用同一份'+sourceSeconds+'秒原声；不同老师、不同源文件的结果不作为单一模型变量比较。';
  const refPerson=isLong?(state.teacher==='cai'?'cainew':'zhangwei'):person;
- $('#reference-audio').src=BASE+data.references[refPerson];
+ $('#reference-audio').src=BASE+(data.referencePlayback?.[refPerson]||data.references[refPerson]);
  $('#reference-audio').setAttribute('aria-label',teacher+'原声');
+ const originalReference=document.createElement('a');originalReference.href=BASE+data.references[refPerson];originalReference.download='';originalReference.textContent='下载原始录音';
+ $('#reference-note').append(' ',originalReference);
  $('#script').textContent=isLong?data.longText:data.shortText;
  $('#result-count').textContent=`${teacher} / ${isLong?'长稿':'短稿'}试听`;
  $('#round-note').textContent=isLong?(state.teacher==='zhangwei'?'张伟老师本轮补测3款；千问TTS Plus与CosyVoice Plus只有短稿样音。':'本轮共5款云模型；开源版只有10秒原声的短稿结果。'):(person==='cai'?'本组有2款开源演示样音；Realtime短稿在“35秒原声”组。':state.teacher==='zhangwei'?'张伟老师Realtime目前只有长稿样音。':'开源版短稿在“10秒原声”组。');
@@ -79,16 +85,15 @@ function save(s,dimension,value){
  catch{$('#feedback-status').textContent='浏览器未允许保存，请用下方导出按钮保留听感。';}
 }
 function bindAudio(){
+ audioBinding=attachAudioPlayers(document);
  document.querySelectorAll('audio').forEach(a=>{
   if(a.dataset.bound)return;a.dataset.bound='yes';
   a.addEventListener('play',()=>{document.querySelectorAll('audio').forEach(b=>{if(a!==b)b.pause();});a.closest('.sample')?.classList.add('is-playing');});
   for(const event of ['pause','ended'])a.addEventListener(event,()=>a.closest('.sample')?.classList.remove('is-playing'));
-  a.addEventListener('error',()=>{$('#feedback-status').textContent='音频暂未加载成功，请检查网络或刷新页面。';});
  });
- document.querySelectorAll('[data-seek]').forEach(b=>b.addEventListener('click',async()=>{
+ document.querySelectorAll('[data-seek]').forEach(b=>b.addEventListener('click',()=>{
   const a=b.closest('.sample').querySelector('audio');const seconds=Number(b.dataset.seek);
-  try{if(a.readyState===0){await new Promise((resolve,reject)=>{a.addEventListener('loadedmetadata',resolve,{once:true});a.addEventListener('error',reject,{once:true});a.load();});}a.currentTime=Math.min(seconds,Math.max(0,a.duration-1));await a.play();}
-  catch{$('#feedback-status').textContent='未能播放，请使用音频播放器重试。';}
+  audioBinding.players.get(a).playAt(seconds);
  }));
 }
 function renderPrices(){
@@ -109,7 +114,7 @@ function exportRatings(){
  $('#feedback-status').textContent='已导出本浏览器记录的全部长短稿听感。';
 }
 async function init(){
- const response=await fetch(BASE+'assets/catalog.json?v=20261022a');if(!response.ok)throw new Error('样音目录加载失败');data=await response.json();state=routeState();render();renderPrices();
+ const response=await fetch(BASE+'assets/catalog.json?v=20261028a');if(!response.ok)throw new Error('样音目录加载失败');data=await response.json();state=routeState();render();renderPrices();
  document.querySelectorAll('button[data-teacher]').forEach(b=>b.addEventListener('click',()=>{state.teacher=b.dataset.teacher;if(state.teacher==='zhangwei')state.source=10;else state.source=35;render();shareState();}));
  document.querySelectorAll('button[data-mode]').forEach(b=>b.addEventListener('click',()=>{state.mode=b.dataset.mode;render();shareState();}));
  $('#source').addEventListener('change',e=>{state.source=Number(e.target.value);render();shareState();});
