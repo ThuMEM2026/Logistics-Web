@@ -4,12 +4,6 @@
   "installCommand": "bun install",
   "redirects": [
     {
-      "source": "/tts/:path*",
-      "has": [{ "type": "host", "value": "thumem.top" }],
-      "destination": "https://www.thumem.top/tts/:path*",
-      "permanent": false
-    },
-    {
       "source": "/tts",
       "destination": "/tts/",
       "permanent": true

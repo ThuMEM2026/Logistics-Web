@@ -11,6 +11,18 @@ export default defineConfig({
   // 否则只会产出 dist/client 和 dist/server，Vercel 没有可服务的输出，访问会 404。
   nitro: {
     preset: "vercel",
+    // Nitro emits the Build Output API config. Put this before its filesystem
+    // route: top-level vercel.json redirects do not reach these static files.
+    vercel: {
+      config: {
+        routes: [{
+          src: "^/tts(?:/(.*))?$",
+          has: [{ type: "host", value: "thumem.top" }],
+          status: 307,
+          headers: { Location: "https://www.thumem.top/tts/$1" },
+        }],
+      },
+    },
   },
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
